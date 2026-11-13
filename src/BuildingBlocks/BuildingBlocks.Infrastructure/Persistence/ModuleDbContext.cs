@@ -49,6 +49,8 @@ public abstract class ModuleDbContext(DbContextOptions options, ModuleDbContextD
 
     public void Enqueue(IJob job) => Jobs.Add(JobRecord.Create(job, dependencies.Clock.UtcNow));
 
+    public void DiscardPendingChanges() => ChangeTracker.Clear();
+
     public async Task<IUnitOfWorkTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default) =>
         new UnitOfWorkTransaction(await Database.BeginTransactionAsync(cancellationToken));
 

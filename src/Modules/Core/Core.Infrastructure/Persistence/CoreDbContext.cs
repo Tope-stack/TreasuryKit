@@ -6,6 +6,7 @@ using TreasuryKit.BuildingBlocks.Infrastructure.Persistence;
 using TreasuryKit.Core.Application;
 using TreasuryKit.Core.Domain.Accounts;
 using TreasuryKit.Core.Domain.Counterparties;
+using TreasuryKit.Core.Domain.ExpectedTransactions;
 using TreasuryKit.Core.Domain.MappingProfiles;
 using TreasuryKit.Core.Domain.Statements;
 using TreasuryKit.Core.Domain.Tenants;
@@ -32,6 +33,10 @@ public sealed class CoreDbContext(DbContextOptions<CoreDbContext> options, Modul
     public DbSet<StatementImport> StatementImports => Set<StatementImport>();
 
     public DbSet<StatementLine> StatementLines => Set<StatementLine>();
+
+    public DbSet<ExpectedTransaction> ExpectedTransactions => Set<ExpectedTransaction>();
+
+    public DbSet<ExpectedTransactionImport> ExpectedTransactionImports => Set<ExpectedTransactionImport>();
 
     protected override void ConfigureModel(ModelBuilder modelBuilder)
     {
@@ -122,6 +127,44 @@ public sealed class CoreDbContext(DbContextOptions<CoreDbContext> options, Modul
             b.HasIndex(x => x.ImportId);
             b.HasIndex(x => x.ExtractedRefs).HasMethod("gin");
             // (account_id, amount) index is created in the migration: EF cannot index complex-type columns.
+        });
+
+        modelBuilder.Entity<ExpectedTransaction>(b =>
+        {
+            b.ToTable("expected_transactions");
+            b.Property(x => x.Id).ValueGeneratedNever();
+            b.ComplexProperty(x => x.Amount, money =>
+            {
+                money.Property(m => m.Amount).HasColumnName("amount");
+                money.Property(m => m.Currency).HasColumnName("currency");
+            });
+            b.Property(x => x.Direction).HasConversion<string>().HasMaxLength(10);
+            b.Property(x => x.Source).HasConversion<string>().HasMaxLength(10);
+            b.Property(x => x.Status).HasConversion<string>().HasMaxLength(20);
+            b.Property(x => x.CounterpartyName).HasMaxLength(200);
+            b.Property(x => x.Reference).HasMaxLength(100);
+            b.Property(x => x.CanonicalReference).HasMaxLength(100);
+            b.Property(x => x.Description).HasMaxLength(500);
+            b.Property(x => x.ExternalId).HasMaxLength(100);
+            b.HasIndex(x => new { x.TenantId, x.Source, x.ExternalId }).IsUnique().HasFilter("external_id IS NOT NULL");
+            b.HasIndex(x => new { x.TenantId, x.Status, x.ExpectedDate });
+            b.HasIndex(x => x.CanonicalReference);
+        });
+
+        modelBuilder.Entity<ExpectedTransactionImport>(b =>
+        {
+            b.ToTable("expected_transaction_imports");
+            b.Property(x => x.Id).ValueGeneratedNever();
+            b.Property(x => x.FileName).HasMaxLength(260);
+            b.Property(x => x.FileHash).HasMaxLength(64).IsFixedLength();
+            b.Property(x => x.FileKey).HasMaxLength(500);
+            b.Property(x => x.Status).HasConversion<string>().HasMaxLength(20);
+            b.Property(x => x.ImportedBy).HasMaxLength(200);
+            b.Property(x => x.Errors).HasColumnType("jsonb").HasConversion(JsonConverter<List<ImportRowError>>(), new Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<List<ImportRowError>>(
+                (a, b) => JsonSerializer.Serialize(a, Json) == JsonSerializer.Serialize(b, Json),
+                v => JsonSerializer.Serialize(v, Json).GetHashCode(StringComparison.Ordinal),
+                v => v.ToList()));
+            b.HasIndex(x => new { x.TenantId, x.FileHash }).IsUnique();
         });
     }
 

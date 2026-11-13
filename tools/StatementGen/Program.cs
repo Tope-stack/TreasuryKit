@@ -8,6 +8,13 @@ using ClosedXML.Excel;
 var outDir = ArgValue(args, "--out") ?? "tests/TestData/statements";
 var seed = int.Parse(ArgValue(args, "--seed") ?? "20260101", CultureInfo.InvariantCulture);
 
+if (args.Contains("--recon"))
+{
+    // dotnet run --project tools/StatementGen -- --recon --out tests/TestData/recon
+    ReconDataset.Write(outDir, new Random(seed + 1));
+    return 0;
+}
+
 var month = TransactionStream.Generate(new Random(seed), new DateOnly(2026, 1, 1), new DateOnly(2026, 1, 31), openingBalance: 5_000_000.00m);
 var manifest = new Dictionary<string, FileManifest>();
 

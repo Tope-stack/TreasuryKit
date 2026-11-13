@@ -2,4 +2,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.Domain\BuildingBlocks.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- System.IO.MatchType would clash with the plan's MatchType; the domain does no I/O. -->
+    <Using Remove="System.IO" />
+  </ItemGroup>
 </Project>

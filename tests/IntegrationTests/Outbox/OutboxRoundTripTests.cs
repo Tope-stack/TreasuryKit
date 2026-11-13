@@ -61,12 +61,22 @@ public sealed class OutboxRoundTripTests(ApiFactory factory)
         Assert.Null(delivered.LastError);
     }
 
-    private async Task PublishFromCoreAsync(TestEvent evt) =>
+    /// <summary>
+    /// Clears messages other tests left behind first, so the single dispatch pass below sees this test's event
+    /// (the dispatcher handles one batch per pass).
+    /// </summary>
+    private async Task PublishFromCoreAsync(TestEvent evt)
+    {
+        while (await Dispatcher.DispatchPendingAsync(_ct) > 0)
+        {
+        }
+
         await ExecuteOnCoreAsync(db =>
         {
             db.Publish(evt);
             return db.SaveChangesAsync(_ct);
         });
+    }
 
     private async Task<OutboxMessage> GetOutboxMessageAsync(Guid id)
     {

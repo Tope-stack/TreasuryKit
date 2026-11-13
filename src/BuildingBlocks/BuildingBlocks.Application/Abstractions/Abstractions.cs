@@ -37,6 +37,9 @@ public interface IModuleUnitOfWork
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
+    /// <summary>Forgets unsaved changes, e.g. after a SaveChanges that failed on a unique constraint.</summary>
+    void DiscardPendingChanges();
+
     /// <summary>Starts a transaction spanning several SaveChanges calls and any raw SQL issued through this module.</summary>
     Task<IUnitOfWorkTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
 }
