@@ -61,8 +61,21 @@ Any `POST` can carry an `Idempotency-Key` header; repeats replay the first respo
 
 The account number must be `0123456789` for the sample data. Regenerate it with `dotnet run --project tools/StatementGen -- --recon --out tests/TestData/recon`.
 
+## Web UI
+
+```bash
+cd web
+npm install
+npm run dev        # http://localhost:5173, proxies /api to the Api on :5080
+npm run build      # production build into the Api's wwwroot; the Api then serves it at http://localhost:5080
+```
+
+Sign in on the development login page by picking (or creating) a tenant, a user name and roles. Screens: accounts, upload (statements and expected transactions, with live import status), dashboard (summary, run, export), review queue (confirm, reject, bulk confirm), exceptions (match to a candidate, resolve, ignore) and matched (reverse).
+
 ## Test
 
 ```bash
 dotnet test   # integration tests start their own PostgreSQL container
+cd web && npm test                 # UI component tests
+cd web && npm run build && npm run e2e   # end-to-end: needs `docker compose up -d`; starts the Api and Worker if not running
 ```

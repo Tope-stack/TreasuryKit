@@ -32,6 +32,7 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Uploaded files go through `IFileStore` (local disk under `FileStore:RootPath`, shared by Api and Worker).
 - Cross-module reads go through `*.Contracts` query interfaces (e.g. `ICoreStatementQueries`), implemented in the owning module's Infrastructure.
 - Test helpers that drive the outbox/job loop must drain until empty: each dispatcher call handles one batch, and other tests leave work behind.
+- Endpoints the UI uses declare `.Produces<T>()` with named response records, so the generated client stays typed.
 - New module: add it to the module list in both hosts (`TreasuryKit.Api`, `TreasuryKit.Worker`) and to `ArchitectureRules.Modules`.
 
 ## Commands
@@ -42,4 +43,6 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Tests (needs Docker): `dotnet test`
 - Regenerate synthetic statements (golden files + manifest): `dotnet run --project tools/StatementGen -- --out tests/TestData/statements`
 - Regenerate the reconciliation dataset (statement, expected CSV, answer key): `dotnet run --project tools/StatementGen -- --recon --out tests/TestData/recon`
+- Web UI: `cd web && npm run dev` (proxy to :5080); `npm run lint && npm run typecheck && npm test`; `npm run build` (into the Api's wwwroot); `npm run e2e` (Playwright, needs Postgres)
+- Regenerate the UI's API types after changing endpoints (Api running): `cd web && npm run gen:api`
 - Add migration: `dotnet ef migrations add <Name> --project src/Modules/<Module>/<X>.Infrastructure --context <X>DbContext --output-dir Persistence/Migrations`

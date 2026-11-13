@@ -152,7 +152,7 @@ internal sealed class ReconQueryHandlers(IReconDbContext db) :
             .ToList();
     }
 
-    private static MatchDto ToDto(Match m) =>
+    internal static MatchDto ToDto(Match m) =>
         new(m.Id, m.AccountId, m.RunId, m.Type, m.RuleKey, m.Confidence, m.ScoreBreakdown, m.Status, m.Currency.Code, m.ValueDate,
             m.ProposedBy, m.ProposedAt, m.ConfirmedBy, m.ConfirmedAt, m.Reason, m.Adjustment, m.ReviewedBy, m.ReviewedAt,
             m.Items.Select(i => new MatchItemDto(i.ItemType, i.ItemId, i.AllocatedAmount.Amount)).ToList());
