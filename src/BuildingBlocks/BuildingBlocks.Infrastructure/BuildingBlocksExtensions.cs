@@ -1,0 +1,63 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using TreasuryKit.BuildingBlocks.Application.Abstractions;
+using TreasuryKit.BuildingBlocks.Application.Events;
+using TreasuryKit.BuildingBlocks.Application.Messaging;
+using TreasuryKit.BuildingBlocks.Infrastructure.Auditing;
+using TreasuryKit.BuildingBlocks.Infrastructure.Context;
+using TreasuryKit.BuildingBlocks.Infrastructure.Inbox;
+using TreasuryKit.BuildingBlocks.Infrastructure.Outbox;
+using TreasuryKit.BuildingBlocks.Infrastructure.Persistence;
+
+namespace TreasuryKit.BuildingBlocks.Infrastructure;
+
+public static class BuildingBlocksExtensions
+{
+    /// <summary>Registers services shared by every host and module.</summary>
+    public static IServiceCollection AddBuildingBlocks(this IServiceCollection services)
+    {
+        services.AddSingleton<IClock, SystemClock>();
+        services.AddScoped<TenantContext>();
+        services.AddScoped<ICurrentTenant>(sp => sp.GetRequiredService<TenantContext>());
+        services.AddScoped<UserContext>();
+        services.AddScoped<ICurrentUser>(sp => sp.GetRequiredService<UserContext>());
+
+        services.AddScoped<IDispatcher, Dispatcher>();
+        services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+        services.AddScoped<ModuleDbContextDependencies>();
+        services.AddScoped<AuditSaveChangesInterceptor>();
+
+        services.AddSingleton<IEventBus, InProcessEventBus>();
+        services.AddSingleton<OutboxDispatcher>();
+
+        services.AddOptions<DatabaseOptions>()
+            .BindConfiguration("Database")
+            .Configure<IConfiguration>((o, config) =>
+                o.ConnectionString = config.GetConnectionString(DatabaseOptions.ConnectionStringName) ?? string.Empty)
+            .Validate(o => !string.IsNullOrWhiteSpace(o.ConnectionString), $"ConnectionStrings:{DatabaseOptions.ConnectionStringName} is required.")
+            .ValidateOnStart();
+
+        services.AddOptions<OutboxOptions>()
+            .BindConfiguration(OutboxOptions.SectionName)
+            .ValidateDataAnnotations()
+            .Validate(o => o.PollingInterval > TimeSpan.Zero, "Outbox:PollingInterval must be positive.")
+            .ValidateOnStart();
+
+        return services;
+    }
+
+    /// <summary>
+    /// Subscribes <typeparamref name="THandler"/> to <typeparamref name="TEvent"/>, de-duplicated through
+    /// the inbox of the subscribing module's <typeparamref name="TContext"/>.
+    /// </summary>
+    public static IServiceCollection AddIntegrationEventHandler<TEvent, THandler, TContext>(this IServiceCollection services)
+        where TEvent : IIntegrationEvent
+        where THandler : class, IIntegrationEventHandler<TEvent>
+        where TContext : ModuleDbContext
+    {
+        services.AddScoped<THandler>();
+        services.AddScoped<InboxInvoker<TEvent, THandler, TContext>>();
+        services.AddSingleton(new IntegrationEventSubscription(typeof(TEvent), typeof(InboxInvoker<TEvent, THandler, TContext>)));
+        return services;
+    }
+}

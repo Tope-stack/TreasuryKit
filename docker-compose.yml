@@ -1,0 +1,20 @@
+# Local development dependencies. Postgres is published on 5433 to avoid clashing with a local install.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: treasurykit
+      POSTGRES_USER: treasurykit
+      POSTGRES_PASSWORD: treasurykit
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U treasurykit -d treasurykit"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:
