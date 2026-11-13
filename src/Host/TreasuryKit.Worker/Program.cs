@@ -1,5 +1,6 @@
 using Serilog;
 using TreasuryKit.BuildingBlocks.Infrastructure;
+using TreasuryKit.BuildingBlocks.Infrastructure.Jobs;
 using TreasuryKit.BuildingBlocks.Infrastructure.Modules;
 using TreasuryKit.BuildingBlocks.Infrastructure.Outbox;
 using TreasuryKit.Core.Infrastructure;
@@ -23,5 +24,6 @@ foreach (var module in modules)
 
 // The Api owns migrations; the Worker only processes background work.
 builder.Services.AddHostedService<OutboxBackgroundService>();
+builder.Services.AddHostedService<JobBackgroundService>();
 
 await builder.Build().RunAsync();

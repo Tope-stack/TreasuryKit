@@ -483,3 +483,6 @@ $RECYCLE.BIN/
 
 # macOS
 .DS_Store
+
+# Local file store (uploads)
+.data/

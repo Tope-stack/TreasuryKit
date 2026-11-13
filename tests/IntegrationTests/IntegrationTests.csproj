@@ -6,4 +6,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
     <PackageReference Include="Testcontainers.PostgreSql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\TestData\**\*" LinkBase="TestData" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>
