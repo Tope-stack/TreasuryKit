@@ -4,6 +4,7 @@
     <ProjectReference Include="..\Recon.Application\Recon.Application.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ClosedXML" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
   </ItemGroup>
 </Project>

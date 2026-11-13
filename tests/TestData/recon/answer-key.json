@@ -875,7 +875,7 @@
   {
     "scenario": "Split2",
     "clean": false,
-    "outcome": "Unmatched",
+    "outcome": "Proposed",
     "externalIds": [
       "EXP-0084"
     ],
@@ -887,7 +887,7 @@
   {
     "scenario": "Split3",
     "clean": false,
-    "outcome": "Unmatched",
+    "outcome": "Proposed",
     "externalIds": [
       "EXP-0085"
     ],
@@ -898,109 +898,63 @@
     ]
   },
   {
-    "scenario": "Split2",
+    "scenario": "Split4",
     "clean": false,
-    "outcome": "Unmatched",
+    "outcome": "Proposed",
     "externalIds": [
       "EXP-0086"
     ],
     "bankReferences": [
       "FT2602000085",
-      "FT2602000086"
-    ]
-  },
-  {
-    "scenario": "BankChargeDeducted",
-    "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [
-      "EXP-0087"
-    ],
-    "bankReferences": [
-      "FT2602000087"
-    ]
-  },
-  {
-    "scenario": "BankChargeDeducted",
-    "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [
-      "EXP-0088"
-    ],
-    "bankReferences": [
+      "FT2602000086",
+      "FT2602000087",
       "FT2602000088"
     ]
   },
   {
-    "scenario": "BankChargeDeducted",
+    "scenario": "Split5",
     "clean": false,
-    "outcome": "Unmatched",
+    "outcome": "Proposed",
     "externalIds": [
-      "EXP-0089"
+      "EXP-0087"
     ],
     "bankReferences": [
-      "FT2602000089"
-    ]
-  },
-  {
-    "scenario": "UnmatchedLine",
-    "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [],
-    "bankReferences": [
-      "FT2602000090"
-    ]
-  },
-  {
-    "scenario": "UnmatchedLine",
-    "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [],
-    "bankReferences": [
-      "FT2602000091"
-    ]
-  },
-  {
-    "scenario": "UnmatchedLine",
-    "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [],
-    "bankReferences": [
-      "FT2602000092"
-    ]
-  },
-  {
-    "scenario": "UnmatchedLine",
-    "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [],
-    "bankReferences": [
+      "FT2602000089",
+      "FT2602000090",
+      "FT2602000091",
+      "FT2602000092",
       "FT2602000093"
     ]
   },
   {
-    "scenario": "UnmatchedLine",
+    "scenario": "BankChargeDeducted",
     "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [],
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0088"
+    ],
     "bankReferences": [
       "FT2602000094"
     ]
   },
   {
-    "scenario": "UnmatchedLine",
+    "scenario": "BankChargeDeducted",
     "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [],
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0089"
+    ],
     "bankReferences": [
       "FT2602000095"
     ]
   },
   {
-    "scenario": "UnmatchedLine",
+    "scenario": "BankChargeDeducted",
     "clean": false,
-    "outcome": "Unmatched",
-    "externalIds": [],
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0090"
+    ],
     "bankReferences": [
       "FT2602000096"
     ]
@@ -1033,13 +987,67 @@
     ]
   },
   {
-    "scenario": "UnmatchedExpected",
+    "scenario": "UnmatchedLine",
     "clean": false,
     "outcome": "Unmatched",
-    "externalIds": [
-      "EXP-0090"
-    ],
-    "bankReferences": []
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000100"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000101"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000102"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000103"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000104"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000105"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000106"
+    ]
   },
   {
     "scenario": "UnmatchedExpected",
@@ -1101,6 +1109,15 @@
     "outcome": "Unmatched",
     "externalIds": [
       "EXP-0097"
+    ],
+    "bankReferences": []
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0098"
     ],
     "bankReferences": []
   }

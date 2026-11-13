@@ -13,6 +13,9 @@ public interface ICoreStatementQueries
     /// <summary>Statement lines of an account with value date in [from, to].</summary>
     Task<IReadOnlyList<StatementLineSnapshot>> GetLinesAsync(Guid accountId, DateOnly from, DateOnly to, CancellationToken cancellationToken);
 
+    /// <summary>Lines by id (any account of the tenant); missing ids are simply absent from the result.</summary>
+    Task<IReadOnlyList<StatementLineSnapshot>> GetLinesByIdsAsync(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken);
+
     /// <summary>True when an import overlapping [from, to] is in BalanceMismatch and not yet acknowledged (plan §5.4).</summary>
     Task<bool> HasUnacknowledgedMismatchAsync(Guid accountId, DateOnly from, DateOnly to, CancellationToken cancellationToken);
 }
@@ -25,6 +28,9 @@ public interface ICoreExpectedTransactionQueries
     /// </summary>
     Task<IReadOnlyList<ExpectedTransactionSnapshot>> GetOpenAsync(
         Guid accountId, string currency, DateOnly from, DateOnly to, CancellationToken cancellationToken);
+
+    /// <summary>Expected transactions by id, in any status; missing ids are absent from the result.</summary>
+    Task<IReadOnlyList<ExpectedTransactionSnapshot>> GetByIdsAsync(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken);
 }
 
 public sealed record AccountSnapshot(Guid Id, string AccountNumber, string Currency, bool IsActive);
@@ -49,13 +55,18 @@ public sealed record StatementLineSnapshot(
 
 /// <param name="OutstandingAmount">Positive; <paramref name="Direction"/> carries the sign.</param>
 /// <param name="CounterpartyNames">Normalized counterparty name plus the counterparty's aliases.</param>
+/// <param name="Status">Open, PartiallySettled, Settled or Cancelled.</param>
 public sealed record ExpectedTransactionSnapshot(
     Guid Id,
     Guid? AccountId,
     CashDirection Direction,
+    decimal Amount,
     decimal OutstandingAmount,
     string Currency,
     DateOnly ExpectedDate,
     string? Reference,
     string? CanonicalReference,
-    IReadOnlyList<string> CounterpartyNames);
+    IReadOnlyList<string> CounterpartyNames,
+    string? CounterpartyName,
+    string? Description,
+    string Status);

@@ -6,6 +6,9 @@ public interface IMatchingRule
 {
     string Key { get; }
 
+    /// <summary>False for rules whose matches always need a human (plan §5.3 "always proposed").</summary>
+    bool CanAutoConfirm => true;
+
     /// <summary>Proposes candidates from the current pool. Rules may flag items (ambiguity, currency) on the pool.</summary>
     IEnumerable<MatchCandidate> Find(MatchingPool pool, RuleParameters parameters);
 }

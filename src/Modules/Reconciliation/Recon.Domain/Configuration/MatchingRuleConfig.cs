@@ -12,7 +12,7 @@ public sealed class MatchingRuleConfig : AggregateRoot<Guid>, ITenantOwned
         (RuleKeys.ExactReference, 1, []),
         (RuleKeys.AmountDateWindow, 2, new() { ["windowDays"] = 3, ["nameSimilarityMin"] = 0.85m }),
         (RuleKeys.SplitPayment, 3, new() { ["windowDays"] = 5, ["maxItems"] = 5, ["maxCombinations"] = 20000 }),
-        (RuleKeys.Tolerance, 4, new() { ["absTolerance"] = 0, ["pct"] = 0.005m }),
+        (RuleKeys.Tolerance, 4, new() { ["absTolerance"] = 0, ["pct"] = 0.005m, ["windowDays"] = 3 }),
     ];
 
     /// <summary>Accepted parameters and their valid ranges.</summary>
@@ -21,7 +21,7 @@ public sealed class MatchingRuleConfig : AggregateRoot<Guid>, ITenantOwned
         [RuleKeys.ExactReference] = [],
         [RuleKeys.AmountDateWindow] = new() { ["windowDays"] = (0, 30), ["nameSimilarityMin"] = (0, 1) },
         [RuleKeys.SplitPayment] = new() { ["windowDays"] = (0, 30), ["maxItems"] = (2, 10), ["maxCombinations"] = (1, 1_000_000) },
-        [RuleKeys.Tolerance] = new() { ["absTolerance"] = (0, 1_000_000), ["pct"] = (0, 0.1m) },
+        [RuleKeys.Tolerance] = new() { ["absTolerance"] = (0, 1_000_000), ["pct"] = (0, 0.1m), ["windowDays"] = (0, 30) },
     };
 
     private MatchingRuleConfig(Guid id, Guid tenantId)

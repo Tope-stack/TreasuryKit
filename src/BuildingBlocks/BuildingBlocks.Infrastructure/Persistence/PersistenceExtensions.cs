@@ -24,6 +24,15 @@ public static class PersistenceExtensions
         return services;
     }
 
+    /// <summary>Registers the host-level <c>platform</c> schema (idempotency records). Migrated with the modules.</summary>
+    public static IServiceCollection AddPlatformPersistence(this IServiceCollection services)
+    {
+        services.AddDbContext<Idempotency.PlatformDbContext>((sp, options) =>
+            ConfigureNpgsql(options, sp.GetRequiredService<IOptions<DatabaseOptions>>().Value.ConnectionString, Idempotency.PlatformDbContext.SchemaName));
+        services.AddSingleton(new ModuleDbContextRegistration(typeof(Idempotency.PlatformDbContext), Idempotency.PlatformDbContext.SchemaName));
+        return services;
+    }
+
     /// <summary>Shared Npgsql configuration; also used by design-time factories.</summary>
     public static DbContextOptionsBuilder ConfigureNpgsql(DbContextOptionsBuilder options, string connectionString, string schema) =>
         options

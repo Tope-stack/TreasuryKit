@@ -21,14 +21,17 @@ internal sealed class CoreQueries(CoreDbContext db) : ICoreAccountQueries, ICore
             .Select(a => new AccountSnapshot(a.Id, a.AccountNumber, a.Currency.Code, a.IsActive))
             .FirstOrDefaultAsync(cancellationToken);
 
-    public async Task<IReadOnlyList<StatementLineSnapshot>> GetLinesAsync(Guid accountId, DateOnly from, DateOnly to, CancellationToken cancellationToken)
-    {
-        var lines = await db.StatementLines.AsNoTracking()
+    public async Task<IReadOnlyList<StatementLineSnapshot>> GetLinesAsync(Guid accountId, DateOnly from, DateOnly to, CancellationToken cancellationToken) =>
+        ToSnapshots(await db.StatementLines.AsNoTracking()
             .Where(l => l.AccountId == accountId && l.ValueDate >= from && l.ValueDate <= to)
             .OrderBy(l => l.ValueDate).ThenBy(l => l.Id)
-            .ToListAsync(cancellationToken);
+            .ToListAsync(cancellationToken));
 
-        return lines.Select(l =>
+    public async Task<IReadOnlyList<StatementLineSnapshot>> GetLinesByIdsAsync(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken) =>
+        ToSnapshots(await db.StatementLines.AsNoTracking().Where(l => ids.Contains(l.Id)).ToListAsync(cancellationToken));
+
+    private static IReadOnlyList<StatementLineSnapshot> ToSnapshots(List<StatementLine> lines) =>
+        lines.Select(l =>
         {
             var refs = Parse(l.ExtractedRefs);
             return new StatementLineSnapshot(
@@ -36,7 +39,6 @@ internal sealed class CoreQueries(CoreDbContext db) : ICoreAccountQueries, ICore
                 l.NormalizedNarration, l.BankReference, l.EndToEndId, refs.NipSessionId, refs.InvoiceRefs, refs.PaymentRefs,
                 l.CounterpartyName is { } structured ? Domain.Common.TextNormalization.ForName(structured) : l.CounterpartyNameGuess);
         }).ToList();
-    }
 
     public Task<bool> HasUnacknowledgedMismatchAsync(Guid accountId, DateOnly from, DateOnly to, CancellationToken cancellationToken) =>
         db.StatementImports.AsNoTracking().AnyAsync(
@@ -55,7 +57,14 @@ internal sealed class CoreQueries(CoreDbContext db) : ICoreAccountQueries, ICore
                 && t.ExpectedDate >= from && t.ExpectedDate <= to
                 && (t.AccountId == accountId || (t.AccountId == null && t.Amount.Currency == accountCurrency)))
             .ToListAsync(cancellationToken);
+        return await ToSnapshotsAsync(open, cancellationToken);
+    }
 
+    public async Task<IReadOnlyList<ExpectedTransactionSnapshot>> GetByIdsAsync(IReadOnlyCollection<Guid> ids, CancellationToken cancellationToken) =>
+        await ToSnapshotsAsync(await db.ExpectedTransactions.AsNoTracking().Where(t => ids.Contains(t.Id)).ToListAsync(cancellationToken), cancellationToken);
+
+    private async Task<IReadOnlyList<ExpectedTransactionSnapshot>> ToSnapshotsAsync(List<ExpectedTransaction> open, CancellationToken cancellationToken)
+    {
         var counterpartyIds = open.Where(t => t.CounterpartyId != null).Select(t => t.CounterpartyId!.Value).Distinct().ToList();
         var counterparties = await db.Counterparties.AsNoTracking()
             .Where(c => counterpartyIds.Contains(c.Id))
@@ -79,12 +88,16 @@ internal sealed class CoreQueries(CoreDbContext db) : ICoreAccountQueries, ICore
                 t.Id,
                 t.AccountId,
                 t.Direction == TransactionDirection.Inflow ? CashDirection.Inflow : CashDirection.Outflow,
+                t.Amount.Amount,
                 t.OutstandingAmount,
                 t.Amount.Currency.Code,
                 t.ExpectedDate,
                 t.Reference,
                 t.CanonicalReference,
-                names.Where(n => n.Length > 0).Distinct().ToList());
+                names.Where(n => n.Length > 0).Distinct().ToList(),
+                t.CounterpartyName,
+                t.Description,
+                t.Status.ToString());
         }).ToList();
     }
 

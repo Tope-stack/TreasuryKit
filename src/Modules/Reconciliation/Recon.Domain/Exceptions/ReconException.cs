@@ -45,6 +45,8 @@ public sealed class ReconException : AggregateRoot<Guid>, ITenantOwned
 
     public string? ResolutionNote { get; private set; }
 
+    public static readonly Error NotFound = BuildingBlocks.Domain.Error.NotFound("Exception.NotFound", "Exception not found.");
+
     public static ReconException Raise(Guid tenantId, Guid accountId, Guid runId, UnmatchedItem item, DateTimeOffset now) =>
         new(Guid.CreateVersion7(), tenantId)
         {
@@ -59,4 +61,37 @@ public sealed class ReconException : AggregateRoot<Guid>, ITenantOwned
         };
 
     public void Supersede() => Status = ExceptionStatus.Superseded;
+
+    public Result Resolve(string userId, string? note) => Close(ExceptionStatus.Resolved, userId, note);
+
+    public Result Ignore(string userId, string? note) => Close(ExceptionStatus.Ignored, userId, note);
+
+    /// <summary>A manual match now covers this item.</summary>
+    public void ResolveByMatch(Guid matchId, string userId)
+    {
+        if (Status == ExceptionStatus.Open)
+        {
+            Status = ExceptionStatus.Resolved;
+            ResolvedBy = userId;
+            ResolutionNote = $"Matched manually (match {matchId}).";
+        }
+    }
+
+    private Result Close(ExceptionStatus status, string userId, string? note)
+    {
+        if (Status != ExceptionStatus.Open)
+        {
+            return BuildingBlocks.Domain.Error.Conflict("Exception.NotOpen", $"Only open exceptions can be closed (status is {Status}).");
+        }
+
+        if (string.IsNullOrWhiteSpace(note))
+        {
+            return BuildingBlocks.Domain.Error.Validation("Exception.NoteRequired", "A note is required.");
+        }
+
+        Status = status;
+        ResolvedBy = userId;
+        ResolutionNote = note.Trim().Length > 1000 ? note.Trim()[..1000] : note.Trim();
+        return Result.Success();
+    }
 }

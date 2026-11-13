@@ -10,6 +10,8 @@ using TreasuryKit.Core.Contracts.Tenants;
 using TreasuryKit.Recon.Application;
 using TreasuryKit.Recon.Application.Configuration;
 using TreasuryKit.Recon.Application.Events;
+using TreasuryKit.Recon.Application.Reports;
+using TreasuryKit.Recon.Infrastructure.Reports;
 using TreasuryKit.Recon.Application.Runs;
 using TreasuryKit.Recon.Domain.Rules;
 using TreasuryKit.Recon.Infrastructure.Endpoints;
@@ -33,6 +35,10 @@ public sealed class ReconModule : IModule
         // Matching rules (plan §5.3), in the order of their keys; per-tenant config decides order and enablement.
         services.AddSingleton<IMatchingRule, ExactReferenceRule>();
         services.AddSingleton<IMatchingRule, AmountDateWindowRule>();
+        services.AddSingleton<IMatchingRule, SplitPaymentRule>();
+        services.AddSingleton<IMatchingRule, ToleranceRule>();
+
+        services.AddSingleton<IReportExportWriter, ReportExportWriter>();
 
         services.AddJobHandler<RunReconciliationJob, RunReconciliationHandler>();
         services.AddIntegrationEventHandler<TenantCreated, TenantCreatedHandler, ReconDbContext>();

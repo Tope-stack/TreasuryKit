@@ -367,6 +367,11 @@ namespace TreasuryKit.Recon.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("account_id");
 
+                    b.Property<decimal>("Adjustment")
+                        .HasPrecision(19, 4)
+                        .HasColumnType("numeric(19,4)")
+                        .HasColumnName("adjustment");
+
                     b.Property<decimal>("Confidence")
                         .HasPrecision(19, 4)
                         .HasColumnType("numeric(19,4)")
@@ -401,6 +406,15 @@ namespace TreasuryKit.Recon.Infrastructure.Persistence.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)")
                         .HasColumnName("reason");
+
+                    b.Property<DateTimeOffset?>("ReviewedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("reviewed_at");
+
+                    b.Property<string>("ReviewedBy")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("reviewed_by");
 
                     b.Property<string>("RuleKey")
                         .IsRequired()
