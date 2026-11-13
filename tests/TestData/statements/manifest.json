@@ -9,7 +9,9 @@
     "nipSessionIds": 49,
     "balanced": true,
     "newestFirst": false,
-    "overlapWithPrevious": 0
+    "overlapWithPrevious": 0,
+    "account": null,
+    "skippedEntries": 0
   },
   "layout-a/overlap-part1.csv": {
     "lineCount": 47,
@@ -21,7 +23,9 @@
     "nipSessionIds": 34,
     "balanced": true,
     "newestFirst": false,
-    "overlapWithPrevious": 0
+    "overlapWithPrevious": 0,
+    "account": null,
+    "skippedEntries": 0
   },
   "layout-a/overlap-part2.csv": {
     "lineCount": 44,
@@ -33,7 +37,9 @@
     "nipSessionIds": 26,
     "balanced": true,
     "newestFirst": false,
-    "overlapWithPrevious": 17
+    "overlapWithPrevious": 17,
+    "account": null,
+    "skippedEntries": 0
   },
   "layout-a/unbalanced.csv": {
     "lineCount": 74,
@@ -45,7 +51,9 @@
     "nipSessionIds": 49,
     "balanced": false,
     "newestFirst": false,
-    "overlapWithPrevious": 0
+    "overlapWithPrevious": 0,
+    "account": null,
+    "skippedEntries": 0
   },
   "layout-b/clean.xlsx": {
     "lineCount": 74,
@@ -57,7 +65,9 @@
     "nipSessionIds": 49,
     "balanced": true,
     "newestFirst": false,
-    "overlapWithPrevious": 0
+    "overlapWithPrevious": 0,
+    "account": null,
+    "skippedEntries": 0
   },
   "layout-b/unbalanced.xlsx": {
     "lineCount": 74,
@@ -69,7 +79,9 @@
     "nipSessionIds": 49,
     "balanced": false,
     "newestFirst": false,
-    "overlapWithPrevious": 0
+    "overlapWithPrevious": 0,
+    "account": null,
+    "skippedEntries": 0
   },
   "layout-c/clean.csv": {
     "lineCount": 74,
@@ -81,6 +93,92 @@
     "nipSessionIds": 49,
     "balanced": true,
     "newestFirst": true,
-    "overlapWithPrevious": 0
+    "overlapWithPrevious": 0,
+    "account": null,
+    "skippedEntries": 0
+  },
+  "mt940/month.sta": {
+    "lineCount": 74,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-30",
+    "openingBalance": 5000000.00,
+    "closingBalance": 14611354.33,
+    "sumOfAmounts": 9611354.33,
+    "nipSessionIds": 49,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 0,
+    "account": "058/0123456789",
+    "skippedEntries": 0
+  },
+  "mt940/daily.sta": {
+    "lineCount": 22,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-09",
+    "openingBalance": 5000000.00,
+    "closingBalance": 2085549.25,
+    "sumOfAmounts": -2914450.75,
+    "nipSessionIds": 16,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 0,
+    "account": "0123456789",
+    "skippedEntries": 0
+  },
+  "mt940/daily-gap.sta": {
+    "lineCount": 22,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-09",
+    "openingBalance": 5000000.00,
+    "closingBalance": 2085549.25,
+    "sumOfAmounts": -2914450.75,
+    "nipSessionIds": 16,
+    "balanced": false,
+    "newestFirst": false,
+    "overlapWithPrevious": 0,
+    "account": "0123456789",
+    "skippedEntries": 0
+  },
+  "mt940/other-account.sta": {
+    "lineCount": 22,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-09",
+    "openingBalance": 5000000.00,
+    "closingBalance": 2085549.25,
+    "sumOfAmounts": -2914450.75,
+    "nipSessionIds": 16,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 0,
+    "account": "9876543210",
+    "skippedEntries": 0
+  },
+  "camt053/month.xml": {
+    "lineCount": 74,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-30",
+    "openingBalance": 5000000.00,
+    "closingBalance": 14611354.33,
+    "sumOfAmounts": 9611354.33,
+    "nipSessionIds": 49,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 0,
+    "account": "0123456789",
+    "skippedEntries": 0
+  },
+  "camt053/batch-pending-v02.xml": {
+    "lineCount": 2,
+    "periodStart": "2026-02-02",
+    "periodEnd": "2026-02-02",
+    "openingBalance": 1000000.00,
+    "closingBalance": 1150000.00,
+    "sumOfAmounts": 150000.00,
+    "nipSessionIds": 0,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 0,
+    "account": "0123456789",
+    "skippedEntries": 1
   }
 }

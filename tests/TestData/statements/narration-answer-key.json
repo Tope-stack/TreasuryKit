@@ -1,0 +1,508 @@
+[
+  {
+    "narration": "NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/889558260101162351113332823325/PO-311",
+    "nipSessionId": "889558260101162351113332823325",
+    "invoiceRefs": [],
+    "counterparty": "SHENZHEN BRIGHT ELECTRONICS"
+  },
+  {
+    "narration": "TRF FRM SAHARA LOGISTICS REF 793438",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "SAHARA LOGISTICS"
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/119443260101134921279771936641/INV-1041",
+    "nipSessionId": "119443260101134921279771936641",
+    "invoiceRefs": [
+      "INV1041"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "POS/WEB PURCHASE CHICKEN REPUBLIC YABA",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP TRF TO ARIBA CEMENT DISTRIBUTORS/823280260102113815315028677910/PO-312",
+    "nipSessionId": "823280260102113815315028677910",
+    "invoiceRefs": [],
+    "counterparty": "ARIBA CEMENT DISTRIBUTORS"
+  },
+  {
+    "narration": "NIP/FRM LEKKI PHARMA LTD/069068260102130106440715551751/INV-1042",
+    "nipSessionId": "069068260102130106440715551751",
+    "invoiceRefs": [
+      "INV1042"
+    ],
+    "counterparty": "LEKKI PHARMA LTD"
+  },
+  {
+    "narration": "NIP/FRM KANO AGRO SUPPLIES/613968260105121922093153236172/INV-1043",
+    "nipSessionId": "613968260105121922093153236172",
+    "invoiceRefs": [
+      "INV1043"
+    ],
+    "counterparty": "KANO AGRO SUPPLIES"
+  },
+  {
+    "narration": "TRF FRM SAHARA LOGISTICS REF 248198",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "SAHARA LOGISTICS"
+  },
+  {
+    "narration": "POS/WEB PURCHASE CHICKEN REPUBLIC YABA",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/213379260106153020867572968462/PO-313",
+    "nipSessionId": "213379260106153020867572968462",
+    "invoiceRefs": [],
+    "counterparty": "SHENZHEN BRIGHT ELECTRONICS"
+  },
+  {
+    "narration": "NIP/FRM EKO FOODS PLC/283202260106124342228598578445/INV-1044",
+    "nipSessionId": "283202260106124342228598578445",
+    "invoiceRefs": [
+      "INV1044"
+    ],
+    "counterparty": "EKO FOODS PLC"
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/769939260106091411296865774345/INV-1045",
+    "nipSessionId": "769939260106091411296865774345",
+    "invoiceRefs": [
+      "INV1045"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "POS/WEB PURCHASE JUMIA ONLINE",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/268802260107132139475502157263/PO-314",
+    "nipSessionId": "268802260107132139475502157263",
+    "invoiceRefs": [],
+    "counterparty": "SHENZHEN BRIGHT ELECTRONICS"
+  },
+  {
+    "narration": "NIP/FRM LEKKI PHARMA LTD/965310260107135115172427091716/INV-1046",
+    "nipSessionId": "965310260107135115172427091716",
+    "invoiceRefs": [
+      "INV1046"
+    ],
+    "counterparty": "LEKKI PHARMA LTD"
+  },
+  {
+    "narration": "NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/575227260107154330320785304562/PO-315",
+    "nipSessionId": "575227260107154330320785304562",
+    "invoiceRefs": [],
+    "counterparty": "SHENZHEN BRIGHT ELECTRONICS"
+  },
+  {
+    "narration": "NIP TRF TO IKEJA OFFICE MART/961947260108142538225494701022/PO-316",
+    "nipSessionId": "961947260108142538225494701022",
+    "invoiceRefs": [],
+    "counterparty": "IKEJA OFFICE MART"
+  },
+  {
+    "narration": "TRF FRM ADEBAYO TRADING LTD REF 610393",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "ADEBAYO TRADING LTD"
+  },
+  {
+    "narration": "NIP/FRM NNEWI AUTO PARTS/965440260109154951693575836026/INV-1047",
+    "nipSessionId": "965440260109154951693575836026",
+    "invoiceRefs": [
+      "INV1047"
+    ],
+    "counterparty": "NNEWI AUTO PARTS"
+  },
+  {
+    "narration": "NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/154716260109161601016903912971/PO-317",
+    "nipSessionId": "154716260109161601016903912971",
+    "invoiceRefs": [],
+    "counterparty": "SHENZHEN BRIGHT ELECTRONICS"
+  },
+  {
+    "narration": "NIP/FRM SAHARA LOGISTICS/720998260109094109008122985006/INV-1048",
+    "nipSessionId": "720998260109094109008122985006",
+    "invoiceRefs": [
+      "INV1048"
+    ],
+    "counterparty": "SAHARA LOGISTICS"
+  },
+  {
+    "narration": "NIP TRF TO TEMA PORT CLEARING LTD/111535260109124018669231482742/PO-318",
+    "nipSessionId": "111535260109124018669231482742",
+    "invoiceRefs": [],
+    "counterparty": "TEMA PORT CLEARING LTD"
+  },
+  {
+    "narration": "POS/WEB PURCHASE JUMIA ONLINE",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM ADEBAYO TRADING LTD/847733260112132049275981373446/INV-1049",
+    "nipSessionId": "847733260112132049275981373446",
+    "invoiceRefs": [
+      "INV1049"
+    ],
+    "counterparty": "ADEBAYO TRADING LTD"
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/704854260112145106408033043181/INV-1050",
+    "nipSessionId": "704854260112145106408033043181",
+    "invoiceRefs": [
+      "INV1050"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "NIP/FRM SAHARA LOGISTICS/961721260112113347074494036104/INV-1051",
+    "nipSessionId": "961721260112113347074494036104",
+    "invoiceRefs": [
+      "INV1051"
+    ],
+    "counterparty": "SAHARA LOGISTICS"
+  },
+  {
+    "narration": "NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/025539260113092708938309397471/PO-319",
+    "nipSessionId": "025539260113092708938309397471",
+    "invoiceRefs": [],
+    "counterparty": "SHENZHEN BRIGHT ELECTRONICS"
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/001572260113090357499141154095/INV-1052",
+    "nipSessionId": "001572260113090357499141154095",
+    "invoiceRefs": [
+      "INV1052"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "NIP/FRM NNEWI AUTO PARTS/417504260113140115481609298951/INV-1053",
+    "nipSessionId": "417504260113140115481609298951",
+    "invoiceRefs": [
+      "INV1053"
+    ],
+    "counterparty": "NNEWI AUTO PARTS"
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/519186260113104209010562750904/INV-1054",
+    "nipSessionId": "519186260113104209010562750904",
+    "invoiceRefs": [
+      "INV1054"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "NIP/FRM NNEWI AUTO PARTS/313896260114124406536962841950/INV-1055",
+    "nipSessionId": "313896260114124406536962841950",
+    "invoiceRefs": [
+      "INV1055"
+    ],
+    "counterparty": "NNEWI AUTO PARTS"
+  },
+  {
+    "narration": "NIP/FRM LEKKI PHARMA LTD/719768260114112201737937999574/INV-1056",
+    "nipSessionId": "719768260114112201737937999574",
+    "invoiceRefs": [
+      "INV1056"
+    ],
+    "counterparty": "LEKKI PHARMA LTD"
+  },
+  {
+    "narration": "POS/WEB PURCHASE TOTAL ENERGIES VI",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP TRF TO ABUJA FLEET SERVICES/246065260115110830616901764018/PO-320",
+    "nipSessionId": "246065260115110830616901764018",
+    "invoiceRefs": [],
+    "counterparty": "ABUJA FLEET SERVICES"
+  },
+  {
+    "narration": "NIP/FRM EKO FOODS PLC/184269260115150738364646149084/INV-1057",
+    "nipSessionId": "184269260115150738364646149084",
+    "invoiceRefs": [
+      "INV1057"
+    ],
+    "counterparty": "EKO FOODS PLC"
+  },
+  {
+    "narration": "SMS ALERT CHARGES",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "SMS ALERT CHARGES",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "TRF FRM JOS TIN MERCHANTS REF 864070",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "NIP/FRM LEKKI PHARMA LTD/561870260116124954868616200244/INV-1058",
+    "nipSessionId": "561870260116124954868616200244",
+    "invoiceRefs": [
+      "INV1058"
+    ],
+    "counterparty": "LEKKI PHARMA LTD"
+  },
+  {
+    "narration": "NIP TRF TO TEMA PORT CLEARING LTD/644188260116092741494192637529/PO-321",
+    "nipSessionId": "644188260116092741494192637529",
+    "invoiceRefs": [],
+    "counterparty": "TEMA PORT CLEARING LTD"
+  },
+  {
+    "narration": "POS/WEB PURCHASE JUMIA ONLINE",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM EKO FOODS PLC/487749260119134613462233314597/INV-1059",
+    "nipSessionId": "487749260119134613462233314597",
+    "invoiceRefs": [
+      "INV1059"
+    ],
+    "counterparty": "EKO FOODS PLC"
+  },
+  {
+    "narration": "NIP TRF TO IKEJA OFFICE MART/114056260119100049315652591066/PO-322",
+    "nipSessionId": "114056260119100049315652591066",
+    "invoiceRefs": [],
+    "counterparty": "IKEJA OFFICE MART"
+  },
+  {
+    "narration": "POS/WEB PURCHASE JUMIA ONLINE",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/338335260120100032678325802915/INV-1060",
+    "nipSessionId": "338335260120100032678325802915",
+    "invoiceRefs": [
+      "INV1060"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "NIP/FRM SAHARA LOGISTICS/426974260120150800042399523472/INV-1061",
+    "nipSessionId": "426974260120150800042399523472",
+    "invoiceRefs": [
+      "INV1061"
+    ],
+    "counterparty": "SAHARA LOGISTICS"
+  },
+  {
+    "narration": "NIP/FRM KANO AGRO SUPPLIES/205588260120151847886958571253/INV-1062",
+    "nipSessionId": "205588260120151847886958571253",
+    "invoiceRefs": [
+      "INV1062"
+    ],
+    "counterparty": "KANO AGRO SUPPLIES"
+  },
+  {
+    "narration": "NIP/FRM SAHARA LOGISTICS/976261260121122634604127204291/INV-1063",
+    "nipSessionId": "976261260121122634604127204291",
+    "invoiceRefs": [
+      "INV1063"
+    ],
+    "counterparty": "SAHARA LOGISTICS"
+  },
+  {
+    "narration": "POS/WEB PURCHASE CHICKEN REPUBLIC YABA",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM LEKKI PHARMA LTD/457387260121143319229770986829/INV-1064",
+    "nipSessionId": "457387260121143319229770986829",
+    "invoiceRefs": [
+      "INV1064"
+    ],
+    "counterparty": "LEKKI PHARMA LTD"
+  },
+  {
+    "narration": "NIP/FRM ADEBAYO TRADING LTD/915956260121125126628846621581/INV-1065",
+    "nipSessionId": "915956260121125126628846621581",
+    "invoiceRefs": [
+      "INV1065"
+    ],
+    "counterparty": "ADEBAYO TRADING LTD"
+  },
+  {
+    "narration": "POS/WEB PURCHASE SHOPRITE LEKKI",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "TRF FRM NNEWI AUTO PARTS REF 990380",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "NNEWI AUTO PARTS"
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/893777260122111735994646938335/INV-1066",
+    "nipSessionId": "893777260122111735994646938335",
+    "invoiceRefs": [
+      "INV1066"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "TRF FRM NNEWI AUTO PARTS REF 424299",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "NNEWI AUTO PARTS"
+  },
+  {
+    "narration": "POS/WEB PURCHASE TOTAL ENERGIES VI",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP TRF TO TEMA PORT CLEARING LTD/474346260123142749672081861742/PO-323",
+    "nipSessionId": "474346260123142749672081861742",
+    "invoiceRefs": [],
+    "counterparty": "TEMA PORT CLEARING LTD"
+  },
+  {
+    "narration": "POS/WEB PURCHASE SHOPRITE LEKKI",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP TRF TO ARIBA CEMENT DISTRIBUTORS/316756260126081134847841634200/PO-324",
+    "nipSessionId": "316756260126081134847841634200",
+    "invoiceRefs": [],
+    "counterparty": "ARIBA CEMENT DISTRIBUTORS"
+  },
+  {
+    "narration": "POS/WEB PURCHASE TOTAL ENERGIES VI",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM EKO FOODS PLC/361999260127101906064331629868/INV-1067",
+    "nipSessionId": "361999260127101906064331629868",
+    "invoiceRefs": [
+      "INV1067"
+    ],
+    "counterparty": "EKO FOODS PLC"
+  },
+  {
+    "narration": "NIP TRF TO ABUJA FLEET SERVICES/221196260127144548119493274252/PO-325",
+    "nipSessionId": "221196260127144548119493274252",
+    "invoiceRefs": [],
+    "counterparty": "ABUJA FLEET SERVICES"
+  },
+  {
+    "narration": "NIP/FRM LEKKI PHARMA LTD/973170260127153941536462435193/INV-1068",
+    "nipSessionId": "973170260127153941536462435193",
+    "invoiceRefs": [
+      "INV1068"
+    ],
+    "counterparty": "LEKKI PHARMA LTD"
+  },
+  {
+    "narration": "NIP/FRM EKO FOODS PLC/839391260128151854206365957846/INV-1069",
+    "nipSessionId": "839391260128151854206365957846",
+    "invoiceRefs": [
+      "INV1069"
+    ],
+    "counterparty": "EKO FOODS PLC"
+  },
+  {
+    "narration": "NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/998589260128120415966607173489/PO-326",
+    "nipSessionId": "998589260128120415966607173489",
+    "invoiceRefs": [],
+    "counterparty": "SHENZHEN BRIGHT ELECTRONICS"
+  },
+  {
+    "narration": "NIP TRF TO TEMA PORT CLEARING LTD/434822260128084219388829426098/PO-327",
+    "nipSessionId": "434822260128084219388829426098",
+    "invoiceRefs": [],
+    "counterparty": "TEMA PORT CLEARING LTD"
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/081084260129131633394357205983/INV-1070",
+    "nipSessionId": "081084260129131633394357205983",
+    "invoiceRefs": [
+      "INV1070"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "NIP/FRM LEKKI PHARMA LTD/560167260129152343362973472557/INV-1071",
+    "nipSessionId": "560167260129152343362973472557",
+    "invoiceRefs": [
+      "INV1071"
+    ],
+    "counterparty": "LEKKI PHARMA LTD"
+  },
+  {
+    "narration": "POS/WEB PURCHASE CHICKEN REPUBLIC YABA",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP TRF TO IKEJA OFFICE MART/335251260130161347429978364133/PO-328",
+    "nipSessionId": "335251260130161347429978364133",
+    "invoiceRefs": [],
+    "counterparty": "IKEJA OFFICE MART"
+  },
+  {
+    "narration": "POS/WEB PURCHASE SHOPRITE LEKKI",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "POS/WEB PURCHASE TOTAL ENERGIES VI",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "COMMISSION ON TURNOVER",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "VAT ON COMM",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  }
+]

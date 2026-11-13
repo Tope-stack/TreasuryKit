@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02">
+  <BkToCstmrStmt>
+    <GrpHdr><MsgId>MSG-B</MsgId><CreDtTm>2026-02-02T06:00:00</CreDtTm></GrpHdr>
+    <Stmt>
+      <Id>STMT-B</Id>
+      <CreDtTm>2026-02-02T06:00:00</CreDtTm>
+      <Acct><Id><Othr><Id>0123456789</Id></Othr></Id><Ccy>NGN</Ccy></Acct>
+      <Bal><Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp><Amt Ccy="NGN">1000000.00</Amt><CdtDbtInd>CRDT</CdtDbtInd><Dt><Dt>2026-01-31</Dt></Dt></Bal>
+      <Bal><Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp><Amt Ccy="NGN">1150000.00</Amt><CdtDbtInd>CRDT</CdtDbtInd><Dt><Dt>2026-02-02</Dt></Dt></Bal>
+      <Ntry>
+        <Amt Ccy="NGN">250000.00</Amt><CdtDbtInd>CRDT</CdtDbtInd><Sts>BOOK</Sts>
+        <BookgDt><DtTm>2026-02-02T09:15:00+01:00</DtTm></BookgDt><ValDt><Dt>2026-02-02</Dt></ValDt>
+        <AcctSvcrRef>FT2602000001</AcctSvcrRef>
+        <NtryDtls><TxDtls>
+          <Refs><EndToEndId>000013260202091500123456789012</EndToEndId></Refs>
+          <RltdPties><Dbtr><Nm>Okonkwo and Sons</Nm></Dbtr></RltdPties>
+          <RmtInf><Ustrd>PAYMENT FOR INV-7001</Ustrd></RmtInf>
+        </TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">100000.00</Amt><CdtDbtInd>DBIT</CdtDbtInd><Sts>BOOK</Sts>
+        <BookgDt><Dt>2026-02-02</Dt></BookgDt><ValDt><Dt>2026-02-02</Dt></ValDt>
+        <AcctSvcrRef>FT2602000002</AcctSvcrRef>
+        <AddtlNtryInf>BULK SALARY PAYMENT FEB</AddtlNtryInf>
+        <NtryDtls>
+          <TxDtls><Refs><EndToEndId>SAL-001</EndToEndId></Refs><RltdPties><Cdtr><Nm>STAFF ONE</Nm></Cdtr></RltdPties><RmtInf><Ustrd>SALARY FEB STAFF ONE</Ustrd></RmtInf></TxDtls>
+          <TxDtls><Refs><EndToEndId>SAL-002</EndToEndId></Refs><RltdPties><Cdtr><Nm>STAFF TWO</Nm></Cdtr></RltdPties><RmtInf><Ustrd>SALARY FEB STAFF TWO</Ustrd></RmtInf></TxDtls>
+        </NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">999.00</Amt><CdtDbtInd>CRDT</CdtDbtInd><Sts>PDNG</Sts>
+        <BookgDt><Dt>2026-02-02</Dt></BookgDt><ValDt><Dt>2026-02-03</Dt></ValDt>
+        <AddtlNtryInf>PENDING INWARD TRANSFER</AddtlNtryInf>
+      </Ntry>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document>

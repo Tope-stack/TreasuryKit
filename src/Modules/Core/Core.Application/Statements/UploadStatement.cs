@@ -4,6 +4,7 @@ using TreasuryKit.BuildingBlocks.Application.Abstractions;
 using TreasuryKit.BuildingBlocks.Application.Messaging;
 using TreasuryKit.BuildingBlocks.Domain;
 using TreasuryKit.Core.Application.Common;
+using TreasuryKit.Core.Application.Statements.Parsing;
 using TreasuryKit.Core.Domain.Accounts;
 using TreasuryKit.Core.Domain.MappingProfiles;
 using TreasuryKit.Core.Domain.Statements;
@@ -22,6 +23,7 @@ public sealed record ProcessStatementImportJob(Guid? TenantId, Guid ImportId) : 
 internal sealed class UploadStatementHandler(
     ICoreDbContext db,
     IFileStore files,
+    IStatementParserResolver parsers,
     ICurrentTenant tenant,
     ICurrentUser user,
     IClock clock) : ICommandHandler<UploadStatementCommand, UploadStatementResult>
@@ -39,28 +41,9 @@ internal sealed class UploadStatementHandler(
             return BankAccountErrors.Inactive;
         }
 
-        var format = StatementFormats.FromFileName(command.FileName);
-        if (format.IsFailure)
+        if (!StatementFormats.AllowedExtensions.Contains(Path.GetExtension(command.FileName)))
         {
-            return format.Error;
-        }
-
-        if (account.MappingProfileId is null)
-        {
-            return Error.Validation("Statement.NoMappingProfile", "Assign a mapping profile to this account before importing CSV/XLSX statements.");
-        }
-
-        var profile = await db.MappingProfiles.AsNoTracking().FirstOrDefaultAsync(p => p.Id == account.MappingProfileId, cancellationToken);
-        if (profile is null)
-        {
-            return MappingProfileErrors.NotFound;
-        }
-
-        if (!profile.FileType.Matches(format.Value))
-        {
-            return Error.Validation(
-                "Statement.FormatMismatch",
-                $"The account's mapping profile '{profile.Name}' reads {profile.FileType} files, but '{command.FileName}' is {format.Value}.");
+            return StatementFormats.Unsupported(command.FileName);
         }
 
         using var buffer = new MemoryStream();
@@ -68,6 +51,34 @@ internal sealed class UploadStatementHandler(
         if (buffer.Length == 0)
         {
             return Error.Validation("Statement.Empty", "The uploaded file is empty.");
+        }
+
+        var header = buffer.GetBuffer().AsSpan(0, (int)Math.Min(buffer.Length, StatementFormats.SniffLength));
+        var format = parsers.Detect(header, command.FileName);
+        if (format.IsFailure)
+        {
+            return format.Error;
+        }
+
+        if (format.Value.IsTabular())
+        {
+            if (account.MappingProfileId is null)
+            {
+                return Error.Validation("Statement.NoMappingProfile", "Assign a mapping profile to this account before importing CSV/XLSX statements.");
+            }
+
+            var profile = await db.MappingProfiles.AsNoTracking().FirstOrDefaultAsync(p => p.Id == account.MappingProfileId, cancellationToken);
+            if (profile is null)
+            {
+                return MappingProfileErrors.NotFound;
+            }
+
+            if (!profile.FileType.Matches(format.Value))
+            {
+                return Error.Validation(
+                    "Statement.FormatMismatch",
+                    $"The account's mapping profile '{profile.Name}' reads {profile.FileType} files, but '{command.FileName}' is {format.Value}.");
+            }
         }
 
         buffer.Position = 0;

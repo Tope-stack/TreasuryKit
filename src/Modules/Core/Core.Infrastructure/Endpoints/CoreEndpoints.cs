@@ -8,6 +8,7 @@ using TreasuryKit.BuildingBlocks.Infrastructure.Http;
 using TreasuryKit.Core.Application.Accounts;
 using TreasuryKit.Core.Application.Counterparties;
 using TreasuryKit.Core.Application.MappingProfiles;
+using TreasuryKit.Core.Application.Settings;
 using TreasuryKit.Core.Application.Statements;
 
 namespace TreasuryKit.Core.Infrastructure.Endpoints;
@@ -28,6 +29,24 @@ internal static class CoreEndpoints
         MapMappingProfiles(app);
         MapStatements(app);
         MapCounterparties(app);
+        MapSettings(app);
+    }
+
+    private static void MapSettings(IEndpointRouteBuilder app)
+    {
+        var settings = app.MapGroup("/settings").WithTags("Settings");
+
+        settings.MapGet("/reference-patterns", async (IDispatcher dispatcher, CancellationToken ct) =>
+            (await dispatcher.QueryAsync(new GetReferencePatternsQuery(), ct)).Match(Results.Ok));
+
+        settings.MapPut("/reference-patterns", async (SetReferencePatternsCommand command, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(command, ct)).Match(Results.NoContent))
+            .RequireAuthorization(Policies.AdminOnly);
+
+        app.MapPost("/maintenance/reextract", async (IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(new StartReextractionCommand(), ct)).Match(() => Results.Accepted()))
+            .WithTags("Maintenance")
+            .RequireAuthorization(Policies.AdminOnly);
     }
 
     private static void MapAccounts(IEndpointRouteBuilder app)

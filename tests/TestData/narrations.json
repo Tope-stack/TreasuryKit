@@ -1,0 +1,188 @@
+[
+  {
+    "narration": "NIP/FRM ADEBAYO TRADING LTD/000013260115143022123456789012/INV-2001",
+    "nipSessionId": "000013260115143022123456789012",
+    "invoiceRefs": [
+      "INV2001"
+    ],
+    "counterparty": "ADEBAYO TRADING LTD"
+  },
+  {
+    "narration": "NIP TRF TO KANO AGRO SUPPLIES/100004260203091512000000000417/PO-77",
+    "nipSessionId": "100004260203091512000000000417",
+    "invoiceRefs": [],
+    "counterparty": "KANO AGRO SUPPLIES"
+  },
+  {
+    "narration": "000014251231235959987654321098 NIP FRM EKO FOODS PLC",
+    "nipSessionId": "000014251231235959987654321098",
+    "invoiceRefs": [],
+    "counterparty": "EKO FOODS PLC"
+  },
+  {
+    "narration": "TRANSFER FROM LEKKI PHARMA LTD REF 090267260110080000555555555555",
+    "nipSessionId": "090267260110080000555555555555",
+    "invoiceRefs": [],
+    "counterparty": "LEKKI PHARMA LTD"
+  },
+  {
+    "narration": "nip/frm okonkwo and sons/000016260228120000000111222333/inv 3001",
+    "nipSessionId": "000016260228120000000111222333",
+    "invoiceRefs": [
+      "INV3001"
+    ],
+    "counterparty": "OKONKWO AND SONS"
+  },
+  {
+    "narration": "MOB/UTO/100033260301000001424242424242ABC/PAYMENT",
+    "nipSessionId": "100033260301000001424242424242",
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM SAHARA LOGISTICS/1000017260115101010101010101010",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "SAHARA LOGISTICS"
+  },
+  {
+    "narration": "USSD/08031234567/TRF TO JOS TIN MERCHANTS",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "JOS TIN MERCHANTS"
+  },
+  {
+    "narration": "REVERSAL 999999999999999999999999999999 OF 000013260116111111111111111111",
+    "nipSessionId": "000013260116111111111111111111",
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "BULK 000018260117121212121212121212 999999260118131313131313131313",
+    "nipSessionId": "000018260117121212121212121212",
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP / FRM ABUJA FLEET SERVICES / 000020260119141414141414141414 / INV/4001",
+    "nipSessionId": "000020260119141414141414141414",
+    "invoiceRefs": [
+      "INV4001"
+    ],
+    "counterparty": "ABUJA FLEET SERVICES"
+  },
+  {
+    "narration": "POS/WEB PURCHASE SHOPRITE LEKKI 539983XXXXXX1234",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "SMS ALERT CHARGES",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "COMMISSION ON TURNOVER",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "REF:000021260120151515151515151515",
+    "nipSessionId": "000021260120151515151515151515",
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM NNEWI AUTO PARTS/00002226012116161616161616161",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "NNEWI AUTO PARTS"
+  },
+  {
+    "narration": "SETTLEMENT INV-12 INV-12 INV-13",
+    "nipSessionId": null,
+    "invoiceRefs": [
+      "INV12",
+      "INV13"
+    ],
+    "counterparty": null
+  },
+  {
+    "narration": "FRM: TEMA PORT CLEARING LTD|000022260121161616161616161616",
+    "nipSessionId": "000022260121161616161616161616",
+    "invoiceRefs": [],
+    "counterparty": "TEMA PORT CLEARING LTD"
+  },
+  {
+    "narration": "TRF FRM SELF/000023260122171717171717171717",
+    "nipSessionId": "000023260122171717171717171717",
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "000024260123181818181818181818-INV-5001",
+    "nipSessionId": "000024260123181818181818181818",
+    "invoiceRefs": [
+      "INV5001"
+    ],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM NNEWI AUTO PARTS/000025260124191919191919191919/PAYMENT FOR INV-0099 AND INV-0100",
+    "nipSessionId": "000025260124191919191919191919",
+    "invoiceRefs": [
+      "INV0099",
+      "INV0100"
+    ],
+    "counterparty": "NNEWI AUTO PARTS"
+  },
+  {
+    "narration": "NIP-000013260115143022123456789012-FRM-IKEJA OFFICE MART",
+    "nipSessionId": "000013260115143022123456789012",
+    "invoiceRefs": [],
+    "counterparty": "IKEJA OFFICE MART"
+  },
+  {
+    "narration": "CHQ DEP 00012345 FROM ARIBA CEMENT DISTRIBUTORS",
+    "nipSessionId": null,
+    "invoiceRefs": [],
+    "counterparty": "ARIBA CEMENT DISTRIBUTORS"
+  },
+  {
+    "narration": "TRF TO 0123456789 ADEBAYO TRADING LTD 100004260203091512000000000417",
+    "nipSessionId": "100004260203091512000000000417",
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIPFRM000014251231235959987654321098KANO",
+    "nipSessionId": "000014251231235959987654321098",
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "PAYMENT OF INVOICE INV/2026/0042 FROM EKO FOODS PLC",
+    "nipSessionId": null,
+    "invoiceRefs": [
+      "INV2026"
+    ],
+    "counterparty": "EKO FOODS PLC"
+  },
+  {
+    "narration": "090267260110080000555555555555",
+    "nipSessionId": "090267260110080000555555555555",
+    "invoiceRefs": [],
+    "counterparty": null
+  },
+  {
+    "narration": "NIP/FRM JOS TIN MERCHANTS/000016260228120000000111222333 /INV-1041",
+    "nipSessionId": "000016260228120000000111222333",
+    "invoiceRefs": [
+      "INV1041"
+    ],
+    "counterparty": "JOS TIN MERCHANTS"
+  }
+]

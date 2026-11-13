@@ -5,7 +5,6 @@ using TreasuryKit.BuildingBlocks.Application.Jobs;
 using TreasuryKit.BuildingBlocks.Domain;
 using TreasuryKit.Core.Application.Statements.Parsing;
 using TreasuryKit.Core.Contracts.Statements;
-using TreasuryKit.Core.Domain.Common;
 using TreasuryKit.Core.Domain.Statements;
 
 namespace TreasuryKit.Core.Application.Statements;
@@ -19,6 +18,7 @@ public sealed class ProcessStatementImportHandler(
     IFileStore files,
     IStatementParserResolver parsers,
     IStatementLineWriter lineWriter,
+    LineAnalyzer analyzer,
     IClock clock,
     ILogger<ProcessStatementImportHandler> logger) : IJobHandler<ProcessStatementImportJob>
 {
@@ -42,7 +42,7 @@ public sealed class ProcessStatementImportHandler(
 
         await using var transaction = await db.BeginTransactionAsync(cancellationToken);
         var statement = parsed.IsSuccess ? parsed.Value : null;
-        var problem = parsed.IsFailure ? parsed.Error.Message : Validate(statement!, account.Currency);
+        var problem = parsed.IsFailure ? parsed.Error.Message : Validate(statement!, account.Currency, account.AccountNumber);
 
         if (problem is not null)
         {
@@ -83,8 +83,13 @@ public sealed class ProcessStatementImportHandler(
         return await parser.Value.ParseAsync(stream, new ParseContext(import.FileName, profile), cancellationToken);
     }
 
-    private static string? Validate(ParsedStatement statement, Currency accountCurrency)
+    private static string? Validate(ParsedStatement statement, Currency accountCurrency, string accountNumber)
     {
+        if (statement.AccountIdentifier is { } fileAccount && !AccountIdentifiers.Matches(fileAccount, accountNumber))
+        {
+            return $"The statement is for account '{fileAccount}', not {accountNumber}.";
+        }
+
         if (statement.Currency is not null && statement.Currency != accountCurrency)
         {
             return $"Statement currency {statement.Currency.Code} does not match account currency {accountCurrency.Code}.";
@@ -104,33 +109,45 @@ public sealed class ProcessStatementImportHandler(
     private async Task StoreAsync(StatementImport import, ParsedStatement statement, CancellationToken cancellationToken)
     {
         var parsedLines = statement.Lines;
+        var tenant = await db.Tenants.AsNoTracking().FirstAsync(t => t.Id == import.TenantId, cancellationToken);
+        var patterns = tenant.GetInvoiceReferencePatterns();
         var fingerprints = LineFingerprint.ComputeAll(
             import.AccountId,
             parsedLines,
             l => (l.ValueDate, l.Amount, l.BankReference, l.Narration));
 
         var lines = parsedLines
-            .Select((l, i) => new StatementLine(
-                import.TenantId,
-                import.AccountId,
-                import.Id,
-                l.RowNumber,
-                l.BookingDate,
-                l.ValueDate,
-                new Money(l.Amount, import.Currency),
-                l.Narration,
-                TextNormalization.ForFingerprint(l.Narration),
-                l.BankReference,
-                fingerprints[i],
-                l.RunningBalance))
+            .Select((l, i) =>
+            {
+                var analysis = analyzer.Analyze(l.Narration, l.EndToEndId, l.CounterpartyName, patterns);
+                return new StatementLine(
+                    import.TenantId,
+                    import.AccountId,
+                    import.Id,
+                    l.RowNumber,
+                    l.BookingDate,
+                    l.ValueDate,
+                    new Money(l.Amount, import.Currency),
+                    l.Narration,
+                    analysis.NormalizedNarration,
+                    l.BankReference,
+                    fingerprints[i],
+                    l.RunningBalance,
+                    analysis.ExtractedRefsJson,
+                    analysis.CounterpartyNameGuess,
+                    l.EndToEndId,
+                    l.CounterpartyName);
+            })
             .ToList();
 
         var inserted = await lineWriter.InsertAsync(lines, cancellationToken);
 
-        var balanceCheck = BalanceCheck.Run(
-            statement.OpeningBalance,
-            statement.ClosingBalance,
-            parsedLines.Select(l => (l.RowNumber, l.Amount, l.RunningBalance)).ToList());
+        var balanceCheck = statement.BalanceIssue is { } issue
+            ? new BalanceCheck(BalanceCheckOutcome.Mismatch, issue)
+            : BalanceCheck.Run(
+                statement.OpeningBalance,
+                statement.ClosingBalance,
+                parsedLines.Select(l => (l.RowNumber, l.Amount, l.RunningBalance)).ToList());
 
         import.Complete(
             statement.PeriodStart ?? parsedLines.Min(l => l.BookingDate),
@@ -140,7 +157,8 @@ public sealed class ProcessStatementImportHandler(
             lines.Count,
             lines.Count - inserted,
             balanceCheck,
-            clock.UtcNow);
+            clock.UtcNow,
+            statement.SkippedEntries);
 
         if (import.Status == StatementImportStatus.Completed)
         {

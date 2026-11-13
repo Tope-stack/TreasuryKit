@@ -6,14 +6,18 @@ namespace TreasuryKit.Core.Application.Statements;
 
 public static class StatementFormats
 {
-    /// <summary>Phase 1 accepts CSV and XLSX by extension; MT940/CAMT.053 sniffing arrives in Phase 2.</summary>
-    public static Result<StatementFormat> FromFileName(string fileName) =>
-        Path.GetExtension(fileName).ToLowerInvariant() switch
-        {
-            ".csv" => StatementFormat.Csv,
-            ".xlsx" => StatementFormat.Xlsx,
-            var ext => Error.Validation("Statement.UnsupportedFormat", $"Unsupported statement file type '{ext}'. Upload .csv or .xlsx."),
-        };
+    public const int SniffLength = 4096;
+
+    /// <summary>Extensions accepted on upload; the content decides the actual format.</summary>
+    public static readonly IReadOnlySet<string> AllowedExtensions =
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase) { ".csv", ".xlsx", ".sta", ".mt940", ".940", ".txt", ".xml" };
+
+    public static Error Unsupported(string fileName) =>
+        Error.Validation(
+            "Statement.UnsupportedFormat",
+            $"Unsupported statement file '{fileName}'. Upload CSV, XLSX, MT940 (.sta/.mt940/.940/.txt) or CAMT.053 (.xml).");
+
+    public static bool IsTabular(this StatementFormat format) => format is StatementFormat.Csv or StatementFormat.Xlsx;
 
     public static bool Matches(this TabularFileType fileType, StatementFormat format) =>
         (fileType, format) is (TabularFileType.Csv, StatementFormat.Csv) or (TabularFileType.Xlsx, StatementFormat.Xlsx);

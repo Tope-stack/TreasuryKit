@@ -518,6 +518,12 @@ namespace TreasuryKit.Core.Infrastructure.Persistence.Migrations
                         .HasColumnType("date")
                         .HasColumnName("period_start");
 
+                    b.Property<int>("SkippedEntryCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("skipped_entry_count");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -566,10 +572,20 @@ namespace TreasuryKit.Core.Infrastructure.Persistence.Migrations
                         .HasColumnType("date")
                         .HasColumnName("booking_date");
 
+                    b.Property<string>("CounterpartyName")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("counterparty_name");
+
                     b.Property<string>("CounterpartyNameGuess")
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)")
                         .HasColumnName("counterparty_name_guess");
+
+                    b.Property<string>("EndToEndId")
+                        .HasMaxLength(35)
+                        .HasColumnType("character varying(35)")
+                        .HasColumnName("end_to_end_id");
 
                     b.Property<string>("ExtractedRefs")
                         .IsRequired()
@@ -668,6 +684,13 @@ namespace TreasuryKit.Core.Infrastructure.Persistence.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
+
+                    b.PrimitiveCollection<List<string>>("InvoiceReferencePatterns")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text[]")
+                        .HasColumnName("invoice_reference_patterns")
+                        .HasDefaultValueSql("ARRAY['INV[-/ ]?\\d+']::text[]");
 
                     b.Property<string>("Name")
                         .IsRequired()

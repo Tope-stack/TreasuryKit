@@ -191,6 +191,7 @@ internal sealed record ManifestEntry(
     decimal OpeningBalance,
     decimal ClosingBalance,
     decimal SumOfAmounts,
+    int NipSessionIds,
     bool Balanced,
     int OverlapWithPrevious);
 

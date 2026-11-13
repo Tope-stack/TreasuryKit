@@ -51,6 +51,8 @@ public sealed class ArchitectureRules
     {
         var m = Modules[module];
         var result = Types.InAssembly(m.Domain)
+            .That()
+            .ResideInNamespace("TreasuryKit") // skips compiler-generated global types (collection-expression helpers etc.)
             .Should()
             .OnlyHaveDependenciesOn("System", CompilerGenerated, BuildingBlocksDomain, m.Namespace("Domain"))
             .GetResult();
@@ -121,6 +123,8 @@ public sealed class ArchitectureRules
     public void BuildingBlocks_Domain_has_no_framework_dependencies()
     {
         var result = Types.InAssembly(typeof(Entity<>).Assembly)
+            .That()
+            .ResideInNamespace("TreasuryKit")
             .Should()
             .OnlyHaveDependenciesOn("System", CompilerGenerated, BuildingBlocksDomain)
             .GetResult();
