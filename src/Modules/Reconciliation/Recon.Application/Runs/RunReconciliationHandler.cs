@@ -88,11 +88,20 @@ public sealed class RunReconciliationHandler(
                 e.CanonicalReference, e.CounterpartyNames))
             .ToList();
 
+        // Pairings a reviewer rejected stay rejected (superseded proposals don't count: nobody reviewed them).
+        var rejected = (await db.Matches.AsNoTracking()
+                .Where(m => m.AccountId == run.AccountId && m.Status == MatchStatus.Rejected && m.Reason != Match.SupersededReason)
+                .Include(m => m.Items)
+                .ToListAsync(cancellationToken))
+            .Select(m => MatchCandidate.ItemSignature(m.Items.Select(i => (i.ItemType, i.ItemId))))
+            .ToHashSet(StringComparer.Ordinal);
+
         var result = MatchingEngine.Run(
             new MatchingPool(lines, expected),
             configured,
             settings.Thresholds,
-            e => e.ExpectedDate >= run.PeriodStart && e.ExpectedDate <= run.PeriodEnd);
+            e => e.ExpectedDate >= run.PeriodStart && e.ExpectedDate <= run.PeriodEnd,
+            rejected);
 
         var now = clock.UtcNow;
         var currency = Currency.FromCode(account.Currency).Value;

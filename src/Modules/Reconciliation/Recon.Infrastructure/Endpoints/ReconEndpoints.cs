@@ -5,14 +5,16 @@ using TreasuryKit.BuildingBlocks.Application.Messaging;
 using TreasuryKit.BuildingBlocks.Infrastructure.Authorization;
 using TreasuryKit.BuildingBlocks.Infrastructure.Http;
 using TreasuryKit.Recon.Application.Configuration;
+using TreasuryKit.Recon.Application.Matches;
 using TreasuryKit.Recon.Application.Queries;
+using TreasuryKit.Recon.Application.Reports;
 using TreasuryKit.Recon.Application.Runs;
 using TreasuryKit.Recon.Domain.Exceptions;
 using TreasuryKit.Recon.Domain.Matches;
 
 namespace TreasuryKit.Recon.Infrastructure.Endpoints;
 
-/// <summary>Routes under /api/recon (plan §5.7). Manual match operations and reports arrive in Phase 4.</summary>
+/// <summary>Routes under /api/recon (plan §5.7).</summary>
 internal static class ReconEndpoints
 {
     public static void Map(IEndpointRouteBuilder app)
@@ -32,9 +34,46 @@ internal static class ReconEndpoints
         matches.MapGet("/{id:guid}", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
             (await dispatcher.QueryAsync(new GetMatchQuery(id), ct)).Match(Results.Ok));
 
-        app.MapGet("/exceptions", async (ExceptionStatus? status, Guid? accountId, IDispatcher dispatcher, CancellationToken ct) =>
-                (await dispatcher.QueryAsync(new ListExceptionsQuery(status, accountId), ct)).Match(Results.Ok))
-            .WithTags("Exceptions");
+        // Manual operations with maker-checker (plan §5.5).
+        matches.MapPost("/", async (ProposeManualMatchCommand command, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(command, ct)).Match(id => Results.Created($"/api/recon/matches/{id}", new { matchId = id })))
+            .RequireAuthorization(Policies.CanPrepare);
+        matches.MapPost("/{id:guid}/confirm", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(new ConfirmMatchCommand(id), ct)).Match(Results.NoContent))
+            .RequireAuthorization(Policies.CanApprove);
+        matches.MapPost("/{id:guid}/reject", async (Guid id, ReasonBody? body, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(new RejectMatchCommand(id, body?.Reason), ct)).Match(Results.NoContent))
+            .RequireAuthorization(Policies.CanApprove);
+        matches.MapPost("/{id:guid}/reverse", async (Guid id, ReasonBody body, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(new ReverseMatchCommand(id, body.Reason), ct)).Match(Results.NoContent))
+            .RequireAuthorization(Policies.CanApprove);
+        matches.MapPost("/confirm-batch", async (ConfirmMatchesCommand command, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(command, ct)).Match(Results.Ok))
+            .RequireAuthorization(Policies.CanApprove);
+
+        var exceptions = app.MapGroup("/exceptions").WithTags("Exceptions");
+        exceptions.MapGet("/", async (ExceptionStatus? status, Guid? accountId, IDispatcher dispatcher, CancellationToken ct) =>
+            (await dispatcher.QueryAsync(new ListExceptionsQuery(status, accountId), ct)).Match(Results.Ok));
+        exceptions.MapPost("/{id:guid}/resolve", async (Guid id, NoteBody body, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(new ResolveExceptionCommand(id, body.Note), ct)).Match(Results.NoContent))
+            .RequireAuthorization(Policies.CanPrepare);
+        exceptions.MapPost("/{id:guid}/ignore", async (Guid id, NoteBody body, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(new IgnoreExceptionCommand(id, body.Note), ct)).Match(Results.NoContent))
+            .RequireAuthorization(Policies.CanPrepare);
+
+        var reports = app.MapGroup("/reports").WithTags("Reports");
+        reports.MapGet("/summary", async (Guid accountId, DateOnly from, DateOnly to, IDispatcher dispatcher, CancellationToken ct) =>
+            (await dispatcher.QueryAsync(new GetSummaryQuery(accountId, from, to), ct)).Match(Results.Ok));
+        reports.MapGet("/export", async (Guid accountId, DateOnly from, DateOnly to, string? format, IDispatcher dispatcher, CancellationToken ct) =>
+        {
+            if (!Enum.TryParse<ExportFormat>(format ?? nameof(ExportFormat.Csv), ignoreCase: true, out var exportFormat) || !Enum.IsDefined(exportFormat))
+            {
+                return Results.Problem(statusCode: StatusCodes.Status400BadRequest, title: "Report.InvalidFormat", detail: "format must be csv or xlsx.");
+            }
+
+            return (await dispatcher.QueryAsync(new ExportQuery(accountId, from, to, exportFormat), ct))
+                .Match(file => Results.File(file.Content, file.ContentType, file.FileName));
+        });
 
         var rules = app.MapGroup("/rules").WithTags("Rules");
         rules.MapGet("/", async (IDispatcher dispatcher, CancellationToken ct) =>
@@ -50,4 +89,8 @@ internal static class ReconEndpoints
     }
 
     internal sealed record RuleUpdate(bool Enabled, int Order, Dictionary<string, decimal>? Parameters);
+
+    internal sealed record ReasonBody(string? Reason);
+
+    internal sealed record NoteBody(string? Note);
 }

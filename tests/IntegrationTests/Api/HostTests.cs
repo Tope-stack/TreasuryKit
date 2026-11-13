@@ -40,5 +40,20 @@ public sealed class HostTests(ApiFactory factory)
         Assert.Equal("Tenant.NameRequired", problem!.Title);
     }
 
+    [Theory]
+    [InlineData("/api/recon/matches?status=bogus")]
+    [InlineData("/api/recon/exceptions?status=open")]
+    [InlineData("/api/core/accounts/not-a-guid/lines")]
+    public async Task Unbindable_parameters_are_400_not_500(string url)
+    {
+        var client = factory.CreateClient();
+        var tenant = await client.CreateTenantAsync("Binding Ltd", _ct);
+        client.WithBearer(await client.GetTokenAsync(tenant, "ada", ["Admin"], _ct));
+
+        var response = await client.GetAsync(url, _ct);
+
+        Assert.True(response.StatusCode is HttpStatusCode.BadRequest or HttpStatusCode.NotFound, $"{url} returned {(int)response.StatusCode}");
+    }
+
     private sealed record ProblemBody(string Title, int Status);
 }

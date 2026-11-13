@@ -35,7 +35,7 @@ internal static class ReconDataset
 
         Repeat(5, i => builder.NoNameNoReference(i));
         Repeat(4, i => builder.Ambiguous(i));
-        Repeat(3, i => builder.Split(i, parts: 2 + (i % 2)));
+        Repeat(4, i => builder.Split(i, parts: 2 + i)); // 2, 3, 4 and 5 parts
         Repeat(3, i => builder.BankChargeDeducted(i));
         Repeat(10, i => builder.UnmatchedLine(i));
         Repeat(8, i => builder.UnmatchedExpected(i));
@@ -58,7 +58,7 @@ internal static class ReconDataset
         }
     }
 
-    /// <param name="Outcome">What the Phase 3 engine should do: AutoConfirmed, Proposed or Unmatched.</param>
+    /// <param name="Outcome">What the engine should do: AutoConfirmed, Proposed or Unmatched. Splits and bank charges are proposed by the Phase 4 rules.</param>
     internal sealed record KeyItem(
         string Scenario,
         bool Clean,
@@ -161,7 +161,7 @@ internal static class ReconDataset
 
             _amounts.Add(total);
             var exp = Exp(true, "Inflow", total, date, customer, invoice, $"Invoice {invoice} (paid in {parts} parts)");
-            Key.Add(new($"Split{parts}", false, "Unmatched", [exp], lines));
+            Key.Add(new($"Split{parts}", false, "Proposed", [exp], lines));
         }
 
         public void BankChargeDeducted(int i)
@@ -174,7 +174,7 @@ internal static class ReconDataset
             _amounts.Add(invoiced - charge);
             var line = Line(date, $"NIP/FRM {customer}/{Session(date)}/{invoice}", invoiced - charge);
             var exp = Exp(true, "Inflow", invoiced, date, customer, invoice, $"Invoice {invoice}");
-            Key.Add(new("BankChargeDeducted", false, "Unmatched", [exp], [line]));
+            Key.Add(new("BankChargeDeducted", false, "Proposed", [exp], [line]));
         }
 
         public void UnmatchedLine(int i)
@@ -243,13 +243,18 @@ internal static class ReconDataset
             return date;
         }
 
+        /// <summary>
+        /// An amount at least 1% away from every amount used so far, so scenarios never collide by accident
+        /// (e.g. an unpaid invoice within the 0.5% tolerance of a bank-charge line would make that line ambiguous).
+        /// </summary>
         private decimal UniqueAmount(int min, int max)
         {
             while (true)
             {
                 var amount = Math.Round(random.Next(min, max) + (random.Next(1, 100) / 100m), 2);
-                if (_amounts.Add(amount))
+                if (_amounts.All(a => Math.Abs(a - amount) > 0.01m * Math.Max(a, amount)))
                 {
+                    _amounts.Add(amount);
                     return amount;
                 }
             }

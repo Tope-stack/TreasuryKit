@@ -47,6 +47,18 @@ curl -s "localhost:5080/api/recon/matches?accountId=<accountId>" -H "Authorizati
 curl -s "localhost:5080/api/recon/exceptions?accountId=<accountId>&status=Open" -H "Authorization: Bearer $TOKEN"
 ```
 
+Review and control (maker-checker: a manual match must be confirmed by a different Approver):
+
+```bash
+curl -s -X POST localhost:5080/api/recon/matches/<matchId>/confirm -H "Authorization: Bearer $APPROVER_TOKEN"
+curl -s -X POST localhost:5080/api/recon/matches/<matchId>/reverse -H "Authorization: Bearer $APPROVER_TOKEN" \
+  -H 'content-type: application/json' -d '{"reason":"Posted to the wrong invoice"}'
+curl -s "localhost:5080/api/recon/reports/summary?accountId=<accountId>&from=2026-02-01&to=2026-02-28" -H "Authorization: Bearer $TOKEN"
+curl -s -o recon.xlsx "localhost:5080/api/recon/reports/export?accountId=<accountId>&from=2026-02-01&to=2026-02-28&format=xlsx" -H "Authorization: Bearer $TOKEN"
+```
+
+Any `POST` can carry an `Idempotency-Key` header; repeats replay the first response.
+
 The account number must be `0123456789` for the sample data. Regenerate it with `dotnet run --project tools/StatementGen -- --recon --out tests/TestData/recon`.
 
 ## Test

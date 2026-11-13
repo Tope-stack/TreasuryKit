@@ -34,20 +34,24 @@ public static class MatchingEngine
     public const int CandidatesPerException = 5;
 
     /// <param name="exceptionsFor">Expected transactions outside the run period stay in the pool as candidates but don't raise exceptions.</param>
+    /// <param name="rejectedSignatures">Item sets a reviewer rejected before; never proposed again.</param>
     public static EngineResult Run(
         MatchingPool pool,
         IReadOnlyList<ConfiguredRule> rules,
         Thresholds thresholds,
-        Func<PoolExpected, bool> exceptionsFor)
+        Func<PoolExpected, bool> exceptionsFor,
+        IReadOnlySet<string>? rejectedSignatures = null)
     {
         var accepted = new List<AcceptedMatch>();
 
         foreach (var (rule, parameters) in rules)
         {
-            var candidates = rule.Find(pool, parameters).ToList();
+            var candidates = rule.Find(pool, parameters)
+                .Where(c => rejectedSignatures is null || !rejectedSignatures.Contains(c.Signature))
+                .ToList();
             foreach (var candidate in Resolve(pool, candidates))
             {
-                if (candidate.Confidence >= thresholds.AutoConfirm)
+                if (candidate.Confidence >= thresholds.AutoConfirm && rule.CanAutoConfirm)
                 {
                     accepted.Add(new AcceptedMatch(candidate, MatchOutcome.AutoConfirmed));
                 }

@@ -8,6 +8,7 @@ using TreasuryKit.Api.Endpoints;
 using TreasuryKit.Api.Middleware;
 using TreasuryKit.BuildingBlocks.Infrastructure;
 using TreasuryKit.BuildingBlocks.Infrastructure.Authorization;
+using TreasuryKit.BuildingBlocks.Infrastructure.Idempotency;
 using TreasuryKit.BuildingBlocks.Infrastructure.Modules;
 using TreasuryKit.BuildingBlocks.Infrastructure.Persistence;
 using TreasuryKit.Core.Infrastructure;
@@ -24,6 +25,7 @@ builder.Services.AddSerilog((services, logger) => logger
     .Enrich.FromLogContext());
 
 builder.Services.AddBuildingBlocks();
+builder.Services.AddPlatformPersistence();
 foreach (var module in modules)
 {
     module.AddServices(builder.Services, builder.Configuration);
@@ -49,13 +51,18 @@ if (app.Environment.IsDevelopment() || app.Services.GetRequiredService<IOptions<
     await app.Services.MigrateModuleDatabasesAsync();
 }
 
-app.UseExceptionHandler();
+// Binding failures (e.g. an unknown enum value in the query string) are client errors, not 500s.
+app.UseExceptionHandler(new ExceptionHandlerOptions
+{
+    StatusCodeSelector = exception => exception is BadHttpRequestException badRequest ? badRequest.StatusCode : StatusCodes.Status500InternalServerError,
+});
 app.UseStatusCodePages();
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseSerilogRequestLogging();
 app.UseAuthentication();
 app.UseMiddleware<RequestContextMiddleware>();
 app.UseAuthorization();
+app.UseMiddleware<IdempotencyMiddleware>();
 
 app.MapHealthChecks("/health").AllowAnonymous();
 app.MapMeEndpoint();

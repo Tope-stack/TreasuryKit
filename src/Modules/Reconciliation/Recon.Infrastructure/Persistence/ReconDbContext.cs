@@ -62,6 +62,8 @@ public sealed class ReconDbContext(DbContextOptions<ReconDbContext> options, Mod
             b.Property(x => x.ProposedBy).HasMaxLength(200);
             b.Property(x => x.ConfirmedBy).HasMaxLength(200);
             b.Property(x => x.Reason).HasMaxLength(500);
+            b.Property(x => x.ReviewedBy).HasMaxLength(200);
+            b.Ignore(x => x.IsManual);
             b.HasMany(x => x.Items).WithOne().HasForeignKey(i => i.MatchId);
             b.Navigation(x => x.Items).HasField("_items").UsePropertyAccessMode(PropertyAccessMode.Field);
             b.HasIndex(x => new { x.AccountId, x.Status, x.ValueDate });

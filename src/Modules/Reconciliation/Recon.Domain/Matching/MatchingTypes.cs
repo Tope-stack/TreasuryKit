@@ -62,14 +62,22 @@ public sealed record PoolExpected(
 public sealed record ItemRef(ItemType Type, Guid Id, decimal AllocatedAmount);
 
 /// <summary>A proposed pairing from one rule, with an explainable score.</summary>
+/// <param name="Adjustment">Statement side minus expected side when a rule accepts a difference (Tolerance); otherwise 0.</param>
 public sealed record MatchCandidate(
     string RuleKey,
     MatchType Type,
     IReadOnlyList<ItemRef> StatementSide,
     IReadOnlyList<ItemRef> ExpectedSide,
     decimal Confidence,
-    IReadOnlyDictionary<string, decimal> ScoreBreakdown)
+    IReadOnlyDictionary<string, decimal> ScoreBreakdown,
+    decimal Adjustment = 0m)
 {
+    /// <summary>Identity of the item set, independent of order; used to remember rejected pairings.</summary>
+    public string Signature => ItemSignature(Items);
+
+    public static string ItemSignature(IEnumerable<(ItemType Type, Guid Id)> items) =>
+        string.Join('|', items.Select(i => $"{(i.Type == ItemType.StatementLine ? 'L' : 'E')}:{i.Id:N}").Order(StringComparer.Ordinal));
+
     public IEnumerable<(ItemType Type, Guid Id)> Items =>
         StatementSide.Concat(ExpectedSide).Select(i => (i.Type, i.Id));
 }
