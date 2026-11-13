@@ -16,6 +16,9 @@ public sealed class ArchitectureRules
 {
     private const string BuildingBlocksDomain = "TreasuryKit.BuildingBlocks.Domain";
 
+    // Compiler-generated holder for constant data; not a real dependency.
+    private const string CompilerGenerated = "<PrivateImplementationDetails>";
+
     private static readonly Assembly[] BuildingBlocks =
     [
         typeof(Entity<>).Assembly,
@@ -49,7 +52,7 @@ public sealed class ArchitectureRules
         var m = Modules[module];
         var result = Types.InAssembly(m.Domain)
             .Should()
-            .OnlyHaveDependenciesOn("System", BuildingBlocksDomain, m.Namespace("Domain"))
+            .OnlyHaveDependenciesOn("System", CompilerGenerated, BuildingBlocksDomain, m.Namespace("Domain"))
             .GetResult();
 
         AssertSuccessful(result);
@@ -119,7 +122,7 @@ public sealed class ArchitectureRules
     {
         var result = Types.InAssembly(typeof(Entity<>).Assembly)
             .Should()
-            .OnlyHaveDependenciesOn("System", BuildingBlocksDomain)
+            .OnlyHaveDependenciesOn("System", CompilerGenerated, BuildingBlocksDomain)
             .GetResult();
 
         AssertSuccessful(result);

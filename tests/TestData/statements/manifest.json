@@ -1,0 +1,86 @@
+{
+  "layout-a/clean.csv": {
+    "lineCount": 74,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-30",
+    "openingBalance": 5000000.00,
+    "closingBalance": 14611354.33,
+    "sumOfAmounts": 9611354.33,
+    "nipSessionIds": 49,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 0
+  },
+  "layout-a/overlap-part1.csv": {
+    "lineCount": 47,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-20",
+    "openingBalance": 5000000.00,
+    "closingBalance": 13674066.32,
+    "sumOfAmounts": 8674066.32,
+    "nipSessionIds": 34,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 0
+  },
+  "layout-a/overlap-part2.csv": {
+    "lineCount": 44,
+    "periodStart": "2026-01-14",
+    "periodEnd": "2026-01-30",
+    "openingBalance": 8090893.53,
+    "closingBalance": 14611354.33,
+    "sumOfAmounts": 6520460.80,
+    "nipSessionIds": 26,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 17
+  },
+  "layout-a/unbalanced.csv": {
+    "lineCount": 74,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-30",
+    "openingBalance": 5000000.00,
+    "closingBalance": 14611354.33,
+    "sumOfAmounts": 9611354.33,
+    "nipSessionIds": 49,
+    "balanced": false,
+    "newestFirst": false,
+    "overlapWithPrevious": 0
+  },
+  "layout-b/clean.xlsx": {
+    "lineCount": 74,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-30",
+    "openingBalance": 5000000.00,
+    "closingBalance": 14611354.33,
+    "sumOfAmounts": 9611354.33,
+    "nipSessionIds": 49,
+    "balanced": true,
+    "newestFirst": false,
+    "overlapWithPrevious": 0
+  },
+  "layout-b/unbalanced.xlsx": {
+    "lineCount": 74,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-30",
+    "openingBalance": 5000000.00,
+    "closingBalance": 14611354.33,
+    "sumOfAmounts": 9611354.33,
+    "nipSessionIds": 49,
+    "balanced": false,
+    "newestFirst": false,
+    "overlapWithPrevious": 0
+  },
+  "layout-c/clean.csv": {
+    "lineCount": 74,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-01-30",
+    "openingBalance": 5000000.00,
+    "closingBalance": 14611354.33,
+    "sumOfAmounts": 9611354.33,
+    "nipSessionIds": 49,
+    "balanced": true,
+    "newestFirst": true,
+    "overlapWithPrevious": 0
+  }
+}

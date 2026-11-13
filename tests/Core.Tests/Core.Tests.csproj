@@ -1,5 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Modules\Core\Core.Domain\Core.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Modules\Core\Core.Infrastructure\Core.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\TestData\**\*" LinkBase="TestData" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

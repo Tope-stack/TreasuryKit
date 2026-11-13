@@ -2,10 +2,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TreasuryKit.BuildingBlocks.Application.Abstractions;
 using TreasuryKit.BuildingBlocks.Application.Events;
+using TreasuryKit.BuildingBlocks.Application.Jobs;
 using TreasuryKit.BuildingBlocks.Application.Messaging;
 using TreasuryKit.BuildingBlocks.Infrastructure.Auditing;
 using TreasuryKit.BuildingBlocks.Infrastructure.Context;
+using TreasuryKit.BuildingBlocks.Infrastructure.Files;
 using TreasuryKit.BuildingBlocks.Infrastructure.Inbox;
+using TreasuryKit.BuildingBlocks.Infrastructure.Jobs;
 using TreasuryKit.BuildingBlocks.Infrastructure.Outbox;
 using TreasuryKit.BuildingBlocks.Infrastructure.Persistence;
 
@@ -29,6 +32,20 @@ public static class BuildingBlocksExtensions
 
         services.AddSingleton<IEventBus, InProcessEventBus>();
         services.AddSingleton<OutboxDispatcher>();
+        services.AddSingleton<JobExecutor>();
+        services.AddSingleton<JobDispatcher>();
+        services.AddSingleton<IFileStore, LocalFileStore>();
+
+        services.AddOptions<FileStoreOptions>()
+            .BindConfiguration(FileStoreOptions.SectionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddOptions<JobOptions>()
+            .BindConfiguration(JobOptions.SectionName)
+            .ValidateDataAnnotations()
+            .Validate(o => o.PollingInterval > TimeSpan.Zero && o.Lease > TimeSpan.Zero, "Jobs:PollingInterval and Jobs:Lease must be positive.")
+            .ValidateOnStart();
 
         services.AddOptions<DatabaseOptions>()
             .BindConfiguration("Database")
@@ -58,6 +75,17 @@ public static class BuildingBlocksExtensions
         services.AddScoped<THandler>();
         services.AddScoped<InboxInvoker<TEvent, THandler, TContext>>();
         services.AddSingleton(new IntegrationEventSubscription(typeof(TEvent), typeof(InboxInvoker<TEvent, THandler, TContext>)));
+        return services;
+    }
+
+    /// <summary>Registers <typeparamref name="THandler"/> to run <typeparamref name="TJob"/> jobs.</summary>
+    public static IServiceCollection AddJobHandler<TJob, THandler>(this IServiceCollection services)
+        where TJob : IJob
+        where THandler : class, IJobHandler<TJob>
+    {
+        services.AddScoped<THandler>();
+        services.AddScoped<JobInvoker<TJob, THandler>>();
+        services.AddSingleton(new JobHandlerRegistration(typeof(TJob), typeof(JobInvoker<TJob, THandler>)));
         return services;
     }
 }

@@ -28,6 +28,8 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Package versions live only in `Directory.Packages.props`. Warnings are errors.
 - Module DbContexts derive from `ModuleDbContext`; register with `AddModuleDbContext<T>(schema)`.
 - Publish integration events with `IModuleUnitOfWork.Publish(...)` before `SaveChangesAsync`; subscribe with `AddIntegrationEventHandler<TEvent, THandler, TSubscriberDbContext>()`.
+- Queue background work with `IModuleUnitOfWork.Enqueue(job)`; register with `AddJobHandler<TJob, THandler>()`. Handlers must be idempotent (retries, lease expiry).
+- Uploaded files go through `IFileStore` (local disk under `FileStore:RootPath`, shared by Api and Worker).
 - New module: add it to the module list in both hosts (`TreasuryKit.Api`, `TreasuryKit.Worker`) and to `ArchitectureRules.Modules`.
 
 ## Commands
@@ -36,4 +38,5 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Api (applies migrations in Development): `dotnet run --project src/Host/TreasuryKit.Api` → http://localhost:5080
 - Worker: `dotnet run --project src/Host/TreasuryKit.Worker`
 - Tests (needs Docker): `dotnet test`
+- Regenerate synthetic statements (golden files + manifest): `dotnet run --project tools/StatementGen -- --out tests/TestData/statements`
 - Add migration: `dotnet ef migrations add <Name> --project src/Modules/<Module>/<X>.Infrastructure --context <X>DbContext --output-dir Persistence/Migrations`

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Testcontainers.PostgreSql;
 using TreasuryKit.BuildingBlocks.Infrastructure;
+using TreasuryKit.IntegrationTests.Jobs;
 using TreasuryKit.IntegrationTests.Outbox;
 using TreasuryKit.Recon.Infrastructure.Persistence;
 
@@ -13,6 +14,8 @@ namespace TreasuryKit.IntegrationTests.Infrastructure;
 public sealed class ApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder("postgres:17-alpine").Build();
+
+    private readonly string _fileRoot = Path.Combine(Path.GetTempPath(), "treasurykit-tests", Guid.NewGuid().ToString("N"));
 
     public string ConnectionString => _postgres.GetConnectionString();
 
@@ -26,18 +29,26 @@ public sealed class ApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
     {
         await base.DisposeAsync();
         await _postgres.DisposeAsync();
+        if (Directory.Exists(_fileRoot))
+        {
+            Directory.Delete(_fileRoot, recursive: true);
+        }
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Development");
         builder.UseSetting("ConnectionStrings:TreasuryKit", _postgres.GetConnectionString());
+        builder.UseSetting("FileStore:RootPath", _fileRoot);
         builder.ConfigureTestServices(services =>
         {
             // Test subscribers, de-duplicated through the recon inbox like a real cross-module handler.
             services.AddSingleton<HandlerCallLog>();
             services.AddIntegrationEventHandler<TestEvent, CountingHandler, ReconDbContext>();
             services.AddIntegrationEventHandler<TestEvent, FlakyHandler, ReconDbContext>();
+
+            services.AddSingleton<JobCallLog>();
+            services.AddJobHandler<TestJob, TestJobHandler>();
         });
     }
 }

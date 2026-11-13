@@ -11,7 +11,7 @@ public static class DesignTimeDependencies
     {
         var tenant = new TenantContext();
         tenant.Set(tenantId);
-        return new ModuleDbContextDependencies(tenant, NoDomainEvents.Instance);
+        return new ModuleDbContextDependencies(tenant, NoDomainEvents.Instance, new SystemClock());
     }
 
     private sealed class NoDomainEvents : IDomainEventDispatcher

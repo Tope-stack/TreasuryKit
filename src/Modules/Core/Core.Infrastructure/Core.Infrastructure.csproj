@@ -4,6 +4,11 @@
     <ProjectReference Include="..\Core.Application\Core.Application.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ClosedXML" />
+    <PackageReference Include="CsvHelper" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="TreasuryKit.Core.Tests" />
   </ItemGroup>
 </Project>

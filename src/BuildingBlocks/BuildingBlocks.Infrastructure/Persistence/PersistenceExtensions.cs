@@ -2,13 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using TreasuryKit.BuildingBlocks.Infrastructure.Auditing;
+using TreasuryKit.BuildingBlocks.Infrastructure.Jobs;
 using TreasuryKit.BuildingBlocks.Infrastructure.Outbox;
 
 namespace TreasuryKit.BuildingBlocks.Infrastructure.Persistence;
 
 public static class PersistenceExtensions
 {
-    /// <summary>Registers a module DbContext, its outbox store and its health check.</summary>
+    /// <summary>Registers a module DbContext, its outbox and job stores, and its health check.</summary>
     public static IServiceCollection AddModuleDbContext<TContext>(this IServiceCollection services, string schema)
         where TContext : ModuleDbContext
     {
@@ -18,6 +19,7 @@ public static class PersistenceExtensions
 
         services.AddSingleton(new ModuleDbContextRegistration(typeof(TContext), schema));
         services.AddScoped<IOutboxStore, OutboxStore<TContext>>();
+        services.AddScoped<IJobStore, JobStore<TContext>>();
         services.AddHealthChecks().AddDbContextCheck<TContext>($"db-{schema}");
         return services;
     }
