@@ -1,0 +1,16 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Projects named per the plan (e.g. Core.Domain) get a TreasuryKit.* assembly name and namespace. -->
+  <PropertyGroup Condition="!$(MSBuildProjectName.StartsWith('TreasuryKit'))">
+    <AssemblyName>TreasuryKit.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>TreasuryKit.$(MSBuildProjectName)</RootNamespace>
+  </PropertyGroup>
+</Project>

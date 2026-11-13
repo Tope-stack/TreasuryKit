@@ -1,0 +1,31 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/BuildingBlocks.Application/BuildingBlocks.Application.csproj" />
+    <Project Path="src/BuildingBlocks/BuildingBlocks.Domain/BuildingBlocks.Domain.csproj" />
+    <Project Path="src/BuildingBlocks/BuildingBlocks.Infrastructure/BuildingBlocks.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Host/">
+    <Project Path="src/Host/TreasuryKit.Api/TreasuryKit.Api.csproj" />
+    <Project Path="src/Host/TreasuryKit.Worker/TreasuryKit.Worker.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Core/">
+    <Project Path="src/Modules/Core/Core.Application/Core.Application.csproj" />
+    <Project Path="src/Modules/Core/Core.Contracts/Core.Contracts.csproj" />
+    <Project Path="src/Modules/Core/Core.Domain/Core.Domain.csproj" />
+    <Project Path="src/Modules/Core/Core.Infrastructure/Core.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Reconciliation/">
+    <Project Path="src/Modules/Reconciliation/Recon.Application/Recon.Application.csproj" />
+    <Project Path="src/Modules/Reconciliation/Recon.Contracts/Recon.Contracts.csproj" />
+    <Project Path="src/Modules/Reconciliation/Recon.Domain/Recon.Domain.csproj" />
+    <Project Path="src/Modules/Reconciliation/Recon.Infrastructure/Recon.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ArchitectureTests/ArchitectureTests.csproj" />
+    <Project Path="tests/BuildingBlocks.Tests/BuildingBlocks.Tests.csproj" />
+    <Project Path="tests/Core.Tests/Core.Tests.csproj" />
+    <Project Path="tests/IntegrationTests/IntegrationTests.csproj" />
+  </Folder>
+</Solution>
