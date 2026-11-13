@@ -41,6 +41,7 @@ public sealed class CoreDbContext(DbContextOptions<CoreDbContext> options, Modul
             b.Property(x => x.Id).ValueGeneratedNever();
             b.Property(x => x.Name).HasMaxLength(Tenant.NameMaxLength);
             b.Property(x => x.BusinessTimeZone).HasMaxLength(64);
+            b.Property(x => x.InvoiceReferencePatterns).HasDefaultValueSql(@"ARRAY['INV[-/ ]?\d+']::text[]");
         });
 
         modelBuilder.Entity<BankAccount>(b =>
@@ -96,6 +97,7 @@ public sealed class CoreDbContext(DbContextOptions<CoreDbContext> options, Modul
             b.Property(x => x.Error).HasMaxLength(2000);
             b.Property(x => x.ImportedBy).HasMaxLength(200);
             b.Property(x => x.AcknowledgedBy).HasMaxLength(200);
+            b.Property(x => x.SkippedEntryCount).HasDefaultValue(0);
             b.HasIndex(x => new { x.TenantId, x.AccountId, x.FileHash }).IsUnique();
             b.HasIndex(x => new { x.AccountId, x.ImportedAt });
         });
@@ -112,6 +114,8 @@ public sealed class CoreDbContext(DbContextOptions<CoreDbContext> options, Modul
             b.Property(x => x.BankReference).HasMaxLength(100);
             b.Property(x => x.ExtractedRefs).HasColumnType("jsonb").HasDefaultValueSql("'{}'::jsonb");
             b.Property(x => x.CounterpartyNameGuess).HasMaxLength(200);
+            b.Property(x => x.EndToEndId).HasMaxLength(35);
+            b.Property(x => x.CounterpartyName).HasMaxLength(200);
             b.Property(x => x.Fingerprint).HasMaxLength(64).IsFixedLength();
             b.HasIndex(x => new { x.TenantId, x.AccountId, x.Fingerprint }).IsUnique();
             b.HasIndex(x => new { x.AccountId, x.ValueDate });

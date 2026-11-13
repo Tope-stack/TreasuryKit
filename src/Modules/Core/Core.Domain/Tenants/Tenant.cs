@@ -1,4 +1,5 @@
 using TreasuryKit.BuildingBlocks.Domain;
+using Patterns = TreasuryKit.Core.Domain.Statements.Narration.InvoiceReferencePatterns;
 
 namespace TreasuryKit.Core.Domain.Tenants;
 
@@ -27,6 +28,26 @@ public sealed class Tenant : AggregateRoot<Guid>
     public string BusinessTimeZone { get; private set; } = null!;
 
     public DateTimeOffset CreatedAt { get; private set; }
+
+    /// <summary>Regular expressions that find invoice references in narrations (plan §4.3).</summary>
+    public List<string> InvoiceReferencePatterns { get; private set; } = [Patterns.DefaultPattern];
+
+    public Patterns GetInvoiceReferencePatterns() =>
+        Patterns.Create(InvoiceReferencePatterns) is { IsSuccess: true } valid
+            ? valid.Value
+            : Patterns.Default;
+
+    public Result SetInvoiceReferencePatterns(IEnumerable<string>? patterns)
+    {
+        var validated = Patterns.Create(patterns);
+        if (validated.IsFailure)
+        {
+            return validated.Error;
+        }
+
+        InvoiceReferencePatterns = validated.Value.Patterns.ToList();
+        return Result.Success();
+    }
 
     public static Result<Tenant> Create(string? name, string? businessTimeZone, DateTimeOffset now)
     {

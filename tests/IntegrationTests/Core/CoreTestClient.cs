@@ -43,9 +43,9 @@ internal sealed class CoreTestClient
     public async Task<HttpClient> ClientAsAsync(string userId, string[] roles, CancellationToken ct) =>
         _factory.CreateClient().WithBearer(await _factory.CreateClient().GetTokenAsync(TenantId, userId, roles, ct));
 
-    public async Task<Guid> CreateAccountAsync(Guid? mappingProfileId, CancellationToken ct)
+    public async Task<Guid> CreateAccountAsync(Guid? mappingProfileId, CancellationToken ct, string? accountNumber = null)
     {
-        var number = (1_000_000_000 + Interlocked.Increment(ref _accountCounter)).ToString(System.Globalization.CultureInfo.InvariantCulture);
+        var number = accountNumber ?? (1_000_000_000 + Interlocked.Increment(ref _accountCounter)).ToString(System.Globalization.CultureInfo.InvariantCulture);
         var response = await Admin.PostAsJsonAsync(
             "/api/core/accounts",
             new { bankCode = "058", bankName = "Demo Bank", accountNumber = number, currency = "NGN", mappingProfileId },
@@ -92,6 +92,7 @@ internal sealed class CoreTestClient
         string Status,
         int LineCount,
         int DuplicateLineCount,
+        int SkippedEntryCount,
         bool BalanceValidated,
         decimal? OpeningBalance,
         decimal? ClosingBalance,

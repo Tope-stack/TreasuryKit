@@ -44,6 +44,9 @@ public sealed class StatementImport : AggregateRoot<Guid>, ITenantOwned
     /// <summary>Lines already present from an earlier import (overlapping periods); not inserted again.</summary>
     public int DuplicateLineCount { get; private set; }
 
+    /// <summary>Entries in the file that were not imported because they are not booked (CAMT pending/info entries).</summary>
+    public int SkippedEntryCount { get; private set; }
+
     /// <summary>False when the file carried no balances to validate against.</summary>
     public bool BalanceValidated { get; private set; }
 
@@ -106,9 +109,11 @@ public sealed class StatementImport : AggregateRoot<Guid>, ITenantOwned
         int lineCount,
         int duplicateLineCount,
         BalanceCheck balanceCheck,
-        DateTimeOffset now)
+        DateTimeOffset now,
+        int skippedEntryCount = 0)
     {
         EnsurePending();
+        SkippedEntryCount = skippedEntryCount;
         PeriodStart = periodStart;
         PeriodEnd = periodEnd;
         OpeningBalance = openingBalance;

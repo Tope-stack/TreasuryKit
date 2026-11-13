@@ -17,7 +17,11 @@ public sealed class StatementLine : Entity<Guid>, ITenantOwned
         string normalizedNarration,
         string? bankReference,
         string fingerprint,
-        decimal? runningBalance)
+        decimal? runningBalance,
+        string extractedRefs,
+        string? counterpartyNameGuess,
+        string? endToEndId,
+        string? counterpartyName)
         : base(Guid.CreateVersion7())
     {
         TenantId = tenantId;
@@ -32,6 +36,10 @@ public sealed class StatementLine : Entity<Guid>, ITenantOwned
         BankReference = bankReference;
         Fingerprint = fingerprint;
         RunningBalance = runningBalance;
+        ExtractedRefs = extractedRefs;
+        CounterpartyNameGuess = counterpartyNameGuess;
+        EndToEndId = endToEndId;
+        CounterpartyName = counterpartyName;
     }
 
     private StatementLine()
@@ -61,10 +69,17 @@ public sealed class StatementLine : Entity<Guid>, ITenantOwned
 
     public string? BankReference { get; private set; }
 
-    /// <summary>JSON of references extracted from the narration (Phase 2): NIP session id, invoice and payment refs.</summary>
+    /// <summary>JSON <see cref="Narration.ExtractedReferences"/>: NIP session id, invoice refs (canonical), payment refs.</summary>
     public string ExtractedRefs { get; private set; } = "{}";
 
+    /// <summary>Guessed from the narration, or taken from <see cref="CounterpartyName"/> when the format provides one.</summary>
     public string? CounterpartyNameGuess { get; private set; }
+
+    /// <summary>End-to-end payment id from structured formats (CAMT.053 <c>EndToEndId</c>).</summary>
+    public string? EndToEndId { get; private set; }
+
+    /// <summary>Debtor/creditor name from structured formats (CAMT.053 related parties).</summary>
+    public string? CounterpartyName { get; private set; }
 
     public string Fingerprint { get; private set; } = null!;
 

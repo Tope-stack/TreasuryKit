@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08">
+  <BkToCstmrStmt>
+    <GrpHdr><MsgId>MSG-2026-01</MsgId><CreDtTm>2026-02-01T06:00:00+01:00</CreDtTm></GrpHdr>
+    <Stmt>
+      <Id>STMT-2026-01</Id>
+      <CreDtTm>2026-02-01T06:00:00+01:00</CreDtTm>
+      <Acct><Id><Othr><Id>0123456789</Id></Othr></Id><Ccy>NGN</Ccy></Acct>
+      <Bal><Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp><Amt Ccy="NGN">5000000.00</Amt><CdtDbtInd>CRDT</CdtDbtInd><Dt><Dt>2025-12-31</Dt></Dt></Bal>
+      <Bal><Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp><Amt Ccy="NGN">14611354.33</Amt><CdtDbtInd>CRDT</CdtDbtInd><Dt><Dt>2026-01-30</Dt></Dt></Bal>
+      <Ntry>
+        <Amt Ccy="NGN">1153231.19</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-01</Dt></BookgDt>
+        <ValDt><Dt>2026-01-01</Dt></ValDt>
+        <AcctSvcrRef>FT2601000001</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000001</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>SHENZHEN BRIGHT ELECTRONICS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/889558260101162351113332823325/PO-311</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">277965.46</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-01</Dt></BookgDt>
+        <ValDt><Dt>2026-01-01</Dt></ValDt>
+        <AcctSvcrRef>FT2601000002</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000002</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>SAHARA LOGISTICS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>TRF FRM SAHARA LOGISTICS REF 793438</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">905460.33</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-01</Dt></BookgDt>
+        <ValDt><Dt>2026-01-01</Dt></ValDt>
+        <AcctSvcrRef>FT2601000003</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000003</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM JOS TIN MERCHANTS/119443260101134921279771936641/INV-1041</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">80345.27</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-02</Dt></BookgDt>
+        <ValDt><Dt>2026-01-02</Dt></ValDt>
+        <AcctSvcrRef>FT2601000004</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000004</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE CHICKEN REPUBLIC YABA</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1357799.72</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-02</Dt></BookgDt>
+        <ValDt><Dt>2026-01-02</Dt></ValDt>
+        <AcctSvcrRef>FT2601000005</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000005</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>ARIBA CEMENT DISTRIBUTORS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO ARIBA CEMENT DISTRIBUTORS/823280260102113815315028677910/PO-312</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">174898.84</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-02</Dt></BookgDt>
+        <ValDt><Dt>2026-01-02</Dt></ValDt>
+        <AcctSvcrRef>FT2601000006</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000006</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>LEKKI PHARMA LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM LEKKI PHARMA LTD/069068260102130106440715551751/INV-1042</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">193841.22</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-05</Dt></BookgDt>
+        <ValDt><Dt>2026-01-05</Dt></ValDt>
+        <AcctSvcrRef>FT2601000007</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000007</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>KANO AGRO SUPPLIES</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM KANO AGRO SUPPLIES/613968260105121922093153236172/INV-1043</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">379938.32</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-05</Dt></BookgDt>
+        <ValDt><Dt>2026-01-05</Dt></ValDt>
+        <AcctSvcrRef>FT2601000008</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000008</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>SAHARA LOGISTICS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>TRF FRM SAHARA LOGISTICS REF 248198</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">115314.43</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-06</Dt></BookgDt>
+        <ValDt><Dt>2026-01-06</Dt></ValDt>
+        <AcctSvcrRef>FT2601000009</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000009</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE CHICKEN REPUBLIC YABA</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1095393.61</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-06</Dt></BookgDt>
+        <ValDt><Dt>2026-01-06</Dt></ValDt>
+        <AcctSvcrRef>FT2601000010</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000010</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>SHENZHEN BRIGHT ELECTRONICS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/213379260106153020867572968462/PO-313</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">381587.96</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-06</Dt></BookgDt>
+        <ValDt><Dt>2026-01-06</Dt></ValDt>
+        <AcctSvcrRef>FT2601000011</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000011</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>EKO FOODS PLC</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM EKO FOODS PLC/283202260106124342228598578445/INV-1044</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">287243.13</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-06</Dt></BookgDt>
+        <ValDt><Dt>2026-01-06</Dt></ValDt>
+        <AcctSvcrRef>FT2601000012</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000012</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM JOS TIN MERCHANTS/769939260106091411296865774345/INV-1045</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">24990.86</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-07</Dt></BookgDt>
+        <ValDt><Dt>2026-01-07</Dt></ValDt>
+        <AcctSvcrRef>FT2601000013</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000013</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE JUMIA ONLINE</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">367702.33</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-07</Dt></BookgDt>
+        <ValDt><Dt>2026-01-07</Dt></ValDt>
+        <AcctSvcrRef>FT2601000014</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000014</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>SHENZHEN BRIGHT ELECTRONICS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/268802260107132139475502157263/PO-314</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">125437.41</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-07</Dt></BookgDt>
+        <ValDt><Dt>2026-01-08</Dt></ValDt>
+        <AcctSvcrRef>FT2601000015</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000015</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>LEKKI PHARMA LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM LEKKI PHARMA LTD/965310260107135115172427091716/INV-1046</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1401662.30</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-07</Dt></BookgDt>
+        <ValDt><Dt>2026-01-07</Dt></ValDt>
+        <AcctSvcrRef>FT2601000016</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000016</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>SHENZHEN BRIGHT ELECTRONICS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/575227260107154330320785304562/PO-315</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">721029.96</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-08</Dt></BookgDt>
+        <ValDt><Dt>2026-01-08</Dt></ValDt>
+        <AcctSvcrRef>FT2601000017</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000017</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>IKEJA OFFICE MART</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO IKEJA OFFICE MART/961947260108142538225494701022/PO-316</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">309068.20</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-08</Dt></BookgDt>
+        <ValDt><Dt>2026-01-08</Dt></ValDt>
+        <AcctSvcrRef>FT2601000018</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000018</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>ADEBAYO TRADING LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>TRF FRM ADEBAYO TRADING LTD REF 610393</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">554611.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-09</Dt></BookgDt>
+        <ValDt><Dt>2026-01-09</Dt></ValDt>
+        <AcctSvcrRef>FT2601000019</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000019</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>NNEWI AUTO PARTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM NNEWI AUTO PARTS/965440260109154951693575836026/INV-1047</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">954534.45</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-09</Dt></BookgDt>
+        <ValDt><Dt>2026-01-09</Dt></ValDt>
+        <AcctSvcrRef>FT2601000020</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000020</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>SHENZHEN BRIGHT ELECTRONICS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/154716260109161601016903912971/PO-317</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1776390.63</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-09</Dt></BookgDt>
+        <ValDt><Dt>2026-01-09</Dt></ValDt>
+        <AcctSvcrRef>FT2601000021</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000021</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>SAHARA LOGISTICS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM SAHARA LOGISTICS/720998260109094109008122985006/INV-1048</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1008889.13</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-09</Dt></BookgDt>
+        <ValDt><Dt>2026-01-09</Dt></ValDt>
+        <AcctSvcrRef>FT2601000022</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000022</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>TEMA PORT CLEARING LTD</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO TEMA PORT CLEARING LTD/111535260109124018669231482742/PO-318</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">91981.56</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-12</Dt></BookgDt>
+        <ValDt><Dt>2026-01-12</Dt></ValDt>
+        <AcctSvcrRef>FT2601000023</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000023</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE JUMIA ONLINE</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1347265.97</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-12</Dt></BookgDt>
+        <ValDt><Dt>2026-01-12</Dt></ValDt>
+        <AcctSvcrRef>FT2601000024</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000024</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>ADEBAYO TRADING LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM ADEBAYO TRADING LTD/847733260112132049275981373446/INV-1049</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">526662.64</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-12</Dt></BookgDt>
+        <ValDt><Dt>2026-01-13</Dt></ValDt>
+        <AcctSvcrRef>FT2601000025</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000025</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM JOS TIN MERCHANTS/704854260112145106408033043181/INV-1050</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1455763.34</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-12</Dt></BookgDt>
+        <ValDt><Dt>2026-01-12</Dt></ValDt>
+        <AcctSvcrRef>FT2601000026</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000026</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>SAHARA LOGISTICS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM SAHARA LOGISTICS/961721260112113347074494036104/INV-1051</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">495034.21</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-13</Dt></BookgDt>
+        <ValDt><Dt>2026-01-13</Dt></ValDt>
+        <AcctSvcrRef>FT2601000027</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000027</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>SHENZHEN BRIGHT ELECTRONICS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/025539260113092708938309397471/PO-319</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1435876.23</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-13</Dt></BookgDt>
+        <ValDt><Dt>2026-01-14</Dt></ValDt>
+        <AcctSvcrRef>FT2601000028</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000028</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM JOS TIN MERCHANTS/001572260113090357499141154095/INV-1052</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">177488.25</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-13</Dt></BookgDt>
+        <ValDt><Dt>2026-01-13</Dt></ValDt>
+        <AcctSvcrRef>FT2601000029</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000029</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>NNEWI AUTO PARTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM NNEWI AUTO PARTS/417504260113140115481609298951/INV-1053</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1649303.62</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-13</Dt></BookgDt>
+        <ValDt><Dt>2026-01-14</Dt></ValDt>
+        <AcctSvcrRef>FT2601000030</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000030</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM JOS TIN MERCHANTS/519186260113104209010562750904/INV-1054</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1292083.19</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-14</Dt></BookgDt>
+        <ValDt><Dt>2026-01-14</Dt></ValDt>
+        <AcctSvcrRef>FT2601000031</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000031</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>NNEWI AUTO PARTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM NNEWI AUTO PARTS/313896260114124406536962841950/INV-1055</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1922314.93</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-14</Dt></BookgDt>
+        <ValDt><Dt>2026-01-14</Dt></ValDt>
+        <AcctSvcrRef>FT2601000032</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000032</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>LEKKI PHARMA LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM LEKKI PHARMA LTD/719768260114112201737937999574/INV-1056</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">61123.89</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-15</Dt></BookgDt>
+        <ValDt><Dt>2026-01-15</Dt></ValDt>
+        <AcctSvcrRef>FT2601000033</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000033</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE TOTAL ENERGIES VI</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">757088.56</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-15</Dt></BookgDt>
+        <ValDt><Dt>2026-01-15</Dt></ValDt>
+        <AcctSvcrRef>FT2601000034</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000034</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>ABUJA FLEET SERVICES</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO ABUJA FLEET SERVICES/246065260115110830616901764018/PO-320</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1422843.83</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-15</Dt></BookgDt>
+        <ValDt><Dt>2026-01-15</Dt></ValDt>
+        <AcctSvcrRef>FT2601000035</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000035</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>EKO FOODS PLC</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM EKO FOODS PLC/184269260115150738364646149084/INV-1057</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">4.00</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-15</Dt></BookgDt>
+        <ValDt><Dt>2026-01-15</Dt></ValDt>
+        
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><RmtInf><Ustrd>SMS ALERT CHARGES</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">4.00</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-15</Dt></BookgDt>
+        <ValDt><Dt>2026-01-15</Dt></ValDt>
+        
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><RmtInf><Ustrd>SMS ALERT CHARGES</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">259783.71</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-16</Dt></BookgDt>
+        <ValDt><Dt>2026-01-16</Dt></ValDt>
+        <AcctSvcrRef>FT2601000036</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000036</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>TRF FRM JOS TIN MERCHANTS REF 864070</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">366340.88</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-16</Dt></BookgDt>
+        <ValDt><Dt>2026-01-16</Dt></ValDt>
+        <AcctSvcrRef>FT2601000037</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000037</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>LEKKI PHARMA LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM LEKKI PHARMA LTD/561870260116124954868616200244/INV-1058</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1039254.20</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-16</Dt></BookgDt>
+        <ValDt><Dt>2026-01-16</Dt></ValDt>
+        <AcctSvcrRef>FT2601000038</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000038</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>TEMA PORT CLEARING LTD</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO TEMA PORT CLEARING LTD/644188260116092741494192637529/PO-321</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">96016.76</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-19</Dt></BookgDt>
+        <ValDt><Dt>2026-01-19</Dt></ValDt>
+        <AcctSvcrRef>FT2601000039</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000039</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE JUMIA ONLINE</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">89263.85</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-19</Dt></BookgDt>
+        <ValDt><Dt>2026-01-19</Dt></ValDt>
+        <AcctSvcrRef>FT2601000040</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000040</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>EKO FOODS PLC</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM EKO FOODS PLC/487749260119134613462233314597/INV-1059</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">679396.98</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-19</Dt></BookgDt>
+        <ValDt><Dt>2026-01-19</Dt></ValDt>
+        <AcctSvcrRef>FT2601000041</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000041</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>IKEJA OFFICE MART</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO IKEJA OFFICE MART/114056260119100049315652591066/PO-322</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">24310.28</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-19</Dt></BookgDt>
+        <ValDt><Dt>2026-01-19</Dt></ValDt>
+        <AcctSvcrRef>FT2601000042</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000042</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE JUMIA ONLINE</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1062104.40</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-20</Dt></BookgDt>
+        <ValDt><Dt>2026-01-20</Dt></ValDt>
+        <AcctSvcrRef>FT2601000043</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000043</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM JOS TIN MERCHANTS/338335260120100032678325802915/INV-1060</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1439365.18</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-20</Dt></BookgDt>
+        <ValDt><Dt>2026-01-20</Dt></ValDt>
+        <AcctSvcrRef>FT2601000044</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000044</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>SAHARA LOGISTICS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM SAHARA LOGISTICS/426974260120150800042399523472/INV-1061</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">386271.49</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-20</Dt></BookgDt>
+        <ValDt><Dt>2026-01-20</Dt></ValDt>
+        <AcctSvcrRef>FT2601000045</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000045</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>KANO AGRO SUPPLIES</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM KANO AGRO SUPPLIES/205588260120151847886958571253/INV-1062</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">564332.81</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-21</Dt></BookgDt>
+        <ValDt><Dt>2026-01-21</Dt></ValDt>
+        <AcctSvcrRef>FT2601000046</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000046</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>SAHARA LOGISTICS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM SAHARA LOGISTICS/976261260121122634604127204291/INV-1063</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">132392.23</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-21</Dt></BookgDt>
+        <ValDt><Dt>2026-01-21</Dt></ValDt>
+        <AcctSvcrRef>FT2601000047</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000047</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE CHICKEN REPUBLIC YABA</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">477114.99</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-21</Dt></BookgDt>
+        <ValDt><Dt>2026-01-21</Dt></ValDt>
+        <AcctSvcrRef>FT2601000048</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000048</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>LEKKI PHARMA LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM LEKKI PHARMA LTD/457387260121143319229770986829/INV-1064</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">474248.23</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-21</Dt></BookgDt>
+        <ValDt><Dt>2026-01-21</Dt></ValDt>
+        <AcctSvcrRef>FT2601000049</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000049</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>ADEBAYO TRADING LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM ADEBAYO TRADING LTD/915956260121125126628846621581/INV-1065</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">91597.59</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-22</Dt></BookgDt>
+        <ValDt><Dt>2026-01-22</Dt></ValDt>
+        <AcctSvcrRef>FT2601000050</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000050</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE SHOPRITE LEKKI</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">175535.80</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-22</Dt></BookgDt>
+        <ValDt><Dt>2026-01-22</Dt></ValDt>
+        <AcctSvcrRef>FT2601000051</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000051</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>NNEWI AUTO PARTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>TRF FRM NNEWI AUTO PARTS REF 990380</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1398516.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-22</Dt></BookgDt>
+        <ValDt><Dt>2026-01-22</Dt></ValDt>
+        <AcctSvcrRef>FT2601000052</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000052</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM JOS TIN MERCHANTS/893777260122111735994646938335/INV-1066</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">107092.33</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-23</Dt></BookgDt>
+        <ValDt><Dt>2026-01-23</Dt></ValDt>
+        <AcctSvcrRef>FT2601000053</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000053</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>NNEWI AUTO PARTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>TRF FRM NNEWI AUTO PARTS REF 424299</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">44514.83</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-23</Dt></BookgDt>
+        <ValDt><Dt>2026-01-23</Dt></ValDt>
+        <AcctSvcrRef>FT2601000054</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000054</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE TOTAL ENERGIES VI</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1129509.77</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-23</Dt></BookgDt>
+        <ValDt><Dt>2026-01-23</Dt></ValDt>
+        <AcctSvcrRef>FT2601000055</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000055</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>TEMA PORT CLEARING LTD</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO TEMA PORT CLEARING LTD/474346260123142749672081861742/PO-323</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">113932.08</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-26</Dt></BookgDt>
+        <ValDt><Dt>2026-01-26</Dt></ValDt>
+        <AcctSvcrRef>FT2601000056</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000056</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE SHOPRITE LEKKI</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1050209.02</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-26</Dt></BookgDt>
+        <ValDt><Dt>2026-01-26</Dt></ValDt>
+        <AcctSvcrRef>FT2601000057</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000057</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>ARIBA CEMENT DISTRIBUTORS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO ARIBA CEMENT DISTRIBUTORS/316756260126081134847841634200/PO-324</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">39348.36</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-26</Dt></BookgDt>
+        <ValDt><Dt>2026-01-26</Dt></ValDt>
+        <AcctSvcrRef>FT2601000058</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000058</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE TOTAL ENERGIES VI</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">316739.96</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-27</Dt></BookgDt>
+        <ValDt><Dt>2026-01-27</Dt></ValDt>
+        <AcctSvcrRef>FT2601000059</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000059</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>EKO FOODS PLC</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM EKO FOODS PLC/361999260127101906064331629868/INV-1067</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1078507.10</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-27</Dt></BookgDt>
+        <ValDt><Dt>2026-01-27</Dt></ValDt>
+        <AcctSvcrRef>FT2601000060</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000060</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>ABUJA FLEET SERVICES</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO ABUJA FLEET SERVICES/221196260127144548119493274252/PO-325</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">213480.26</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-27</Dt></BookgDt>
+        <ValDt><Dt>2026-01-27</Dt></ValDt>
+        <AcctSvcrRef>FT2601000061</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000061</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>LEKKI PHARMA LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM LEKKI PHARMA LTD/973170260127153941536462435193/INV-1068</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1288511.68</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-28</Dt></BookgDt>
+        <ValDt><Dt>2026-01-28</Dt></ValDt>
+        <AcctSvcrRef>FT2601000062</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000062</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>EKO FOODS PLC</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM EKO FOODS PLC/839391260128151854206365957846/INV-1069</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1446943.66</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-28</Dt></BookgDt>
+        <ValDt><Dt>2026-01-28</Dt></ValDt>
+        <AcctSvcrRef>FT2601000063</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000063</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>SHENZHEN BRIGHT ELECTRONICS</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO SHENZHEN BRIGHT ELECTRONICS/998589260128120415966607173489/PO-326</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1034538.41</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-28</Dt></BookgDt>
+        <ValDt><Dt>2026-01-28</Dt></ValDt>
+        <AcctSvcrRef>FT2601000064</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000064</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>TEMA PORT CLEARING LTD</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO TEMA PORT CLEARING LTD/434822260128084219388829426098/PO-327</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1457794.52</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-29</Dt></BookgDt>
+        <ValDt><Dt>2026-01-29</Dt></ValDt>
+        <AcctSvcrRef>FT2601000065</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000065</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>JOS TIN MERCHANTS</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM JOS TIN MERCHANTS/081084260129131633394357205983/INV-1070</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">1073802.12</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-29</Dt></BookgDt>
+        <ValDt><Dt>2026-01-29</Dt></ValDt>
+        <AcctSvcrRef>FT2601000066</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000066</EndToEndId></Refs><RltdPties><Dbtr><Pty><Nm>LEKKI PHARMA LTD</Nm></Pty></Dbtr></RltdPties><RmtInf><Ustrd>NIP/FRM LEKKI PHARMA LTD/560167260129152343362973472557/INV-1071</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">8929.20</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-29</Dt></BookgDt>
+        <ValDt><Dt>2026-01-29</Dt></ValDt>
+        <AcctSvcrRef>FT2601000067</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000067</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE CHICKEN REPUBLIC YABA</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">361546.27</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-30</Dt></BookgDt>
+        <ValDt><Dt>2026-01-30</Dt></ValDt>
+        <AcctSvcrRef>FT2601000068</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000068</EndToEndId></Refs><RltdPties><Cdtr><Pty><Nm>IKEJA OFFICE MART</Nm></Pty></Cdtr></RltdPties><RmtInf><Ustrd>NIP TRF TO IKEJA OFFICE MART/335251260130161347429978364133/PO-328</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">31231.38</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-30</Dt></BookgDt>
+        <ValDt><Dt>2026-01-30</Dt></ValDt>
+        <AcctSvcrRef>FT2601000069</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000069</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE SHOPRITE LEKKI</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">43993.29</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-30</Dt></BookgDt>
+        <ValDt><Dt>2026-01-30</Dt></ValDt>
+        <AcctSvcrRef>FT2601000070</AcctSvcrRef>
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>E2EFT2601000070</EndToEndId></Refs><RmtInf><Ustrd>POS/WEB PURCHASE TOTAL ENERGIES VI</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">2500.00</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-30</Dt></BookgDt>
+        <ValDt><Dt>2026-01-30</Dt></ValDt>
+        
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><RmtInf><Ustrd>COMMISSION ON TURNOVER</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="NGN">187.50</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-01-30</Dt></BookgDt>
+        <ValDt><Dt>2026-01-30</Dt></ValDt>
+        
+        <BkTxCd><Prtry><Cd>NTRF</Cd></Prtry></BkTxCd>
+        <NtryDtls><TxDtls><RmtInf><Ustrd>VAT ON COMM</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document>

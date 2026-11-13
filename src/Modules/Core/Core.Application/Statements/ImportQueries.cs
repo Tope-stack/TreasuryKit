@@ -22,6 +22,7 @@ public sealed record StatementImportDto(
     decimal? ClosingBalance,
     int LineCount,
     int DuplicateLineCount,
+    int SkippedEntryCount,
     bool BalanceValidated,
     string? Error,
     string ImportedBy,
@@ -58,7 +59,7 @@ internal sealed class GetStatementImportHandler(ICoreDbContext db) : IQueryHandl
             ? StatementImportErrors.NotFound
             : new StatementImportDto(
                 i.Id, i.AccountId, i.FileName, i.FileHash, i.Format, i.Status, i.Currency.Code, i.PeriodStart, i.PeriodEnd,
-                i.OpeningBalance, i.ClosingBalance, i.LineCount, i.DuplicateLineCount, i.BalanceValidated, i.Error,
+                i.OpeningBalance, i.ClosingBalance, i.LineCount, i.DuplicateLineCount, i.SkippedEntryCount, i.BalanceValidated, i.Error,
                 i.ImportedBy, i.ImportedAt, i.CompletedAt, i.AcknowledgedBy, i.AcknowledgedAt);
     }
 }

@@ -21,12 +21,13 @@ internal static class TestProfiles
         new ColumnMap(["Txn Date"], null, ["Remarks"], ["Ref No"], null, ["Withdrawals"], ["Deposits"], ["Running Balance"], null),
         AmountMode.DebitCreditColumns, null, null).Value;
 
-    public static BankMappingProfile For(string file) => file.Split('/')[0] switch
+    /// <summary>The profile for a golden file; null for self-describing formats (MT940, CAMT.053).</summary>
+    public static BankMappingProfile? For(string file) => file.Split('/')[0] switch
     {
         "layout-a" => LayoutA,
         "layout-b" => LayoutB,
         "layout-c" => LayoutC,
-        var layout => throw new ArgumentException($"Unknown layout {layout}"),
+        _ => null,
     };
 }
 
@@ -40,7 +41,9 @@ internal sealed record ManifestEntry(
     int NipSessionIds,
     bool Balanced,
     bool NewestFirst,
-    int OverlapWithPrevious);
+    int OverlapWithPrevious,
+    string? Account,
+    int SkippedEntries);
 
 internal static class GoldenFiles
 {
