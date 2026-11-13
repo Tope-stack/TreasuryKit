@@ -58,6 +58,8 @@ app.UseExceptionHandler(new ExceptionHandlerOptions
 });
 app.UseStatusCodePages();
 app.UseMiddleware<CorrelationIdMiddleware>();
+app.UseDefaultFiles();
+app.UseStaticFiles(); // the web UI, built into wwwroot by `npm run build` in web/
 app.UseSerilogRequestLogging();
 app.UseAuthentication();
 app.UseMiddleware<RequestContextMiddleware>();
@@ -78,6 +80,10 @@ foreach (var module in modules)
 {
     module.MapEndpoints(app.MapGroup($"/api/{module.Name}").RequireAuthorization(Policies.CanView));
 }
+
+// Client-side routes of the web UI fall back to index.html; API and tooling paths never do.
+// `nonfile` keeps asset requests (e.g. /assets/app.js) with the static-file middleware.
+app.MapFallbackToFile("{**path:nonfile:regex(^(?!(api|dev|health|openapi|scalar)(/|$)).*$)}", "index.html").AllowAnonymous();
 
 await app.RunAsync();
 

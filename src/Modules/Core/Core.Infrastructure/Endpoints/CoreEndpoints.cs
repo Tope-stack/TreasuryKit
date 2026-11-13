@@ -40,8 +40,11 @@ internal static class CoreEndpoints
 
         expected.MapPost("/", async (CreateExpectedTransactionCommand command, IDispatcher dispatcher, CancellationToken ct) =>
                 (await dispatcher.SendAsync(command, ct)).Match(r => r.AlreadyExisted
-                    ? Results.Ok(new { id = r.Id, alreadyExisted = true })
-                    : Results.Created($"/api/core/expected-transactions/{r.Id}", new { id = r.Id, alreadyExisted = false })))
+                    ? Results.Ok(new ExpectedCreatedResponse(r.Id, true))
+                    : Results.Created($"/api/core/expected-transactions/{r.Id}", new ExpectedCreatedResponse(r.Id, false))))
+            .Produces<ExpectedCreatedResponse>(StatusCodes.Status201Created)
+            .Produces<ExpectedCreatedResponse>()
+            .ProducesValidationProblem()
             .RequireAuthorization(Policies.CanPrepare);
 
         expected.MapPost("/import", async (IFormFile file, IDispatcher dispatcher, IOptions<StatementUploadOptions> options, CancellationToken ct) =>
@@ -53,14 +56,21 @@ internal static class CoreEndpoints
 
                 await using var content = file.OpenReadStream();
                 return (await dispatcher.SendAsync(new UploadExpectedTransactionsCommand(file.FileName, content), ct)).Match(r => r.AlreadyImported
-                    ? Results.Ok(new { importId = r.ImportId, alreadyImported = true })
-                    : Results.Accepted($"/api/core/expected-transactions/imports/{r.ImportId}", new { importId = r.ImportId, alreadyImported = false }));
+                    ? Results.Ok(new UploadResponse(r.ImportId, true))
+                    : Results.Accepted($"/api/core/expected-transactions/imports/{r.ImportId}", new UploadResponse(r.ImportId, false)));
             })
+            .Produces<UploadResponse>(StatusCodes.Status202Accepted)
+            .Produces<UploadResponse>()
             .DisableAntiforgery()
             .RequireAuthorization(Policies.CanPrepare);
 
+        expected.MapGet("/imports", async (IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.QueryAsync(new ListExpectedTransactionImportsQuery(), ct)).Match(Results.Ok))
+            .Produces<IReadOnlyList<ExpectedTransactionImportDto>>();
+
         expected.MapGet("/imports/{id:guid}", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new GetExpectedTransactionImportQuery(id), ct)).Match(Results.Ok));
+                (await dispatcher.QueryAsync(new GetExpectedTransactionImportQuery(id), ct)).Match(Results.Ok))
+            .Produces<ExpectedTransactionImportDto>();
 
         expected.MapGet("/", async (
                 Domain.ExpectedTransactions.ExpectedTransactionStatus? status,
@@ -70,10 +80,12 @@ internal static class CoreEndpoints
                 Guid? accountId,
                 IDispatcher dispatcher,
                 CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new ListExpectedTransactionsQuery(status, from, to, currency, accountId), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new ListExpectedTransactionsQuery(status, from, to, currency, accountId), ct)).Match(Results.Ok))
+            .Produces<IReadOnlyList<ExpectedTransactionDto>>();
 
         expected.MapGet("/{id:guid}", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new GetExpectedTransactionQuery(id), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new GetExpectedTransactionQuery(id), ct)).Match(Results.Ok))
+            .Produces<ExpectedTransactionDto>();
 
         expected.MapPatch("/{id:guid}", async (Guid id, UpdateExpectedTransactionCommand command, IDispatcher dispatcher, CancellationToken ct) =>
                 (await dispatcher.SendAsync(command with { Id = id }, ct)).Match(Results.NoContent))
@@ -89,7 +101,8 @@ internal static class CoreEndpoints
         var settings = app.MapGroup("/settings").WithTags("Settings");
 
         settings.MapGet("/reference-patterns", async (IDispatcher dispatcher, CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new GetReferencePatternsQuery(), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new GetReferencePatternsQuery(), ct)).Match(Results.Ok))
+            .Produces<ReferencePatternsDto>();
 
         settings.MapPut("/reference-patterns", async (SetReferencePatternsCommand command, IDispatcher dispatcher, CancellationToken ct) =>
                 (await dispatcher.SendAsync(command, ct)).Match(Results.NoContent))
@@ -106,14 +119,21 @@ internal static class CoreEndpoints
         var accounts = app.MapGroup("/accounts").WithTags("Accounts");
 
         accounts.MapPost("/", async (CreateBankAccountCommand command, IDispatcher dispatcher, CancellationToken ct) =>
-                (await dispatcher.SendAsync(command, ct)).Match(id => Results.Created($"/api/core/accounts/{id}", new { id })))
+                (await dispatcher.SendAsync(command, ct)).Match(id => Results.Created($"/api/core/accounts/{id}", new CreatedResponse(id))))
+            .Produces<CreatedResponse>(StatusCodes.Status201Created)
             .RequireAuthorization(Policies.AdminOnly);
 
         accounts.MapGet("/", async (IDispatcher dispatcher, CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new ListBankAccountsQuery(), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new ListBankAccountsQuery(), ct)).Match(Results.Ok))
+            .Produces<IReadOnlyList<BankAccountDto>>();
 
         accounts.MapGet("/{id:guid}", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new GetBankAccountQuery(id), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new GetBankAccountQuery(id), ct)).Match(Results.Ok))
+            .Produces<BankAccountDto>();
+
+        accounts.MapGet("/{id:guid}/imports", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.QueryAsync(new ListStatementImportsQuery(id), ct)).Match(Results.Ok))
+            .Produces<IReadOnlyList<StatementImportDto>>();
 
         accounts.MapGet("/{id:guid}/lines", async (
                 Guid id,
@@ -123,7 +143,8 @@ internal static class CoreEndpoints
                 int? pageSize,
                 IDispatcher dispatcher,
                 CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new GetStatementLinesQuery(id, from, to, page ?? 1, pageSize ?? 100), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new GetStatementLinesQuery(id, from, to, page ?? 1, pageSize ?? 100), ct)).Match(Results.Ok))
+            .Produces<Application.Common.PagedResult<StatementLineDto>>();
 
         accounts.MapPost("/{id:guid}/statements", async (
                 Guid id,
@@ -143,9 +164,11 @@ internal static class CoreEndpoints
                 await using var content = file.OpenReadStream();
                 var result = await dispatcher.SendAsync(new UploadStatementCommand(id, file.FileName, content), ct);
                 return result.Match(r => r.AlreadyImported
-                    ? Results.Ok(new { importId = r.ImportId, alreadyImported = true })
-                    : Results.Accepted($"/api/core/imports/{r.ImportId}", new { importId = r.ImportId, alreadyImported = false }));
+                    ? Results.Ok(new UploadResponse(r.ImportId, true))
+                    : Results.Accepted($"/api/core/imports/{r.ImportId}", new UploadResponse(r.ImportId, false)));
             })
+            .Produces<UploadResponse>(StatusCodes.Status202Accepted)
+            .Produces<UploadResponse>()
             .DisableAntiforgery() // API clients authenticate with bearer tokens, not cookies
             .RequireAuthorization(Policies.CanPrepare);
     }
@@ -155,11 +178,13 @@ internal static class CoreEndpoints
         var profiles = app.MapGroup("/mapping-profiles").WithTags("Mapping profiles");
 
         profiles.MapPost("/", async (CreateMappingProfileCommand command, IDispatcher dispatcher, CancellationToken ct) =>
-                (await dispatcher.SendAsync(command, ct)).Match(id => Results.Created($"/api/core/mapping-profiles/{id}", new { id })))
+                (await dispatcher.SendAsync(command, ct)).Match(id => Results.Created($"/api/core/mapping-profiles/{id}", new CreatedResponse(id))))
+            .Produces<CreatedResponse>(StatusCodes.Status201Created)
             .RequireAuthorization(Policies.AdminOnly);
 
         profiles.MapGet("/", async (IDispatcher dispatcher, CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new ListMappingProfilesQuery(), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new ListMappingProfilesQuery(), ct)).Match(Results.Ok))
+            .Produces<IReadOnlyList<MappingProfileDto>>();
     }
 
     private static void MapStatements(IEndpointRouteBuilder app)
@@ -167,7 +192,8 @@ internal static class CoreEndpoints
         var imports = app.MapGroup("/imports").WithTags("Statement imports");
 
         imports.MapGet("/{id:guid}", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new GetStatementImportQuery(id), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new GetStatementImportQuery(id), ct)).Match(Results.Ok))
+            .Produces<StatementImportDto>();
 
         imports.MapPost("/{id:guid}/acknowledge-mismatch", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
                 (await dispatcher.SendAsync(new AcknowledgeBalanceMismatchCommand(id), ct)).Match(Results.NoContent))
@@ -179,10 +205,12 @@ internal static class CoreEndpoints
         var counterparties = app.MapGroup("/counterparties").WithTags("Counterparties");
 
         counterparties.MapPost("/", async (CreateCounterpartyCommand command, IDispatcher dispatcher, CancellationToken ct) =>
-                (await dispatcher.SendAsync(command, ct)).Match(id => Results.Created($"/api/core/counterparties/{id}", new { id })))
+                (await dispatcher.SendAsync(command, ct)).Match(id => Results.Created($"/api/core/counterparties/{id}", new CreatedResponse(id))))
+            .Produces<CreatedResponse>(StatusCodes.Status201Created)
             .RequireAuthorization(Policies.AdminOnly);
 
         counterparties.MapGet("/", async (string? search, IDispatcher dispatcher, CancellationToken ct) =>
-            (await dispatcher.QueryAsync(new ListCounterpartiesQuery(search), ct)).Match(Results.Ok));
+            (await dispatcher.QueryAsync(new ListCounterpartiesQuery(search), ct)).Match(Results.Ok))
+            .Produces<IReadOnlyList<CounterpartyDto>>();
     }
 }

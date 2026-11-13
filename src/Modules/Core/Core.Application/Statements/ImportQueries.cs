@@ -45,6 +45,9 @@ public sealed record StatementLineDto(
 
 public sealed record GetStatementImportQuery(Guid Id) : IQuery<StatementImportDto>;
 
+/// <summary>Most recent imports of an account first.</summary>
+public sealed record ListStatementImportsQuery(Guid AccountId) : IQuery<IReadOnlyList<StatementImportDto>>;
+
 public sealed record GetStatementLinesQuery(Guid AccountId, DateOnly? From, DateOnly? To, int Page, int PageSize)
     : IQuery<PagedResult<StatementLineDto>>;
 
@@ -55,12 +58,30 @@ internal sealed class GetStatementImportHandler(ICoreDbContext db) : IQueryHandl
     public async Task<Result<StatementImportDto>> HandleAsync(GetStatementImportQuery query, CancellationToken cancellationToken)
     {
         var i = await db.StatementImports.AsNoTracking().FirstOrDefaultAsync(x => x.Id == query.Id, cancellationToken);
-        return i is null
-            ? StatementImportErrors.NotFound
-            : new StatementImportDto(
-                i.Id, i.AccountId, i.FileName, i.FileHash, i.Format, i.Status, i.Currency.Code, i.PeriodStart, i.PeriodEnd,
-                i.OpeningBalance, i.ClosingBalance, i.LineCount, i.DuplicateLineCount, i.SkippedEntryCount, i.BalanceValidated, i.Error,
-                i.ImportedBy, i.ImportedAt, i.CompletedAt, i.AcknowledgedBy, i.AcknowledgedAt);
+        return i is null ? StatementImportErrors.NotFound : ToDto(i);
+    }
+
+    internal static StatementImportDto ToDto(StatementImport i) =>
+        new(i.Id, i.AccountId, i.FileName, i.FileHash, i.Format, i.Status, i.Currency.Code, i.PeriodStart, i.PeriodEnd,
+            i.OpeningBalance, i.ClosingBalance, i.LineCount, i.DuplicateLineCount, i.SkippedEntryCount, i.BalanceValidated, i.Error,
+            i.ImportedBy, i.ImportedAt, i.CompletedAt, i.AcknowledgedBy, i.AcknowledgedAt);
+}
+
+internal sealed class ListStatementImportsHandler(ICoreDbContext db) : IQueryHandler<ListStatementImportsQuery, IReadOnlyList<StatementImportDto>>
+{
+    public async Task<Result<IReadOnlyList<StatementImportDto>>> HandleAsync(ListStatementImportsQuery query, CancellationToken cancellationToken)
+    {
+        if (!await db.BankAccounts.AnyAsync(a => a.Id == query.AccountId, cancellationToken))
+        {
+            return BankAccountErrors.NotFound;
+        }
+
+        var imports = await db.StatementImports.AsNoTracking()
+            .Where(i => i.AccountId == query.AccountId)
+            .OrderByDescending(i => i.ImportedAt)
+            .Take(100)
+            .ToListAsync(cancellationToken);
+        return imports.Select(GetStatementImportHandler.ToDto).ToList();
     }
 }
 

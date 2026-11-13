@@ -17,9 +17,14 @@ internal static class DevEndpoints
     {
         var dev = app.MapGroup("/dev").AllowAnonymous().WithTags("Dev");
 
+        dev.MapGet("/tenants", async (IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.QueryAsync(new ListTenantsQuery(), ct)).Match(Results.Ok))
+            .Produces<IReadOnlyList<TenantDto>>();
+
         dev.MapPost("/tenants", async (CreateTenantRequest request, IDispatcher dispatcher, CancellationToken ct) =>
             (await dispatcher.SendAsync(new CreateTenantCommand(request.Name, request.BusinessTimeZone), ct))
-                .Match(id => Results.Created($"/dev/tenants/{id}", new { tenantId = id })));
+                .Match(id => Results.Created($"/dev/tenants/{id}", new DevTenantResponse(id))))
+            .Produces<DevTenantResponse>(StatusCodes.Status201Created);
 
         dev.MapPost("/token", (DevTokenRequest request, IOptions<JwtOptions> options, IClock clock) =>
         {
@@ -50,11 +55,16 @@ internal static class DevEndpoints
                 SigningCredentials = new SigningCredentials(jwt.GetSigningKey(), SecurityAlgorithms.HmacSha256),
             });
 
-            return Results.Ok(new { accessToken = token, expiresAt = expires });
-        });
+            return Results.Ok(new DevTokenResponse(token, expires));
+        })
+        .Produces<DevTokenResponse>();
     }
 
     internal sealed record CreateTenantRequest(string Name, string? BusinessTimeZone);
 
     internal sealed record DevTokenRequest(Guid TenantId, string UserId, string[] Roles);
+
+    internal sealed record DevTenantResponse(Guid TenantId);
+
+    internal sealed record DevTokenResponse(string AccessToken, DateTimeOffset ExpiresAt);
 }

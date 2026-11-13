@@ -34,6 +34,8 @@ public sealed record UploadExpectedTransactionsResult(Guid ImportId, bool Alread
 
 public sealed record GetExpectedTransactionImportQuery(Guid Id) : IQuery<ExpectedTransactionImportDto>;
 
+public sealed record ListExpectedTransactionImportsQuery : IQuery<IReadOnlyList<ExpectedTransactionImportDto>>;
+
 public sealed record ExpectedTransactionImportDto(
     Guid Id,
     string FileName,
@@ -108,9 +110,20 @@ internal sealed class GetExpectedTransactionImportHandler(ICoreDbContext db)
     public async Task<Result<ExpectedTransactionImportDto>> HandleAsync(GetExpectedTransactionImportQuery q, CancellationToken cancellationToken)
     {
         var i = await db.ExpectedTransactionImports.AsNoTracking().FirstOrDefaultAsync(x => x.Id == q.Id, cancellationToken);
-        return i is null
-            ? Error.NotFound("ExpectedTransactionImport.NotFound", "Import not found.")
-            : new ExpectedTransactionImportDto(i.Id, i.FileName, i.Status, i.Created, i.Updated, i.Unchanged, i.Skipped, i.Errors, i.ImportedAt, i.CompletedAt);
+        return i is null ? Error.NotFound("ExpectedTransactionImport.NotFound", "Import not found.") : ToDto(i);
+    }
+
+    internal static ExpectedTransactionImportDto ToDto(ExpectedTransactionImport i) =>
+        new(i.Id, i.FileName, i.Status, i.Created, i.Updated, i.Unchanged, i.Skipped, i.Errors, i.ImportedAt, i.CompletedAt);
+}
+
+internal sealed class ListExpectedTransactionImportsHandler(ICoreDbContext db)
+    : IQueryHandler<ListExpectedTransactionImportsQuery, IReadOnlyList<ExpectedTransactionImportDto>>
+{
+    public async Task<Result<IReadOnlyList<ExpectedTransactionImportDto>>> HandleAsync(ListExpectedTransactionImportsQuery q, CancellationToken cancellationToken)
+    {
+        var imports = await db.ExpectedTransactionImports.AsNoTracking().OrderByDescending(i => i.ImportedAt).Take(50).ToListAsync(cancellationToken);
+        return imports.Select(GetExpectedTransactionImportHandler.ToDto).ToList();
     }
 }
 

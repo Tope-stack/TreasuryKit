@@ -486,3 +486,6 @@ $RECYCLE.BIN/
 
 # Local file store (uploads)
 .data/
+
+# Web UI build output (npm run build in web/)
+src/Host/TreasuryKit.Api/wwwroot/
