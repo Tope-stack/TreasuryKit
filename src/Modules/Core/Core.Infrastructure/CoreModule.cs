@@ -8,7 +8,11 @@ using TreasuryKit.BuildingBlocks.Infrastructure.Modules;
 using TreasuryKit.BuildingBlocks.Infrastructure.Persistence;
 using TreasuryKit.Core.Application;
 using TreasuryKit.Core.Application.Statements;
+using TreasuryKit.Core.Application.ExpectedTransactions;
 using TreasuryKit.Core.Application.Settings;
+using TreasuryKit.Core.Contracts.Queries;
+using TreasuryKit.Core.Infrastructure.Queries;
+using TreasuryKit.Recon.Contracts.Matches;
 using TreasuryKit.Core.Application.Statements.Parsing;
 using TreasuryKit.Core.Domain.Statements.Narration;
 using TreasuryKit.Core.Infrastructure.Endpoints;
@@ -35,6 +39,18 @@ public sealed class CoreModule : IModule
         services.AddScoped<IStatementLineWriter, StatementLineWriter>();
         services.AddJobHandler<ProcessStatementImportJob, ProcessStatementImportHandler>();
         services.AddJobHandler<ReextractStatementLinesJob, ReextractStatementLinesHandler>();
+        services.AddJobHandler<ProcessExpectedTransactionImportJob, ProcessExpectedTransactionImportHandler>();
+        services.AddSingleton<IExpectedTransactionCsvReader, ExpectedTransactionCsvReader>();
+
+        // Settle expected transactions from Recon's match events (inbox in the core schema).
+        services.AddIntegrationEventHandler<MatchConfirmed, MatchConfirmedHandler, CoreDbContext>();
+        services.AddIntegrationEventHandler<MatchReversed, MatchReversedHandler, CoreDbContext>();
+
+        // Query contracts used by other modules (plan §4.6).
+        services.AddScoped<CoreQueries>();
+        services.AddScoped<ICoreAccountQueries>(sp => sp.GetRequiredService<CoreQueries>());
+        services.AddScoped<ICoreStatementQueries>(sp => sp.GetRequiredService<CoreQueries>());
+        services.AddScoped<ICoreExpectedTransactionQueries>(sp => sp.GetRequiredService<CoreQueries>());
 
         // Narration normalization and reference extraction (plan §4.3). Rules are pluggable: register more IReferenceRule.
         services.AddOptions<NarrationOptions>().BindConfiguration(NarrationOptions.SectionName);

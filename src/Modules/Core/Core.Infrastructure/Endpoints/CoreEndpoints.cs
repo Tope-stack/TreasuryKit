@@ -7,6 +7,7 @@ using TreasuryKit.BuildingBlocks.Infrastructure.Authorization;
 using TreasuryKit.BuildingBlocks.Infrastructure.Http;
 using TreasuryKit.Core.Application.Accounts;
 using TreasuryKit.Core.Application.Counterparties;
+using TreasuryKit.Core.Application.ExpectedTransactions;
 using TreasuryKit.Core.Application.MappingProfiles;
 using TreasuryKit.Core.Application.Settings;
 using TreasuryKit.Core.Application.Statements;
@@ -30,6 +31,57 @@ internal static class CoreEndpoints
         MapStatements(app);
         MapCounterparties(app);
         MapSettings(app);
+        MapExpectedTransactions(app);
+    }
+
+    private static void MapExpectedTransactions(IEndpointRouteBuilder app)
+    {
+        var expected = app.MapGroup("/expected-transactions").WithTags("Expected transactions");
+
+        expected.MapPost("/", async (CreateExpectedTransactionCommand command, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(command, ct)).Match(r => r.AlreadyExisted
+                    ? Results.Ok(new { id = r.Id, alreadyExisted = true })
+                    : Results.Created($"/api/core/expected-transactions/{r.Id}", new { id = r.Id, alreadyExisted = false })))
+            .RequireAuthorization(Policies.CanPrepare);
+
+        expected.MapPost("/import", async (IFormFile file, IDispatcher dispatcher, IOptions<StatementUploadOptions> options, CancellationToken ct) =>
+            {
+                if (file.Length > options.Value.MaxFileSizeBytes)
+                {
+                    return Results.Problem(statusCode: StatusCodes.Status413PayloadTooLarge, title: "ExpectedTransactionImport.TooLarge");
+                }
+
+                await using var content = file.OpenReadStream();
+                return (await dispatcher.SendAsync(new UploadExpectedTransactionsCommand(file.FileName, content), ct)).Match(r => r.AlreadyImported
+                    ? Results.Ok(new { importId = r.ImportId, alreadyImported = true })
+                    : Results.Accepted($"/api/core/expected-transactions/imports/{r.ImportId}", new { importId = r.ImportId, alreadyImported = false }));
+            })
+            .DisableAntiforgery()
+            .RequireAuthorization(Policies.CanPrepare);
+
+        expected.MapGet("/imports/{id:guid}", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
+            (await dispatcher.QueryAsync(new GetExpectedTransactionImportQuery(id), ct)).Match(Results.Ok));
+
+        expected.MapGet("/", async (
+                Domain.ExpectedTransactions.ExpectedTransactionStatus? status,
+                DateOnly? from,
+                DateOnly? to,
+                string? currency,
+                Guid? accountId,
+                IDispatcher dispatcher,
+                CancellationToken ct) =>
+            (await dispatcher.QueryAsync(new ListExpectedTransactionsQuery(status, from, to, currency, accountId), ct)).Match(Results.Ok));
+
+        expected.MapGet("/{id:guid}", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
+            (await dispatcher.QueryAsync(new GetExpectedTransactionQuery(id), ct)).Match(Results.Ok));
+
+        expected.MapPatch("/{id:guid}", async (Guid id, UpdateExpectedTransactionCommand command, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(command with { Id = id }, ct)).Match(Results.NoContent))
+            .RequireAuthorization(Policies.CanPrepare);
+
+        expected.MapPost("/{id:guid}/cancel", async (Guid id, IDispatcher dispatcher, CancellationToken ct) =>
+                (await dispatcher.SendAsync(new CancelExpectedTransactionCommand(id), ct)).Match(Results.NoContent))
+            .RequireAuthorization(Policies.CanPrepare);
     }
 
     private static void MapSettings(IEndpointRouteBuilder app)

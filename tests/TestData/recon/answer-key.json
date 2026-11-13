@@ -1,0 +1,1107 @@
+[
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0001"
+    ],
+    "bankReferences": [
+      "FT2602000001"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0002"
+    ],
+    "bankReferences": [
+      "FT2602000002"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0003"
+    ],
+    "bankReferences": [
+      "FT2602000003"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0004"
+    ],
+    "bankReferences": [
+      "FT2602000004"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0005"
+    ],
+    "bankReferences": [
+      "FT2602000005"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0006"
+    ],
+    "bankReferences": [
+      "FT2602000006"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0007"
+    ],
+    "bankReferences": [
+      "FT2602000007"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0008"
+    ],
+    "bankReferences": [
+      "FT2602000008"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0009"
+    ],
+    "bankReferences": [
+      "FT2602000009"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0010"
+    ],
+    "bankReferences": [
+      "FT2602000010"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0011"
+    ],
+    "bankReferences": [
+      "FT2602000011"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0012"
+    ],
+    "bankReferences": [
+      "FT2602000012"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0013"
+    ],
+    "bankReferences": [
+      "FT2602000013"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0014"
+    ],
+    "bankReferences": [
+      "FT2602000014"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0015"
+    ],
+    "bankReferences": [
+      "FT2602000015"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0016"
+    ],
+    "bankReferences": [
+      "FT2602000016"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0017"
+    ],
+    "bankReferences": [
+      "FT2602000017"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0018"
+    ],
+    "bankReferences": [
+      "FT2602000018"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0019"
+    ],
+    "bankReferences": [
+      "FT2602000019"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0020"
+    ],
+    "bankReferences": [
+      "FT2602000020"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0021"
+    ],
+    "bankReferences": [
+      "FT2602000021"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0022"
+    ],
+    "bankReferences": [
+      "FT2602000022"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0023"
+    ],
+    "bankReferences": [
+      "FT2602000023"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0024"
+    ],
+    "bankReferences": [
+      "FT2602000024"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0025"
+    ],
+    "bankReferences": [
+      "FT2602000025"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0026"
+    ],
+    "bankReferences": [
+      "FT2602000026"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0027"
+    ],
+    "bankReferences": [
+      "FT2602000027"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0028"
+    ],
+    "bankReferences": [
+      "FT2602000028"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0029"
+    ],
+    "bankReferences": [
+      "FT2602000029"
+    ]
+  },
+  {
+    "scenario": "CleanInvoice",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0030"
+    ],
+    "bankReferences": [
+      "FT2602000030"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0031"
+    ],
+    "bankReferences": [
+      "FT2602000031"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0032"
+    ],
+    "bankReferences": [
+      "FT2602000032"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0033"
+    ],
+    "bankReferences": [
+      "FT2602000033"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0034"
+    ],
+    "bankReferences": [
+      "FT2602000034"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0035"
+    ],
+    "bankReferences": [
+      "FT2602000035"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0036"
+    ],
+    "bankReferences": [
+      "FT2602000036"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0037"
+    ],
+    "bankReferences": [
+      "FT2602000037"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0038"
+    ],
+    "bankReferences": [
+      "FT2602000038"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0039"
+    ],
+    "bankReferences": [
+      "FT2602000039"
+    ]
+  },
+  {
+    "scenario": "CleanNipReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0040"
+    ],
+    "bankReferences": [
+      "FT2602000040"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0041"
+    ],
+    "bankReferences": [
+      "FT2602000041"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0042"
+    ],
+    "bankReferences": [
+      "FT2602000042"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0043"
+    ],
+    "bankReferences": [
+      "FT2602000043"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0044"
+    ],
+    "bankReferences": [
+      "FT2602000044"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0045"
+    ],
+    "bankReferences": [
+      "FT2602000045"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0046"
+    ],
+    "bankReferences": [
+      "FT2602000046"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0047"
+    ],
+    "bankReferences": [
+      "FT2602000047"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0048"
+    ],
+    "bankReferences": [
+      "FT2602000048"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0049"
+    ],
+    "bankReferences": [
+      "FT2602000049"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0050"
+    ],
+    "bankReferences": [
+      "FT2602000050"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0051"
+    ],
+    "bankReferences": [
+      "FT2602000051"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0052"
+    ],
+    "bankReferences": [
+      "FT2602000052"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0053"
+    ],
+    "bankReferences": [
+      "FT2602000053"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0054"
+    ],
+    "bankReferences": [
+      "FT2602000054"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0055"
+    ],
+    "bankReferences": [
+      "FT2602000055"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0056"
+    ],
+    "bankReferences": [
+      "FT2602000056"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0057"
+    ],
+    "bankReferences": [
+      "FT2602000057"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0058"
+    ],
+    "bankReferences": [
+      "FT2602000058"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0059"
+    ],
+    "bankReferences": [
+      "FT2602000059"
+    ]
+  },
+  {
+    "scenario": "CleanNoReference",
+    "clean": true,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0060"
+    ],
+    "bankReferences": [
+      "FT2602000060"
+    ]
+  },
+  {
+    "scenario": "DateDrift1",
+    "clean": false,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0061"
+    ],
+    "bankReferences": [
+      "FT2602000061"
+    ]
+  },
+  {
+    "scenario": "DateDrift1",
+    "clean": false,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0062"
+    ],
+    "bankReferences": [
+      "FT2602000062"
+    ]
+  },
+  {
+    "scenario": "DateDrift2",
+    "clean": false,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0063"
+    ],
+    "bankReferences": [
+      "FT2602000063"
+    ]
+  },
+  {
+    "scenario": "DateDrift2",
+    "clean": false,
+    "outcome": "AutoConfirmed",
+    "externalIds": [
+      "EXP-0064"
+    ],
+    "bankReferences": [
+      "FT2602000064"
+    ]
+  },
+  {
+    "scenario": "DateDrift3",
+    "clean": false,
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0065"
+    ],
+    "bankReferences": [
+      "FT2602000065"
+    ]
+  },
+  {
+    "scenario": "DateDrift3",
+    "clean": false,
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0066"
+    ],
+    "bankReferences": [
+      "FT2602000066"
+    ]
+  },
+  {
+    "scenario": "DateDrift4",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0067"
+    ],
+    "bankReferences": [
+      "FT2602000067"
+    ]
+  },
+  {
+    "scenario": "DateDrift4",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0068"
+    ],
+    "bankReferences": [
+      "FT2602000068"
+    ]
+  },
+  {
+    "scenario": "DateDrift5",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0069"
+    ],
+    "bankReferences": [
+      "FT2602000069"
+    ]
+  },
+  {
+    "scenario": "DateDrift5",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0070"
+    ],
+    "bankReferences": [
+      "FT2602000070"
+    ]
+  },
+  {
+    "scenario": "NoNameNoReference",
+    "clean": false,
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0071"
+    ],
+    "bankReferences": [
+      "FT2602000071"
+    ]
+  },
+  {
+    "scenario": "NoNameNoReference",
+    "clean": false,
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0072"
+    ],
+    "bankReferences": [
+      "FT2602000072"
+    ]
+  },
+  {
+    "scenario": "NoNameNoReference",
+    "clean": false,
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0073"
+    ],
+    "bankReferences": [
+      "FT2602000073"
+    ]
+  },
+  {
+    "scenario": "NoNameNoReference",
+    "clean": false,
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0074"
+    ],
+    "bankReferences": [
+      "FT2602000074"
+    ]
+  },
+  {
+    "scenario": "NoNameNoReference",
+    "clean": false,
+    "outcome": "Proposed",
+    "externalIds": [
+      "EXP-0075"
+    ],
+    "bankReferences": [
+      "FT2602000075"
+    ]
+  },
+  {
+    "scenario": "Ambiguous",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0076",
+      "EXP-0077"
+    ],
+    "bankReferences": [
+      "FT2602000076"
+    ]
+  },
+  {
+    "scenario": "Ambiguous",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0078",
+      "EXP-0079"
+    ],
+    "bankReferences": [
+      "FT2602000077"
+    ]
+  },
+  {
+    "scenario": "Ambiguous",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0080",
+      "EXP-0081"
+    ],
+    "bankReferences": [
+      "FT2602000078"
+    ]
+  },
+  {
+    "scenario": "Ambiguous",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0082",
+      "EXP-0083"
+    ],
+    "bankReferences": [
+      "FT2602000079"
+    ]
+  },
+  {
+    "scenario": "Split2",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0084"
+    ],
+    "bankReferences": [
+      "FT2602000080",
+      "FT2602000081"
+    ]
+  },
+  {
+    "scenario": "Split3",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0085"
+    ],
+    "bankReferences": [
+      "FT2602000082",
+      "FT2602000083",
+      "FT2602000084"
+    ]
+  },
+  {
+    "scenario": "Split2",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0086"
+    ],
+    "bankReferences": [
+      "FT2602000085",
+      "FT2602000086"
+    ]
+  },
+  {
+    "scenario": "BankChargeDeducted",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0087"
+    ],
+    "bankReferences": [
+      "FT2602000087"
+    ]
+  },
+  {
+    "scenario": "BankChargeDeducted",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0088"
+    ],
+    "bankReferences": [
+      "FT2602000088"
+    ]
+  },
+  {
+    "scenario": "BankChargeDeducted",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0089"
+    ],
+    "bankReferences": [
+      "FT2602000089"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000090"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000091"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000092"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000093"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000094"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000095"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000096"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000097"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000098"
+    ]
+  },
+  {
+    "scenario": "UnmatchedLine",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [],
+    "bankReferences": [
+      "FT2602000099"
+    ]
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0090"
+    ],
+    "bankReferences": []
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0091"
+    ],
+    "bankReferences": []
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0092"
+    ],
+    "bankReferences": []
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0093"
+    ],
+    "bankReferences": []
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0094"
+    ],
+    "bankReferences": []
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0095"
+    ],
+    "bankReferences": []
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0096"
+    ],
+    "bankReferences": []
+  },
+  {
+    "scenario": "UnmatchedExpected",
+    "clean": false,
+    "outcome": "Unmatched",
+    "externalIds": [
+      "EXP-0097"
+    ],
+    "bankReferences": []
+  }
+]

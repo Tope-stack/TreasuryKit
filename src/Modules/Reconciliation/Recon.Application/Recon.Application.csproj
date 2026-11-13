@@ -5,4 +5,8 @@
     <ProjectReference Include="..\Recon.Contracts\Recon.Contracts.csproj" />
     <ProjectReference Include="..\..\Core\Core.Contracts\Core.Contracts.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Modules\Reconciliation\Recon.Domain\Recon.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Remove="System.IO" />
+  </ItemGroup>
+</Project>

@@ -37,10 +37,10 @@ public sealed class ArchitectureRules
             typeof(TenantCreated).Assembly),
         ["Recon"] = new(
             "Recon",
-            typeof(Recon.Domain.AssemblyMarker).Assembly,
+            typeof(Recon.Domain.Runs.ReconciliationRun).Assembly,
             typeof(Recon.Application.AssemblyMarker).Assembly,
             typeof(ReconModule).Assembly,
-            typeof(Recon.Contracts.AssemblyMarker).Assembly),
+            typeof(Recon.Contracts.Matches.MatchConfirmed).Assembly),
     };
 
     public static TheoryData<string> ModuleNames => new(Modules.Keys);

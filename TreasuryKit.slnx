@@ -27,6 +27,7 @@
     <Project Path="tests/BuildingBlocks.Tests/BuildingBlocks.Tests.csproj" />
     <Project Path="tests/Core.Tests/Core.Tests.csproj" />
     <Project Path="tests/IntegrationTests/IntegrationTests.csproj" />
+    <Project Path="tests/Recon.Tests/Recon.Tests.csproj" />
   </Folder>
   <Folder Name="/tools/">
     <Project Path="tools/StatementGen/StatementGen.csproj" />

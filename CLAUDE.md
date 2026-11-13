@@ -30,6 +30,8 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Publish integration events with `IModuleUnitOfWork.Publish(...)` before `SaveChangesAsync`; subscribe with `AddIntegrationEventHandler<TEvent, THandler, TSubscriberDbContext>()`.
 - Queue background work with `IModuleUnitOfWork.Enqueue(job)`; register with `AddJobHandler<TJob, THandler>()`. Handlers must be idempotent (retries, lease expiry).
 - Uploaded files go through `IFileStore` (local disk under `FileStore:RootPath`, shared by Api and Worker).
+- Cross-module reads go through `*.Contracts` query interfaces (e.g. `ICoreStatementQueries`), implemented in the owning module's Infrastructure.
+- Test helpers that drive the outbox/job loop must drain until empty: each dispatcher call handles one batch, and other tests leave work behind.
 - New module: add it to the module list in both hosts (`TreasuryKit.Api`, `TreasuryKit.Worker`) and to `ArchitectureRules.Modules`.
 
 ## Commands
@@ -39,4 +41,5 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Worker: `dotnet run --project src/Host/TreasuryKit.Worker`
 - Tests (needs Docker): `dotnet test`
 - Regenerate synthetic statements (golden files + manifest): `dotnet run --project tools/StatementGen -- --out tests/TestData/statements`
+- Regenerate the reconciliation dataset (statement, expected CSV, answer key): `dotnet run --project tools/StatementGen -- --recon --out tests/TestData/recon`
 - Add migration: `dotnet ef migrations add <Name> --project src/Modules/<Module>/<X>.Infrastructure --context <X>DbContext --output-dir Persistence/Migrations`

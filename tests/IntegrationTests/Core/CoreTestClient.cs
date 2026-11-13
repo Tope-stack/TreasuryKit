@@ -74,7 +74,14 @@ internal sealed class CoreTestClient
         return await GetImportAsync(upload.ImportId, ct);
     }
 
-    public Task RunJobsAsync(CancellationToken ct) => _factory.Services.GetRequiredService<JobDispatcher>().RunDueJobsAsync(ct);
+    /// <summary>Runs due jobs until none are left (the dispatcher claims a small batch per call).</summary>
+    public async Task RunJobsAsync(CancellationToken ct)
+    {
+        var dispatcher = _factory.Services.GetRequiredService<JobDispatcher>();
+        while (await dispatcher.RunDueJobsAsync(ct) > 0)
+        {
+        }
+    }
 
     public async Task<ImportBody> GetImportAsync(Guid importId, CancellationToken ct) =>
         (await Admin.GetFromJsonAsync<ImportBody>($"/api/core/imports/{importId}", Json, ct))!;
