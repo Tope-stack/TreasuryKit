@@ -1,16 +1,25 @@
-using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using TreasuryKit.BuildingBlocks.Application.Abstractions;
 
 namespace TreasuryKit.BuildingBlocks.Infrastructure.Files;
 
+public enum FileStoreProvider
+{
+    /// <summary>Files on disk under <see cref="FileStoreOptions.RootPath"/>, shared by the Api and the Worker.</summary>
+    Local,
+
+    /// <summary>Files in PostgreSQL (platform.stored_files), for hosts without a persistent disk (ADR 0011).</summary>
+    Database,
+}
+
 public sealed class FileStoreOptions
 {
     public const string SectionName = "FileStore";
 
-    /// <summary>Root directory; relative paths resolve against the host's content root. Api and Worker must share it.</summary>
-    [Required]
+    public FileStoreProvider Provider { get; set; } = FileStoreProvider.Local;
+
+    /// <summary>Root directory for <see cref="FileStoreProvider.Local"/>; relative paths resolve against the content root.</summary>
     public string RootPath { get; set; } = string.Empty;
 }
 

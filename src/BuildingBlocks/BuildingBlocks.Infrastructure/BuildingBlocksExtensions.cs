@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using TreasuryKit.BuildingBlocks.Application.Abstractions;
 using TreasuryKit.BuildingBlocks.Application.Events;
 using TreasuryKit.BuildingBlocks.Application.Jobs;
@@ -34,11 +35,15 @@ public static class BuildingBlocksExtensions
         services.AddSingleton<OutboxDispatcher>();
         services.AddSingleton<JobExecutor>();
         services.AddSingleton<JobDispatcher>();
-        services.AddSingleton<IFileStore, LocalFileStore>();
+        services.AddSingleton<LocalFileStore>();
+        services.AddSingleton<DatabaseFileStore>();
+        services.AddSingleton<IFileStore>(sp => sp.GetRequiredService<IOptions<FileStoreOptions>>().Value.Provider == FileStoreProvider.Database
+            ? sp.GetRequiredService<DatabaseFileStore>()
+            : sp.GetRequiredService<LocalFileStore>());
 
         services.AddOptions<FileStoreOptions>()
             .BindConfiguration(FileStoreOptions.SectionName)
-            .ValidateDataAnnotations()
+            .Validate(o => o.Provider != FileStoreProvider.Local || !string.IsNullOrWhiteSpace(o.RootPath), "FileStore:RootPath is required for the Local provider.")
             .ValidateOnStart();
 
         services.AddOptions<JobOptions>()
@@ -50,7 +55,7 @@ public static class BuildingBlocksExtensions
         services.AddOptions<DatabaseOptions>()
             .BindConfiguration("Database")
             .Configure<IConfiguration>((o, config) =>
-                o.ConnectionString = config.GetConnectionString(DatabaseOptions.ConnectionStringName) ?? string.Empty)
+                o.ConnectionString = ConnectionStrings.Normalize(config.GetConnectionString(DatabaseOptions.ConnectionStringName)))
             .Validate(o => !string.IsNullOrWhiteSpace(o.ConnectionString), $"ConnectionStrings:{DatabaseOptions.ConnectionStringName} is required.")
             .ValidateOnStart();
 
