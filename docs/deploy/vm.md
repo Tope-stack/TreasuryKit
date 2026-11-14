@@ -78,13 +78,9 @@ Open `https://<SITE_ADDRESS>`. The browser asks for the demo password, then show
 
 The interactive API documentation is at `https://<SITE_ADDRESS>/scalar/v1`, behind the same password. Get a token from `POST /dev/token` and paste it into the **Bearer** field to try requests.
 
-### Loading the demo data
+### Demo data
 
-1. Sign in with a new tenant, user `admin` and role **Admin**, and create an account:
-   - bank code `058`, account number `0123456789`, currency `NGN`;
-   - mapping profile **Generic layout A**.
-2. Sign in again as a **Preparer**. Under the account's Upload tab, upload `tests/TestData/recon/expected.csv`, then `tests/TestData/recon/statement.csv`. Reconciliation starts automatically.
-3. Set the month to **February 2026**. Use an **Approver** for the Review tab, and the Preparer for Exceptions.
+On an empty database, the Api seeds itself at start-up (ADR 0012) with the tenant **Demo Trading Ltd**: account `0123456789` and February 2026's expected transactions and statement, already reconciled. Pick it on the sign-in page (it's preselected) and set the month to **February 2026**. The seed runs only when the database has no tenants.
 
 ## Updating
 

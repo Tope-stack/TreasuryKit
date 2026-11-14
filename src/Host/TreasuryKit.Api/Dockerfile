@@ -14,6 +14,8 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY Directory.Build.props Directory.Packages.props ./
 COPY src/ src/
+# The demo seed files embedded in the Api (the same synthetic data the tests use).
+COPY tests/TestData/recon/expected.csv tests/TestData/recon/statement.csv tests/TestData/recon/
 COPY --from=web /src/src/Host/TreasuryKit.Api/wwwroot src/Host/TreasuryKit.Api/wwwroot
 RUN dotnet publish src/Host/TreasuryKit.Api -c Release -o /app
 

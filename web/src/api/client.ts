@@ -54,7 +54,7 @@ export async function upload<T>(url: string, file: File): Promise<T> {
   const form = new FormData();
   form.append('file', file);
   const session = loadSession();
-  const response = await fetch(url, {
+  const response = await fetch(absolute(url), {
     method: 'POST',
     body: form,
     headers: session ? { Authorization: `Bearer ${session.token}` } : {},
@@ -69,7 +69,7 @@ export async function upload<T>(url: string, file: File): Promise<T> {
 /** Downloads an authenticated file (an <a href> would not send the bearer token). */
 export async function download(url: string): Promise<void> {
   const session = loadSession();
-  const response = await fetch(url, { headers: session ? { Authorization: `Bearer ${session.token}` } : {} });
+  const response = await fetch(absolute(url), { headers: session ? { Authorization: `Bearer ${session.token}` } : {} });
   if (!response.ok) {
     throw toApiError(response.status, await response.json().catch(() => undefined));
   }
@@ -79,4 +79,9 @@ export async function download(url: string): Promise<void> {
   link.download = decodeURIComponent(name);
   link.click();
   URL.revokeObjectURL(link.href);
+}
+
+/** Absolute URLs: a relative fetch fails on pages opened with credentials in the URL (https://user:pass@host). */
+function absolute(url: string): URL {
+  return new URL(url, window.location.origin);
 }
