@@ -45,4 +45,6 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Regenerate the reconciliation dataset (statement, expected CSV, answer key): `dotnet run --project tools/StatementGen -- --recon --out tests/TestData/recon`
 - Web UI: `cd web && npm run dev` (proxy to :5080); `npm run lint && npm run typecheck && npm test`; `npm run build` (into the Api's wwwroot); `npm run e2e` (Playwright, needs Postgres)
 - Regenerate the UI's API types after changing endpoints (Api running): `cd web && npm run gen:api`
+- Build images (repo root): `docker build -f src/Host/TreasuryKit.Api/Dockerfile -t treasurykit-api .` (and `TreasuryKit.Worker`)
+- Demo deployment: `deploy/` (compose, Caddyfile, backups); guide in `docs/deploy/vm.md`. The dev sign-in is enabled only in Development or with `Auth:EnableDevLogin` (never in Production).
 - Add migration: `dotnet ef migrations add <Name> --project src/Modules/<Module>/<X>.Infrastructure --context <X>DbContext --output-dir Persistence/Migrations`

@@ -1,11 +1,27 @@
+import { useQuery } from '@tanstack/react-query';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSession } from '../auth/session';
 
 export function Layout() {
   const { session, signOut } = useSession();
   const navigate = useNavigate();
+  // Present only where the dev sign-in is enabled; a demo deployment says so on every page (ADR 0010).
+  const environment = useQuery({
+    queryKey: ['environment'],
+    queryFn: async () => {
+      const response = await fetch('/dev/environment');
+      return response.ok ? ((await response.json()) as { name: string }).name : null;
+    },
+    staleTime: Infinity,
+  });
+  const demo = environment.data && environment.data !== 'Development';
   return (
     <div className="shell">
+      {demo && (
+        <div className="demo-banner" role="note">
+          {environment.data} environment — synthetic data only. Anyone signed in here can act as any user.
+        </div>
+      )}
       <header className="topbar">
         <NavLink to="/" className="brand">
           TreasuryKit

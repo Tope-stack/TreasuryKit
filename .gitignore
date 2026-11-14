@@ -489,3 +489,6 @@ $RECYCLE.BIN/
 
 # Web UI build output (npm run build in web/)
 src/Host/TreasuryKit.Api/wwwroot/
+
+# Deployment secrets
+deploy/.env
