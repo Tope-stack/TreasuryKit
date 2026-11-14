@@ -76,6 +76,8 @@ docker compose logs -f api   # first start applies database migrations
 
 Open `https://<SITE_ADDRESS>`. The browser asks for the demo password, then shows the TreasuryKit sign-in, with a "Demo environment" banner on every page.
 
+The interactive API documentation is at `https://<SITE_ADDRESS>/scalar/v1`, behind the same password. Get a token from `POST /dev/token` and paste it into the **Bearer** field to try requests.
+
 ### Loading the demo data
 
 1. Sign in with a new tenant, user `admin` and role **Admin**, and create an account:

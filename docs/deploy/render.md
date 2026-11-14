@@ -29,6 +29,12 @@ Open the service URL shown in Render (e.g. `https://treasurykit-demo.onrender.co
 1. The browser asks for the demo password: user `demo`, plus the password you set.
 2. The TreasuryKit sign-in follows, with a "Demo environment" banner on every page.
 
+### API reference
+
+The interactive API documentation is at `/scalar/v1` (and the OpenAPI document at `/openapi/v1.json`), behind the same demo password. To try requests:
+1. Call `POST /dev/token` to get a token.
+2. Paste the `accessToken` into the **Bearer** authentication field.
+
 ### Loading the demo data
 
 1. Sign in with a new tenant, user `admin` and role **Admin**, and create an account:

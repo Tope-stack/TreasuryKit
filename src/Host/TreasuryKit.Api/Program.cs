@@ -6,6 +6,7 @@ using Serilog;
 using TreasuryKit.Api.Auth;
 using TreasuryKit.Api.Endpoints;
 using TreasuryKit.Api.Middleware;
+using TreasuryKit.Api.OpenApi;
 using TreasuryKit.BuildingBlocks.Infrastructure;
 using TreasuryKit.BuildingBlocks.Infrastructure.Authorization;
 using TreasuryKit.BuildingBlocks.Infrastructure.Idempotency;
@@ -42,7 +43,7 @@ builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = 
         context.ProblemDetails.Extensions["correlationId"] = correlationId;
     }
 });
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options => options.AddBearerSecurity());
 
 // Single-service hosts (e.g. Render's free tier, ADR 0011) run the Worker's background processing in the Api.
 // Hosted services start after the migrations below.
@@ -82,10 +83,11 @@ app.UseMiddleware<IdempotencyMiddleware>();
 app.MapHealthChecks("/health").AllowAnonymous();
 app.MapMeEndpoint();
 
-if (app.Environment.IsDevelopment())
+// API documentation: Development, and environments that opt in (the Demo environment does; there it sits behind the demo password).
+if (ApiReference.IsEnabled(app.Environment, app.Configuration))
 {
     app.MapOpenApi().AllowAnonymous();
-    app.MapScalarApiReference().AllowAnonymous();
+    app.MapScalarApiReference(options => options.AddPreferredSecuritySchemes("Bearer")).AllowAnonymous();
 }
 
 // The development sign-in (pick any tenant and role) is on in Development, and in a demo deployment
