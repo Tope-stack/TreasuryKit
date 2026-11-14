@@ -29,7 +29,8 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Module DbContexts derive from `ModuleDbContext`; register with `AddModuleDbContext<T>(schema)`.
 - Publish integration events with `IModuleUnitOfWork.Publish(...)` before `SaveChangesAsync`; subscribe with `AddIntegrationEventHandler<TEvent, THandler, TSubscriberDbContext>()`.
 - Queue background work with `IModuleUnitOfWork.Enqueue(job)`; register with `AddJobHandler<TJob, THandler>()`. Handlers must be idempotent (retries, lease expiry).
-- Uploaded files go through `IFileStore` (local disk under `FileStore:RootPath`, shared by Api and Worker).
+- Uploaded files go through `IFileStore`: local disk under `FileStore:RootPath` (shared by Api and Worker), or PostgreSQL with `FileStore:Provider=Database` (ADR 0011).
+- `Hosting:RunBackgroundJobs=true` runs the Worker's background processing inside the Api (single-service hosts, ADR 0011).
 - Cross-module reads go through `*.Contracts` query interfaces (e.g. `ICoreStatementQueries`), implemented in the owning module's Infrastructure.
 - Test helpers that drive the outbox/job loop must drain until empty: each dispatcher call handles one batch, and other tests leave work behind.
 - Endpoints the UI uses declare `.Produces<T>()` with named response records, so the generated client stays typed.
@@ -47,4 +48,5 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Regenerate the UI's API types after changing endpoints (Api running): `cd web && npm run gen:api`
 - Build images (repo root): `docker build -f src/Host/TreasuryKit.Api/Dockerfile -t treasurykit-api .` (and `TreasuryKit.Worker`)
 - Demo deployment: `deploy/` (compose, Caddyfile, backups); guide in `docs/deploy/vm.md`. The dev sign-in is enabled only in Development or with `Auth:EnableDevLogin` (never in Production).
+- Render free tier: `render.yaml` Blueprint; guide in `docs/deploy/render.md`.
 - Add migration: `dotnet ef migrations add <Name> --project src/Modules/<Module>/<X>.Infrastructure --context <X>DbContext --output-dir Persistence/Migrations`

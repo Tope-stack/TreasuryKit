@@ -23,6 +23,32 @@ namespace TreasuryKit.BuildingBlocks.Infrastructure.Idempotency.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("TreasuryKit.BuildingBlocks.Infrastructure.Files.StoredFile", b =>
+                {
+                    b.Property<string>("Key")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("key");
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("bytea")
+                        .HasColumnName("content");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint")
+                        .HasColumnName("size");
+
+                    b.HasKey("Key")
+                        .HasName("pk_stored_files");
+
+                    b.ToTable("stored_files", "platform");
+                });
+
             modelBuilder.Entity("TreasuryKit.BuildingBlocks.Infrastructure.Idempotency.IdempotencyRecord", b =>
                 {
                     b.Property<Guid>("TenantId")

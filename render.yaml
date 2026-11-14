@@ -1,0 +1,41 @@
+# Render Blueprint: TreasuryKit demo on Render's free tier (ADR 0011, docs/deploy/render.md).
+# One web service (the Api, which also serves the UI and runs background work) and a free PostgreSQL.
+# Synthetic data only: the development sign-in is on, behind a shared demo password.
+services:
+  - type: web
+    name: treasurykit-demo
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./src/Host/TreasuryKit.Api/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Demo # dev sign-in on, migrations on start-up
+      - key: PORT
+        value: "8080" # the container listens on 8080
+      - key: ASPNETCORE_FORWARDEDHEADERS_ENABLED
+        value: "true"
+      - key: Hosting__RunBackgroundJobs
+        value: "true" # no separate Worker on the free tier
+      - key: FileStore__Provider
+        value: Database # no persistent disk on the free tier
+      - key: ConnectionStrings__TreasuryKit
+        fromDatabase:
+          name: treasurykit-db
+          property: connectionString
+      - key: Jwt__SigningKey
+        generateValue: true
+      - key: DemoGate__Username
+        value: demo
+      - key: DemoGate__Password
+        sync: false # you enter it in the Render dashboard when creating the Blueprint
+
+databases:
+  - name: treasurykit-db
+    plan: free
+    region: frankfurt
+    databaseName: treasurykit
+    user: treasurykit

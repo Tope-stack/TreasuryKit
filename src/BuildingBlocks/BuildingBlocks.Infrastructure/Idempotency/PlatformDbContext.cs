@@ -29,7 +29,8 @@ public sealed class IdempotencyRecord
 }
 
 /// <summary>
-/// Host-level data not owned by any module (ADR 0008): the <c>platform</c> schema. Deliberately a plain DbContext —
+/// Host-level data not owned by any module (ADRs 0008, 0011): the <c>platform</c> schema — idempotency records and,
+/// when configured, stored files. Deliberately a plain DbContext —
 /// no outbox, audit or tenant filter; queries always filter by tenant explicitly.
 /// </summary>
 public sealed class PlatformDbContext(DbContextOptions<PlatformDbContext> options) : DbContext(options)
@@ -37,6 +38,8 @@ public sealed class PlatformDbContext(DbContextOptions<PlatformDbContext> option
     public const string SchemaName = "platform";
 
     public DbSet<IdempotencyRecord> IdempotencyRecords => Set<IdempotencyRecord>();
+
+    public DbSet<Files.StoredFile> StoredFiles => Set<Files.StoredFile>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,6 +53,13 @@ public sealed class PlatformDbContext(DbContextOptions<PlatformDbContext> option
             b.Property(x => x.ContentType).HasMaxLength(200);
             b.Property(x => x.Location).HasMaxLength(500);
             b.HasIndex(x => x.CreatedAt);
+        });
+
+        modelBuilder.Entity<Files.StoredFile>(b =>
+        {
+            b.ToTable("stored_files");
+            b.HasKey(x => x.Key);
+            b.Property(x => x.Key).HasMaxLength(500);
         });
     }
 }

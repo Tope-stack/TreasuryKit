@@ -32,6 +32,7 @@ foreach (var module in modules)
 }
 
 builder.Services.AddTreasuryAuthentication();
+builder.Services.AddOptions<DemoGateOptions>().BindConfiguration(DemoGateOptions.SectionName);
 builder.Services.AddAuthorization(options => options.AddTreasuryPolicies());
 builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = context =>
 {
@@ -42,6 +43,13 @@ builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = 
     }
 });
 builder.Services.AddOpenApi();
+
+// Single-service hosts (e.g. Render's free tier, ADR 0011) run the Worker's background processing in the Api.
+// Hosted services start after the migrations below.
+if (builder.Configuration.GetValue<bool>(BackgroundProcessing.RunInApiSetting))
+{
+    builder.Services.AddBackgroundProcessing();
+}
 builder.Services.ConfigureHttpJsonOptions(options => options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 var app = builder.Build();
@@ -57,6 +65,11 @@ app.UseExceptionHandler(new ExceptionHandlerOptions
     StatusCodeSelector = exception => exception is BadHttpRequestException badRequest ? badRequest.StatusCode : StatusCodes.Status500InternalServerError,
 });
 app.UseStatusCodePages();
+if (app.Services.GetRequiredService<IOptions<DemoGateOptions>>().Value.Enabled)
+{
+    app.UseMiddleware<DemoGateMiddleware>(); // before static files: the whole site is behind the demo password
+}
+
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseDefaultFiles();
 app.UseStaticFiles(); // the web UI, built into wwwroot by `npm run build` in web/
