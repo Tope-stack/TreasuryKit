@@ -1,0 +1,15 @@
+**/bin
+**/obj
+**/node_modules
+**/.DS_Store
+.git
+.github
+.data
+.config
+docs
+tests
+tools
+web/playwright-report
+web/test-results
+src/Host/TreasuryKit.Api/wwwroot
+deploy

@@ -10,12 +10,16 @@ using TreasuryKit.Core.Application.Tenants;
 
 namespace TreasuryKit.Api.Endpoints;
 
-/// <summary>Development-only helpers: create a tenant and mint a token for it. Never mapped outside Development.</summary>
+/// <summary>Development sign-in helpers: create a tenant and mint a token for it. Mapped only when <see cref="DevLogin"/> allows.</summary>
 internal static class DevEndpoints
 {
     public static void MapDevEndpoints(this IEndpointRouteBuilder app)
     {
         var dev = app.MapGroup("/dev").AllowAnonymous().WithTags("Dev");
+
+        // Lets the UI label non-development environments (e.g. "Demo — synthetic data only").
+        dev.MapGet("/environment", (IHostEnvironment environment) => Results.Ok(new DevEnvironmentResponse(environment.EnvironmentName)))
+            .Produces<DevEnvironmentResponse>();
 
         dev.MapGet("/tenants", async (IDispatcher dispatcher, CancellationToken ct) =>
                 (await dispatcher.QueryAsync(new ListTenantsQuery(), ct)).Match(Results.Ok))
@@ -65,6 +69,8 @@ internal static class DevEndpoints
     internal sealed record DevTokenRequest(Guid TenantId, string UserId, string[] Roles);
 
     internal sealed record DevTenantResponse(Guid TenantId);
+
+    internal sealed record DevEnvironmentResponse(string Name);
 
     internal sealed record DevTokenResponse(string AccessToken, DateTimeOffset ExpiresAt);
 }

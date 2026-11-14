@@ -1,0 +1,23 @@
+# HTTPS (automatic Let's Encrypt certificate for SITE_ADDRESS) and a shared-password gate (ADR 0010).
+#
+# The gate applies to every request WITHOUT a bearer token. The app's own API calls carry
+# "Authorization: Bearer <jwt>", which the Api validates; HTTP basic auth would clash with that header.
+# Bearer tokens can only be obtained from /dev/token, which is itself behind the gate.
+{$SITE_ADDRESS} {
+	encode zstd gzip
+
+	@gated not header Authorization "Bearer *"
+	basic_auth @gated {
+		{$BASIC_AUTH_USER} {$BASIC_AUTH_HASH}
+	}
+
+	reverse_proxy api:8080
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "DENY"
+		-Server
+	}
+}

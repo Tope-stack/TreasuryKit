@@ -72,6 +72,10 @@ npm run build      # production build into the Api's wwwroot; the Api then serve
 
 Sign in on the development login page by picking (or creating) a tenant, a user name and roles. Screens: accounts, upload (statements and expected transactions, with live import status), dashboard (summary, run, export), review queue (confirm, reject, bulk confirm), exceptions (match to a candidate, resolve, ignore) and matched (reverse).
 
+## Deploy (demo)
+
+A single-VM Docker Compose deployment (Caddy with HTTPS and a password gate, Api with the UI, Worker, PostgreSQL, nightly backups) is in `deploy/`; the step-by-step guide is [docs/deploy/vm.md](docs/deploy/vm.md). It keeps the development sign-in, so it is for synthetic demo data only (ADR 0010).
+
 ## Test
 
 ```bash

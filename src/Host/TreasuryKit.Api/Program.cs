@@ -73,6 +73,19 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi().AllowAnonymous();
     app.MapScalarApiReference().AllowAnonymous();
+}
+
+// The development sign-in (pick any tenant and role) is on in Development, and in a demo deployment
+// that opts in explicitly (ADR 0010). It can never be enabled in Production.
+if (DevLogin.IsEnabled(app.Environment, app.Configuration))
+{
+    if (!app.Environment.IsDevelopment())
+    {
+        app.Logger.LogWarning(
+            "Development sign-in is ENABLED in the {Environment} environment: anyone who can reach this site can act as any user. Synthetic data only.",
+            app.Environment.EnvironmentName);
+    }
+
     app.MapDevEndpoints();
 }
 
