@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Scalar.AspNetCore;
 using Serilog;
 using TreasuryKit.Api.Auth;
+using TreasuryKit.Api.Demo;
 using TreasuryKit.Api.Endpoints;
 using TreasuryKit.Api.Middleware;
 using TreasuryKit.Api.OpenApi;
@@ -58,6 +59,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment() || app.Services.GetRequiredService<IOptions<DatabaseOptions>>().Value.MigrateOnStartup)
 {
     await app.Services.MigrateModuleDatabasesAsync();
+}
+
+// Demo deployments start with a ready-made tenant and February's synthetic data when the database is empty (ADR 0012).
+if (app.Configuration.GetValue<bool>(DemoSeeder.SettingKey))
+{
+    await DemoSeeder.SeedIfEmptyAsync(app.Services, app.Logger, CancellationToken.None);
 }
 
 // Binding failures (e.g. an unknown enum value in the query string) are client errors, not 500s.

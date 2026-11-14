@@ -7,7 +7,9 @@
 .data
 .config
 docs
-tests
+tests/**
+!tests/TestData/recon/expected.csv
+!tests/TestData/recon/statement.csv
 tools
 web/playwright-report
 web/test-results

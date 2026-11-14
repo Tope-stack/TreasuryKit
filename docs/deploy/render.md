@@ -35,13 +35,15 @@ The interactive API documentation is at `/scalar/v1` (and the OpenAPI document a
 1. Call `POST /dev/token` to get a token.
 2. Paste the `accessToken` into the **Bearer** authentication field.
 
-### Loading the demo data
+### Demo data
 
-1. Sign in with a new tenant, user `admin` and role **Admin**, and create an account:
-   - bank code `058`, account number `0123456789`, currency `NGN`;
-   - mapping profile **Generic layout A**.
-2. Sign in again as a **Preparer**. Under the account's Upload tab, upload `tests/TestData/recon/expected.csv`, then `tests/TestData/recon/statement.csv`. Reconciliation starts automatically.
-3. Set the month to **February 2026**. Use an **Approver** for the Review tab, and the Preparer for Exceptions.
+On an empty database, the Api seeds itself at start-up (ADR 0012) with the tenant **Demo Trading Ltd**: account `0123456789` and February 2026's expected transactions and statement, already reconciled.
+
+1. On the sign-in page, keep **Demo Trading Ltd** selected (it's preselected).
+2. Sign in as a **Preparer** for Upload and Exceptions, and as an **Approver** (a different user name) for Review.
+3. Set the month to **February 2026**.
+
+The seed runs only when the database has **no tenants**. If yours already has some (e.g. created before this feature), recreate the database once, as in "Monthly database refresh" below, to get the seeded demo.
 
 ## Updating
 
@@ -53,7 +55,7 @@ When the free database nears its 30-day expiry (Render emails you):
 
 1. In the dashboard, delete **treasurykit-db**.
 2. Open the Blueprint and click **Sync**. Render recreates the database and reconnects the service.
-3. The service restarts and the Api applies the migrations to the empty database. Reload the demo data.
+3. The service restarts, applies the migrations to the empty database and seeds the demo again automatically.
 
 Upgrading the database to a paid plan avoids the refresh.
 

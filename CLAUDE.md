@@ -49,4 +49,5 @@ See `IMPLEMENTATION_PLAN.md` for architecture and phases; `docs/adr/` for decisi
 - Build images (repo root): `docker build -f src/Host/TreasuryKit.Api/Dockerfile -t treasurykit-api .` (and `TreasuryKit.Worker`)
 - Demo deployment: `deploy/` (compose, Caddyfile, backups); guide in `docs/deploy/vm.md`. The dev sign-in is enabled only in Development or with `Auth:EnableDevLogin` (never in Production).
 - Render free tier: `render.yaml` Blueprint; guide in `docs/deploy/render.md`.
+- Demo seed: `Demo:SeedOnStartup` (on in Demo) seeds "Demo Trading Ltd" with `tests/TestData/recon` on an empty database (ADR 0012). Regenerating that dataset changes the demo too.
 - Add migration: `dotnet ef migrations add <Name> --project src/Modules/<Module>/<X>.Infrastructure --context <X>DbContext --output-dir Persistence/Migrations`
